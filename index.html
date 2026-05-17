@@ -34,10 +34,7 @@
   }
 
   /* Only show custom cursor on non-touch devices */
-  @media (pointer: fine) {
-    body { cursor: none; }
-    .cursor, .cursor-ring { display: block; }
-  }
+  /* cursor removed for clean UX */
 
   .cursor {
     display: none;
@@ -922,40 +919,6 @@
 </footer>
 
 <script>
-  // ── Custom cursor (desktop only) ──
-  const cursor = document.getElementById('cursor');
-  const ring = document.getElementById('cursorRing');
-  let mouseX = 0, mouseY = 0, ringX = 0, ringY = 0;
-
-  if (window.matchMedia('(pointer: fine)').matches) {
-    document.addEventListener('mousemove', (e) => {
-      mouseX = e.clientX;
-      mouseY = e.clientY;
-      cursor.style.left = mouseX - 4 + 'px';
-      cursor.style.top = mouseY - 4 + 'px';
-    });
-    function animateRing() {
-      ringX += (mouseX - ringX) * 0.12;
-      ringY += (mouseY - ringY) * 0.12;
-      ring.style.left = ringX + 'px';
-      ring.style.top = ringY + 'px';
-      requestAnimationFrame(animateRing);
-    }
-    animateRing();
-    document.querySelectorAll('a, button, .tool-pill').forEach(el => {
-      el.addEventListener('mouseenter', () => {
-        cursor.style.transform = 'scale(2)';
-        ring.style.transform = 'translate(-50%, -50%) scale(1.5)';
-        ring.style.borderColor = 'rgba(61,232,138,0.8)';
-      });
-      el.addEventListener('mouseleave', () => {
-        cursor.style.transform = 'scale(1)';
-        ring.style.transform = 'translate(-50%, -50%) scale(1)';
-        ring.style.borderColor = 'rgba(61,232,138,0.4)';
-      });
-    });
-  }
-
   // ── Hamburger menu ──
   const hamburger = document.getElementById('hamburger');
   const mobileMenu = document.getElementById('mobileMenu');

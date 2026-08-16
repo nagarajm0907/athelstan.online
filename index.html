@@ -48,15 +48,28 @@
     border-bottom:1px solid rgba(15,29,24,.08);
   }
   .nav{display:flex; align-items:center; justify-content:space-between; padding:14px 0;}
-  .brand{display:flex; align-items:center; gap:10px; font-family:'Fraunces', serif; font-size:20px; font-weight:600;}
+  .brand{display:flex; align-items:center; gap:12px; font-family:'Fraunces', serif; font-size:20px; font-weight:600;}
   
-  /* Logo adjustments to blend smoothly with background */
-  .brand-logo {
-    width: 36px;
-    height: 36px;
-    object-fit: cover;
+  /* Fixed Logo Wrapper & Image styling */
+  .brand-logo-wrap {
+    width: 42px;
+    height: 42px;
     border-radius: 50%;
-    mix-blend-mode: multiply; /* Helps dark/textured square backgrounds merge into light paper background */
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--ink);
+    border: 1.5px solid rgba(15,29,24,0.15);
+    flex-shrink: 0;
+  }
+  .brand-logo {
+    width: 130%;
+    height: 130%;
+    object-fit: cover;
+    object-position: center;
+    mix-blend-mode: luminosity; /* Adapts metallic lion cleanly to light mode header */
+    transform: scale(1.1);
   }
 
   nav ul{display:flex; gap:32px; list-style:none;}
@@ -286,7 +299,9 @@
 <header id="site-header">
   <div class="wrap nav">
     <a href="#top" class="brand">
-      <img src="data:image/jpeg;base64,..." alt="Athelstan Logo" class="brand-logo">
+      <div class="brand-logo-wrap">
+        <img src="YOUR_LOGO_IMAGE_URL_OR_BASE64" alt="Athelstan Logo" class="brand-logo">
+      </div>
       Athelstan.Online
     </a>
     <nav><ul>
@@ -295,7 +310,7 @@
       <li><a href="#work">How We Work</a></li>
       <li><a href="#team">Team</a></li>
       <li><a href="#contact">Contact</a></li>
-    </ul class="nav-links"></nav>
+    </ul></nav>
     <a href="#contact" class="nav-cta">Get a quote</a>
     <button class="nav-toggle" id="nav-toggle" aria-label="Open menu" aria-expanded="false">
       <span></span><span></span><span></span>
@@ -518,7 +533,7 @@
     navToggle.setAttribute('aria-expanded', open ? 'true' : 'false');
   });
   document.querySelectorAll('#mobile-menu a').forEach(link => {
-    link.link?.addEventListener('click', () => {
+    link.addEventListener('click', () => {
       header.classList.remove('nav-open');
       navToggle.setAttribute('aria-expanded', 'false');
     });

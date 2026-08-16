@@ -51,27 +51,28 @@
   .nav{display:flex; align-items:center; justify-content:space-between; padding:14px 0;}
   .brand{display:flex; align-items:center; gap:12px; font-family:'Fraunces', serif; font-size:20px; font-weight:600;}
   
+  /* Natural Blended Logo Wrapper */
   .brand-logo-wrap {
-    width: 42px;
-    height: 42px;
+    width: 44px;
+    height: 44px;
     border-radius: 50%;
     overflow: hidden;
     display: flex;
     align-items: center;
     justify-content: center;
-    background: var(--ink);
-    border: 1.5px solid rgba(15,29,24,0.15);
+    background: transparent;
     flex-shrink: 0;
     transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
   }
   .brand:hover .brand-logo-wrap {
-    transform: scale(1.1) rotate(6deg);
+    transform: scale(1.08) rotate(4deg);
   }
   .brand-logo {
     width: 100%;
     height: 100%;
     object-fit: cover;
     object-position: center;
+    mix-blend-mode: multiply; /* Blends white/light background naturally into the page */
   }
 
   nav ul{display:flex; gap:32px; list-style:none;}
@@ -130,7 +131,7 @@
   }
   .btn-secondary:hover{transform:translateY(-3px); background:rgba(15,29,24,.05); border-color:var(--ink);}
 
-  /* ---- Search mock (Animative & Clean) ---- */
+  /* ---- Search mock ---- */
   .serp{
     background:var(--card); border-radius:16px; padding:22px 22px 26px;
     box-shadow:0 24px 60px -20px rgba(15,29,24,.25);
@@ -231,7 +232,7 @@
   }
   .service-tags span:hover{background: var(--ink); color: var(--paper); transform: translateY(-2px);}
 
-  /* ---------- Proprietors / Team ---------- */
+  /* ---------- Team ---------- */
   .people{display:grid; grid-template-columns:1fr 1fr; gap:24px;}
   .person-card{
     background:var(--card); border-radius:16px; padding:32px;
@@ -263,7 +264,7 @@
   .process-step h4{font-family:'Fraunces', serif; font-size:18px; font-weight:500; margin-bottom:8px;}
   .process-step p{font-size:13.5px; color:var(--muted);}
 
-  /* ---------- CTA / Contact ---------- */
+  /* ---------- CTA ---------- */
   .cta-band{
     background:var(--ink); color:var(--paper); border-radius:24px;
     padding:56px 48px; display:grid; grid-template-columns:1.2fr .8fr; gap:40px; align-items:center;
@@ -284,7 +285,6 @@
   footer{padding:40px 0; border-top:1px solid rgba(15,29,24,.1);}
   .footer-row{display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:16px; font-size:13px; color:var(--muted);}
 
-  /* ---------- Responsive Queries ---------- */
   @media (max-width:860px){
     .hero{padding:44px 0 60px;}
     .hero-grid{grid-template-columns:1fr;}
@@ -360,7 +360,6 @@
         <a href="#services" class="btn-secondary">See services</a>
       </div>
     </div>
-    <!-- Clean Search Snippet Box with names removed -->
     <div class="serp hero-fade-serp">
       <div class="serp-bar">
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>

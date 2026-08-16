@@ -47,9 +47,18 @@
     backdrop-filter:blur(8px);
     border-bottom:1px solid rgba(15,29,24,.08);
   }
-  .nav{display:flex; align-items:center; justify-content:space-between; padding:18px 0;}
+  .nav{display:flex; align-items:center; justify-content:space-between; padding:14px 0;}
   .brand{display:flex; align-items:center; gap:10px; font-family:'Fraunces', serif; font-size:20px; font-weight:600;}
-  .brand .dot{width:9px; height:9px; border-radius:50%; background:var(--coral); display:inline-block;}
+  
+  /* Logo adjustments to blend smoothly with background */
+  .brand-logo {
+    width: 36px;
+    height: 36px;
+    object-fit: cover;
+    border-radius: 50%;
+    mix-blend-mode: multiply; /* Helps dark/textured square backgrounds merge into light paper background */
+  }
+
   nav ul{display:flex; gap:32px; list-style:none;}
   nav ul li a{font-size:14.5px; font-weight:500; color:var(--muted); transition:color .2s;}
   nav ul li a:hover{color:var(--ink);}
@@ -276,14 +285,17 @@
 
 <header id="site-header">
   <div class="wrap nav">
-    <a href="#top" class="brand"><span class="dot"></span>Athelstan.Online</a>
+    <a href="#top" class="brand">
+      <img src="data:image/jpeg;base64,..." alt="Athelstan Logo" class="brand-logo">
+      Athelstan.Online
+    </a>
     <nav><ul>
       <li><a href="#top">Home</a></li>
       <li><a href="#services">Services</a></li>
       <li><a href="#work">How We Work</a></li>
       <li><a href="#team">Team</a></li>
       <li><a href="#contact">Contact</a></li>
-    </ul></nav>
+    </ul class="nav-links"></nav>
     <a href="#contact" class="nav-cta">Get a quote</a>
     <button class="nav-toggle" id="nav-toggle" aria-label="Open menu" aria-expanded="false">
       <span></span><span></span><span></span>
@@ -506,7 +518,7 @@
     navToggle.setAttribute('aria-expanded', open ? 'true' : 'false');
   });
   document.querySelectorAll('#mobile-menu a').forEach(link => {
-    link.addEventListener('click', () => {
+    link.link?.addEventListener('click', () => {
       header.classList.remove('nav-open');
       navToggle.setAttribute('aria-expanded', 'false');
     });

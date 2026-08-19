@@ -1,69 +1,101 @@
 document.addEventListener('DOMContentLoaded', () => {
 
-  // 1. Fail-Safe Intersection Observer for Smooth Scroll Reveal
-  const observerOptions = { threshold: 0.1, rootMargin: "0px 0px -50px 0px" };
+  /* ==========================================================================
+     1. Interactive 3D Card Tilt Effects
+     ========================================================================== */
+  const setupTiltEffect = (cardId) => {
+    const card = document.getElementById(cardId);
+    if (!card) return;
 
-  const revealObserver = new IntersectionObserver((entries, observer) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('active');
-        observer.unobserve(entry.target);
-      }
-    });
-  }, observerOptions);
-
-  document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
-
-  // 2. Typing Effect for Search Bar Simulator
-  const sentences = [
-    "top ranking digital agency chennai",
-    "AIO: generative engine optimization",
-    "technical seo & backlink growth"
-  ];
-  const typeTarget = document.getElementById('type-output');
-  let sentenceIdx = 0, charIdx = 0, deleting = false;
-
-  function handleTyping() {
-    if (!typeTarget) return;
-    const currentText = sentences[sentenceIdx];
-
-    if (!deleting) {
-      charIdx++;
-      typeTarget.textContent = currentText.slice(0, charIdx);
-      if (charIdx >= currentText.length) {
-        deleting = true;
-        setTimeout(handleTyping, 2000);
-        return;
-      }
-      setTimeout(handleTyping, 60);
-    } else {
-      charIdx--;
-      typeTarget.textContent = currentText.slice(0, charIdx);
-      if (charIdx <= 0) {
-        deleting = false;
-        sentenceIdx = (sentenceIdx + 1) % sentences.length;
-        setTimeout(handleTyping, 400);
-        return;
-      }
-      setTimeout(handleTyping, 30);
-    }
-  }
-  handleTyping();
-
-  // 3. Smooth 3D Card Hover Perspective
-  const tiltCard = document.getElementById('hero-tilt-card');
-  if (tiltCard) {
-    tiltCard.addEventListener('mousemove', (e) => {
-      const rect = tiltCard.getBoundingClientRect();
+    card.addEventListener('mousemove', (e) => {
+      const rect = card.getBoundingClientRect();
       const x = e.clientX - rect.left - rect.width / 2;
       const y = e.clientY - rect.top - rect.height / 2;
-      
-      tiltCard.style.transform = `perspective(1000px) rotateX(${-y / 15}deg) rotateY(${x / 15}deg)`;
+
+      // Smooth perspective tilt based on mouse position
+      card.style.transform = `perspective(1000px) rotateX(${-y / 18}deg) rotateY(${x / 18}deg) scale3d(1.02, 1.02, 1.02)`;
     });
 
-    tiltCard.addEventListener('mouseleave', () => {
-      tiltCard.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg)';
+    card.addEventListener('mouseleave', () => {
+      card.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)';
     });
+  };
+
+  // Initialize tilt on interactive cards
+  setupTiltEffect('aio-tilt-card');
+  setupTiltEffect('analytics-tilt-card');
+
+
+  /* ==========================================================================
+     2. Dynamic Background Dust Particles Generator
+     ========================================================================== */
+  const particleContainer = document.querySelector('.particle-container');
+  if (particleContainer) {
+    const particleCount = 12;
+
+    for (let i = 0; i < particleCount; i++) {
+      const particle = document.createElement('div');
+      particle.classList.add('particle');
+
+      // Randomize sizing, placement, and animations for child-friendly ambient motion
+      const size = Math.floor(Math.random() * 6) + 3; // 3px to 8px
+      const posX = Math.floor(Math.random() * 100);   // 0% to 100%
+      const posY = Math.floor(Math.random() * 100);   // 0% to 100%
+      const duration = (Math.random() * 5 + 5).toFixed(1); // 5s to 10s
+      const delay = (Math.random() * -5).toFixed(1);      // -0s to -5s
+
+      particle.style.width = `${size}px`;
+      particle.style.height = `${size}px`;
+      particle.style.top = `${posY}%`;
+      particle.style.left = `${posX}%`;
+      particle.style.animationDuration = `${duration}s`;
+      particle.style.animationDelay = `${delay}s`;
+
+      particleContainer.appendChild(particle);
+    }
   }
+
+
+  /* ==========================================================================
+     3. Animated Search Input Typewriter Effect
+     ========================================================================== */
+  const searchInputs = document.querySelectorAll('.search-typewriter');
+
+  searchInputs.forEach((input) => {
+    const phrases = JSON.parse(input.getAttribute('data-phrases') || '[]');
+    if (phrases.length === 0) return;
+
+    let phraseIndex = 0;
+    let charIndex = 0;
+    let isDeleting = false;
+    let typeSpeed = 100;
+
+    const type = () => {
+      const currentPhrase = phrases[phraseIndex];
+
+      if (isDeleting) {
+        input.value = currentPhrase.substring(0, charIndex - 1);
+        charIndex--;
+        typeSpeed = 40;
+      } else {
+        input.value = currentPhrase.substring(0, charIndex + 1);
+        charIndex++;
+        typeSpeed = 90;
+      }
+
+      if (!isDeleting && charIndex === currentPhrase.length) {
+        typeSpeed = 2200; // Pause at end of sentence
+        isDeleting = true;
+      } else if (isDeleting && charIndex === 0) {
+        isDeleting = false;
+        phraseIndex = (phraseIndex + 1) % phrases.length;
+        typeSpeed = 500; // Pause before typing next phrase
+      }
+
+      setTimeout(type, typeSpeed);
+    };
+
+    type();
+  });
 
 });

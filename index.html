@@ -3,22 +3,24 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Athelstan.Online — Web Development & SEO</title>
+  <title>Athelstan.Online — Digital Growth & Web Engineering</title>
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
 
-  <div class="ambient-glow"></div>
+  <div class="blob blob-1"></div>
+  <div class="blob blob-2"></div>
 
-  <!-- Header -->
+  <!-- Glass Navigation Bar -->
   <header>
     <div class="wrap nav">
-      <a href="#" class="brand">
-        <span class="brand-dot"></span>
+      <a href="#hero" class="brand">
+        <div class="brand-icon">A</div>
         Athelstan.Online
       </a>
       <nav>
         <ul>
+          <li><a href="#hero">Home</a></li>
           <li><a href="#services">Services</a></li>
           <li><a href="#team">Team</a></li>
           <li><a href="#contact">Contact</a></li>
@@ -29,32 +31,38 @@
   </header>
 
   <!-- Hero Section -->
-  <section class="hero">
+  <section class="hero" id="hero">
     <div class="wrap hero-grid">
       <div class="hero-left reveal">
-        <div class="highlight-badge">⚡ Freelance Digital Services · Chennai</div>
+        <div class="status-badge">
+          <span class="pulse-dot"></span>
+          Freelance Digital Services · Chennai
+        </div>
         <h1>We get your business <span>found & chosen.</span></h1>
-        <p style="color: var(--text-muted); font-size: 18px;">
-          High-performance web development, technical SEO, and active social media management tailored for enterprise growth.
+        <p class="hero-subtitle">
+          Athelstan.Online builds high-speed websites, executes technical SEO, and accelerates social growth through interactive execution.
         </p>
-        <div class="hero-btn-group">
-          <a href="#contact" class="btn-yellow">Talk to Us →</a>
-          <a href="#services" class="btn-outline">Our Services</a>
+        <div class="btn-group">
+          <a href="#contact" class="btn-primary">Talk to Us →</a>
+          <a href="#services" class="btn-secondary">Explore Services</a>
         </div>
       </div>
 
       <div class="hero-right reveal">
-        <div class="hero-card-preview">
-          <div class="search-sim">
-            <span class="pulse-indicator"></span>
-            <span id="type-writer"></span>
+        <div class="visual-card" id="hero-tilt-card">
+          <div class="search-bar">
+            <span>🔍</span>
+            <span id="type-output"></span>
+            <span class="typing-cursor"></span>
           </div>
-          <div class="graphic-box">
-            <div class="spinning-ring"></div>
+          <div class="animated-graphic">
+            <div class="ring ring-1"></div>
+            <div class="ring ring-2"></div>
+            <div style="font-size: 28px;">⚡</div>
           </div>
-          <div style="margin-top:20px;">
-            <h4 style="color:#FFF; font-size:18px;">Athelstan.Online — Growth Engine</h4>
-            <p style="color:#AAA; font-size:13px; margin-top:4px;">Rank higher and convert visitors into active clients.</p>
+          <div style="margin-top:24px;">
+            <h3 style="font-size:20px; font-weight:700;">Growth Engine Active</h3>
+            <p style="color:var(--text-secondary); font-size:14px; margin-top:4px;">Optimized for top rankings and visitor conversions.</p>
           </div>
         </div>
       </div>
@@ -62,47 +70,47 @@
   </section>
 
   <!-- Services Section -->
-  <section id="services" style="padding: 80px 0;">
+  <section class="section" id="services">
     <div class="wrap">
-      <div class="section-title reveal">
-        <span style="color:var(--text-muted); font-weight:700; text-transform:uppercase; font-size:12px;">What We Offer</span>
+      <div class="section-header reveal">
         <h2>Interactive Solutions</h2>
+        <p>End-to-end digital services tailored for scalable brand expansion.</p>
       </div>
 
       <div class="services-grid">
-        <div class="service-card reveal">
-          <div class="card-icon-wrapper">💻</div>
+        <div class="card reveal">
+          <div class="card-icon">💻</div>
           <h3>Web Development</h3>
-          <p>Custom, high-speed web platforms tailored for maximal visitor conversion.</p>
-          <div class="tag-list">
-            <span>React</span><span>WordPress</span><span>Optimization</span>
+          <p>Custom, lightning-fast web platforms built to maximize conversion rates.</p>
+          <div class="tag-group">
+            <span>React</span><span>WordPress</span><span>Speed</span>
           </div>
         </div>
 
-        <div class="service-card reveal">
-          <div class="card-icon-wrapper">🚀</div>
+        <div class="card reveal">
+          <div class="card-icon">🚀</div>
           <h3>Technical SEO</h3>
-          <p>Deep technical audits, ranking optimizations, keyword mapping, and backlinks.</p>
-          <div class="tag-list">
-            <span>Rankings</span><span>Backlinks</span><span>Local SEO</span>
+          <p>Deep technical audits, keyword strategy, backlink building, and local SEO.</p>
+          <div class="tag-group">
+            <span>Rankings</span><span>Backlinks</span><span>SEO</span>
           </div>
         </div>
 
-        <div class="service-card reveal">
-          <div class="card-icon-wrapper">📊</div>
+        <div class="card reveal">
+          <div class="card-icon">📈</div>
           <h3>Digital Marketing</h3>
           <p>Targeted growth campaigns, performance tracking, and clear ROI metrics.</p>
-          <div class="tag-list">
+          <div class="tag-group">
             <span>Campaigns</span><span>Analytics</span><span>Strategy</span>
           </div>
         </div>
 
-        <div class="service-card reveal">
-          <div class="card-icon-wrapper">📲</div>
+        <div class="card reveal">
+          <div class="card-icon">📲</div>
           <h3>Social Handling</h3>
-          <p>Creative visual content, social management, and continuous brand scaling.</p>
-          <div class="tag-list">
-            <span>Content</span><span>Growth</span><span>Community</span>
+          <p>Creative visual content, audience management, and brand engagement scaling.</p>
+          <div class="tag-group">
+            <span>Content</span><span>Growth</span><span>Social</span>
           </div>
         </div>
       </div>
@@ -110,30 +118,30 @@
   </section>
 
   <!-- Team Section -->
-  <section id="team" style="padding: 80px 0; background: #F2F0E6;">
+  <section class="section" id="team" style="background: rgba(255, 255, 255, 0.02); border-top: 1px solid rgba(255, 255, 255, 0.05);">
     <div class="wrap">
-      <div class="section-title reveal">
-        <span style="color:var(--text-muted); font-weight:700; text-transform:uppercase; font-size:12px;">Direct Partnership</span>
-        <h2>Meet the Team</h2>
+      <div class="section-header reveal">
+        <h2>Direct Partnership</h2>
+        <p>Work directly with founders to execute your growth strategy.</p>
       </div>
 
       <div class="team-grid">
         <div class="team-card reveal">
-          <div class="avatar-box">N</div>
-          <div class="team-info">
+          <div class="avatar">N</div>
+          <div class="team-details">
             <h3>Nagaraj M</h3>
-            <span class="team-role">Proprietor · SEO & Web</span>
-            <p>Phone: +91 81244 82710</p>
-            <p>Email: nagarajm0907@gmail.com</p>
+            <span class="role">Proprietor · SEO & Web</span>
+            <p>Phone: <strong>+91 81244 82710</strong></p>
+            <p>Email: <strong>nagarajm0907@gmail.com</strong></p>
           </div>
         </div>
 
         <div class="team-card reveal">
-          <div class="avatar-box">S</div>
-          <div class="team-info">
+          <div class="avatar">S</div>
+          <div class="team-details">
             <h3>Sanjai B</h3>
-            <span class="team-role">Proprietor · BDE</span>
-            <p>Phone: +91 90030 47992</p>
+            <span class="role">Proprietor · BDE</span>
+            <p>Phone: <strong>+91 90030 47992</strong></p>
           </div>
         </div>
       </div>

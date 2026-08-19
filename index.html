@@ -3,23 +3,27 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Athelstan.Online — Web, SEO & Growth</title>
+  <title>Athelstan.Online — AI & Growth Intelligence</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
 
-  <!-- Ambient Global Background -->
-  <div class="bg-animation-container">
-    <div class="bg-orb bg-orb-1"></div>
-    <div class="bg-orb bg-orb-2"></div>
-    <div class="particle-container" id="bg-particle-container"></div>
+  <!-- Background Mesh & Grid Overlay -->
+  <div class="bg-layer">
+    <div class="grid-pattern"></div>
+    <div class="glow-orb glow-1"></div>
+    <div class="glow-orb glow-2"></div>
+    <div id="particle-canvas"></div>
   </div>
 
   <!-- Navbar -->
   <header class="navbar">
     <div class="nav-brand">
-      <span class="logo-icon">A</span>
-      <span class="logo-text">Athelstan.Online</span>
+      <div class="logo-box">A</div>
+      <span class="logo-text">Athelstan<span class="accent-dot">.Online</span></span>
     </div>
     <nav class="nav-links">
       <a href="#" class="active">Home</a>
@@ -28,71 +32,111 @@
       <a href="#">Knowledge Base</a>
       <a href="#">Team</a>
     </nav>
-    <a href="#" class="btn-primary">Get a Quote</a>
+    <a href="#" class="btn-glow">Get a Quote</a>
   </header>
 
-  <!-- Hero Grid -->
-  <main class="hero-container">
+  <!-- Main Hero Section -->
+  <main class="hero-wrapper">
+    
+    <!-- Hero Title & Subtitle -->
+    <div class="hero-header">
+      <div class="hero-pill">⚡ Next-Gen AIO Engine</div>
+      <h1>Dominating Search Across <br><span class="gradient-text">Traditional & AI Engines</span></h1>
+      <p>We optimize your brand for high-intent AI search citations across ChatGPT, Perplexity, and Google Gemini simultaneously.</p>
+    </div>
+
+    <!-- Cards Layout -->
     <div class="hero-grid">
       
-      <!-- Card 1: AIO Engine Active -->
-      <div class="visual-card" id="aio-tilt-card">
-        <div class="search-bar-box">
-          <span class="search-icon">🔍</span>
-          <input type="text" class="search-typewriter" data-phrases='["AIO: generative eng", "AIO: search rank AI", "AIO: prompt optimization"]' readonly />
-        </div>
-        
-        <div class="card-graphic-box">
-          <div class="radar-pulse-ring"></div>
-          <div class="radar-orbit-dot"></div>
-          <div class="lightning-center">⚡</div>
+      <!-- CARD 1: Interactive Live AI Indexer -->
+      <div class="glass-card" id="card-1">
+        <div class="card-header-bar">
+          <div class="search-type-wrapper">
+            <span class="search-icon">🔍</span>
+            <input type="text" class="search-typewriter" data-phrases='["AIO: generative rank index", "AIO: search optimization", "AIO: prompt engine citation"]' readonly />
+          </div>
+          <span class="status-indicator"><span class="pulse-dot"></span> LIVE</span>
         </div>
 
-        <div class="card-footer">
-          <h3>AIO Engine Active</h3>
-          <p>Ranked across Google, Perplexity, and ChatGPT results.</p>
+        <!-- Visual Canvas -->
+        <div class="visual-viewport">
+          <div class="core-node-system">
+            <div class="ring ring-3"></div>
+            <div class="ring ring-2"></div>
+            <div class="ring ring-1"></div>
+            
+            <!-- Floating Satellite Badges -->
+            <div class="node-sat sat-1"><span>ChatGPT</span></div>
+            <div class="node-sat sat-2"><span>Perplexity</span></div>
+            <div class="node-sat sat-3"><span>Gemini</span></div>
+            <div class="node-sat sat-4"><span>Google</span></div>
+
+            <div class="center-spark">
+              ⚡
+            </div>
+          </div>
+        </div>
+
+        <div class="card-caption">
+          <h3>AIO Active Optimization Engine</h3>
+          <p>Continuous prompt graph analysis ensures your content gets cited in top generative AI answers.</p>
         </div>
       </div>
 
-      <!-- Card 2: SEO & AIO Market Research -->
-      <div class="visual-card" id="analytics-tilt-card">
-        <div class="analytics-badge">
-          <span class="live-dot"></span>
-          <span class="badge-text">Market Intelligence Pulse</span>
+      <!-- CARD 2: Market Intelligence Chart -->
+      <div class="glass-card" id="card-2">
+        <div class="card-header-bar">
+          <div class="badge-tag green-tag">
+            <span class="pulse-green"></span>
+            Real-Time Engine Pulse
+          </div>
+          <div class="growth-pill">🚀 +340% Growth</div>
         </div>
 
-        <div class="analytics-graphic-box">
-          <div class="floating-pill pill-top-left">🚀 +340% Growth</div>
-          
-          <div class="chart-bars-container">
-            <div class="bar-wrapper">
-              <span class="bar-value">98%</span>
-              <div class="bar bar-1"></div>
-              <span class="bar-label">Google</span>
+        <!-- Visual Canvas -->
+        <div class="visual-viewport chart-viewport">
+          <div class="chart-flex">
+            
+            <div class="bar-column">
+              <div class="bar-top-value">98%</div>
+              <div class="bar-track">
+                <div class="bar-fill fill-1"></div>
+              </div>
+              <span class="column-name">Google</span>
             </div>
-            <div class="bar-wrapper">
-              <span class="bar-value">84%</span>
-              <div class="bar bar-2"></div>
-              <span class="bar-label">ChatGPT</span>
+
+            <div class="bar-column">
+              <div class="bar-top-value">84%</div>
+              <div class="bar-track">
+                <div class="bar-fill fill-2"></div>
+              </div>
+              <span class="column-name">ChatGPT</span>
             </div>
-            <div class="bar-wrapper">
-              <span class="bar-value">92%</span>
-              <div class="bar bar-3"></div>
-              <span class="bar-label">Perplexity</span>
+
+            <div class="bar-column">
+              <div class="bar-top-value">92%</div>
+              <div class="bar-track">
+                <div class="bar-fill fill-3"></div>
+              </div>
+              <span class="column-name">Perplexity</span>
             </div>
-            <div class="bar-wrapper">
-              <span class="bar-value">76%</span>
-              <div class="bar bar-4"></div>
-              <span class="bar-label">Claude</span>
+
+            <div class="bar-column">
+              <div class="bar-top-value">76%</div>
+              <div class="bar-track">
+                <div class="bar-fill fill-4"></div>
+              </div>
+              <span class="column-name">Claude</span>
             </div>
+
           </div>
 
-          <div class="floating-pill pill-bottom-right">✨ Top AI Citation</div>
+          <div class="citation-floating-badge">✨ #1 AI Cited Brand</div>
         </div>
 
-        <div class="card-footer">
+        <div class="card-caption">
           <h3>AIO Market Intelligence</h3>
-          <p>Real-time keyword visibility, organic rank monitoring, and AI engine market analysis.</p>
+          <p>Automated tracking of organic keywords, visibility percentages, and cross-model performance.</p>
         </div>
       </div>
 

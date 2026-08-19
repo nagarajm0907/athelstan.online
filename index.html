@@ -1,165 +1,422 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Athelstan.Online — AI & Growth Intelligence</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Athelstan.Online — AI &amp; Growth Intelligence</title>
+<meta name="description" content="Athelstan.Online engineers visibility across Google, AI Overviews, ChatGPT, Perplexity and Gemini — technical SEO, GEO/AIO, web development, content and social, built for the AI search era.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="styles.css">
 </head>
 <body>
 
-  <!-- Ambient Light Effects & Grid Background -->
-  <div class="bg-layer">
-    <div class="grid-pattern"></div>
-    <div class="glow-orb glow-top"></div>
-    <div class="glow-orb glow-center"></div>
-    <div class="glow-orb glow-bottom"></div>
-    <div id="particle-canvas"></div>
-    <div class="cursor-glow" id="cursor-glow"></div>
-  </div>
+<div id="scrollProgress"></div>
+<div id="cursorGlow"></div>
 
-  <!-- Navigation Bar -->
-  <header class="navbar">
-    <div class="nav-brand">
-      <div class="logo-box">A</div>
-      <span class="logo-text">Athelstan<span class="accent-dot">.Online</span></span>
+<header>
+  <div class="nav">
+    <div class="brand">
+      <div class="brand-mark">A</div>
+      Athelstan.Online
     </div>
-    <nav class="nav-links">
-      <a href="#" class="active">Home</a>
-      <a href="#">Services</a>
-      <a href="#">SEO & AIO Research</a>
-      <a href="#">Knowledge Base</a>
-      <a href="#">Team</a>
+    <nav class="links" id="navLinks">
+      <a href="#services">Services</a>
+      <a href="#research">SEO &amp; AIO Research</a>
+      <a href="#process">Process</a>
+      <a href="knowledge-base.html">Knowledge Base</a>
+      <a href="#contact">Contact</a>
     </nav>
-    <a href="#" class="btn-glow">Get a Quote</a>
-  </header>
+    <div style="display:flex;align-items:center;gap:10px;">
+      <a href="#contact" class="cta-btn nav-only">Get a Quote</a>
+      <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+</header>
 
-  <!-- Main Content Container -->
-  <div class="page-container">
+<section class="hero">
+  <div class="blob blob-1"></div>
+  <div class="blob blob-2"></div>
+  <canvas id="network-canvas"></canvas>
+  <div class="hero-inner">
+    <span class="eyebrow"><span class="dot"></span> Next-Gen AIO Engine · Live</span>
+    <h1>Dominating search across <em>traditional &amp; AI engines</em></h1>
+    <p class="hero-sub">
+      We engineer visibility for brands across Google, AI Overviews, ChatGPT, Perplexity and Gemini —
+      pairing technical SEO fundamentals with Generative Engine Optimization (GEO) so you get found
+      whether someone clicks a blue link or reads a generated answer.
+    </p>
+    <div class="hero-actions">
+      <a href="#contact" class="cta-btn">Get a Free AIO Audit →</a>
+      <a href="#research" class="cta-btn ghost">See the Research</a>
+    </div>
 
-    <!-- Hero Header Section -->
-    <section class="hero-header reveal">
-      <div class="hero-pill">⚡ Next-Gen AIO Engine</div>
-      <h1>Dominating Search Across <br><span class="gradient-text">Traditional & AI Engines</span></h1>
-      <p>We optimize your brand for high-intent AI search citations across ChatGPT, Perplexity, and Google Gemini simultaneously.</p>
-    </section>
+    <div class="engine-row">
+      <div class="engine-chip"><span class="swatch" style="background:#10a37f;color:#10a37f;"></span>ChatGPT</div>
+      <div class="engine-chip"><span class="swatch" style="background:#20808d;color:#20808d;"></span>Perplexity</div>
+      <div class="engine-chip"><span class="swatch" style="background:#4285f4;color:#4285f4;"></span>Gemini</div>
+      <div class="engine-chip"><span class="swatch" style="background:#ea4335;color:#ea4335;"></span>Google AI Overviews</div>
+      <div class="engine-chip"><span class="swatch" style="background:#111114;color:#111114;"></span>Copilot</div>
+    </div>
 
-    <!-- Interactive Dashboards Showcase Section -->
-    <section class="hero-grid">
-      
-      <!-- CARD 1: AI Engine Live Monitor -->
-      <div class="glass-card reveal" id="card-1">
-        <div class="card-header-bar">
-          <div class="search-type-wrapper">
-            <span class="search-icon">🔍</span>
-            <input type="text" class="search-typewriter" data-phrases='["AIO: generative rank index", "AIO: search optimization", "AIO: prompt engine citation"]' readonly />
-          </div>
-          <span class="status-indicator"><span class="pulse-dot"></span> LIVE</span>
-        </div>
-
-        <div class="visual-viewport">
-          <div class="core-node-system">
-            <div class="ring ring-3"></div>
-            <div class="ring ring-2"></div>
-            <div class="ring ring-1"></div>
-            
-            <div class="node-sat sat-1"><span>ChatGPT</span></div>
-            <div class="node-sat sat-2"><span>Perplexity</span></div>
-            <div class="node-sat sat-3"><span>Gemini</span></div>
-            <div class="node-sat sat-4"><span>Google</span></div>
-
-            <div class="center-spark">⚡</div>
-          </div>
-        </div>
-
-        <div class="card-caption">
+    <div class="pulse-panel">
+      <div class="pulse-head">
+        <div>
           <h3>AIO Active Optimization Engine</h3>
-          <p>Continuous prompt graph analysis ensures your content gets cited in top generative AI answers.</p>
+          <p>Continuous prompt-graph analysis tracking where your brand gets cited in generative answers.</p>
+        </div>
+        <span class="live-tag"><span class="dot"></span>REAL-TIME PULSE</span>
+      </div>
+      <div class="pulse-grid" id="pulseGrid">
+        <div class="pulse-card">
+          <div class="label"><span>Google</span><span>98%</span></div>
+          <div class="bar-track"><div class="bar-fill" data-fill="98"></div></div>
+          <div class="value" data-count="98">0%</div>
+        </div>
+        <div class="pulse-card">
+          <div class="label"><span>Perplexity</span><span>92%</span></div>
+          <div class="bar-track"><div class="bar-fill" data-fill="92"></div></div>
+          <div class="value" data-count="92">0%</div>
+        </div>
+        <div class="pulse-card">
+          <div class="label"><span>ChatGPT</span><span>84%</span></div>
+          <div class="bar-track"><div class="bar-fill" data-fill="84"></div></div>
+          <div class="value" data-count="84">0%</div>
+        </div>
+        <div class="pulse-card">
+          <div class="label"><span>Claude</span><span>76%</span></div>
+          <div class="bar-track"><div class="bar-fill" data-fill="76"></div></div>
+          <div class="value" data-count="76">0%</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== SEO & AI GROWTH RESEARCH ===================== -->
+<section class="growth-section" id="research">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="section-tag">Growth Research</span>
+      <h2>SEO growth &amp; AI search growth, tracked side by side</h2>
+      <p>We benchmark every client against two curves at once — classic organic growth, and generative-answer citation growth — because in 2026 they compound each other rather than compete.</p>
+    </div>
+
+    <div class="growth-grid reveal">
+      <div class="chart-card">
+        <div class="chart-top">
+          <div>
+            <div class="big mono">+284%</div>
+            <p style="color:#9a9a9f;font-size:.82rem;margin-top:4px;">Avg. organic + AI-citation growth, 6 months</p>
+          </div>
+          <span class="tag">Live Dataset</span>
+        </div>
+        <div class="bars" id="growthBars">
+          <div class="bar" data-h="22"><span>M1</span></div>
+          <div class="bar" data-h="30"><span>M2</span></div>
+          <div class="bar" data-h="38"><span>M3</span></div>
+          <div class="bar" data-h="52"><span>M4</span></div>
+          <div class="bar" data-h="68"><span>M5</span></div>
+          <div class="bar" data-h="85"><span>M6</span></div>
+        </div>
+        <div class="month-labels">
+          <span>Jan</span><span>Feb</span><span>Mar</span><span>Apr</span><span>May</span><span>Jun</span>
         </div>
       </div>
 
-      <!-- CARD 2: Market Intelligence Engine Pulse -->
-      <div class="glass-card reveal" id="card-2">
-        <div class="card-header-bar">
-          <div class="badge-tag green-tag">
-            <span class="pulse-green"></span>
-            Real-Time Engine Pulse
-          </div>
-          <div class="growth-pill">🚀 +340% Growth</div>
+      <div class="stat-list reveal-stagger">
+        <div class="stat-row">
+          <div class="num mono">340<small>%</small></div>
+          <div class="desc">Average lift in qualified organic sessions within two quarters of a full technical SEO + AIO rebuild.</div>
         </div>
-
-        <div class="visual-viewport chart-viewport">
-          <div class="citation-floating-badge">✨ #1 AI Cited Brand</div>
-
-          <div class="chart-flex">
-            <div class="bar-column">
-              <div class="bar-top-value">98%</div>
-              <div class="bar-track">
-                <div class="bar-fill fill-1"></div>
-              </div>
-              <span class="column-name">Google</span>
-            </div>
-
-            <div class="bar-column">
-              <div class="bar-top-value">84%</div>
-              <div class="bar-track">
-                <div class="bar-fill fill-2"></div>
-              </div>
-              <span class="column-name">ChatGPT</span>
-            </div>
-
-            <div class="bar-column">
-              <div class="bar-top-value">92%</div>
-              <div class="bar-track">
-                <div class="bar-fill fill-3"></div>
-              </div>
-              <span class="column-name">Perplexity</span>
-            </div>
-
-            <div class="bar-column">
-              <div class="bar-top-value">76%</div>
-              <div class="bar-track">
-                <div class="bar-fill fill-4"></div>
-              </div>
-              <span class="column-name">Claude</span>
-            </div>
-          </div>
+        <div class="stat-row">
+          <div class="num mono">18<small>–21%</small></div>
+          <div class="desc">Share of Google searches now returning an AI Overview — the fastest-growing surface we optimize for.</div>
         </div>
-
-        <div class="card-caption">
-          <h3>AIO Market Intelligence</h3>
-          <p>Automated tracking of organic keywords, visibility percentages, and cross-model performance.</p>
+        <div class="stat-row">
+          <div class="num mono">3.1<small>x</small></div>
+          <div class="desc">More brand citations across ChatGPT and Perplexity after entity-first content restructuring.</div>
+        </div>
+        <div class="stat-row">
+          <div class="num mono">61<small>%</small></div>
+          <div class="desc">Of new leads report discovering the brand through an AI-generated answer, not a traditional click.</div>
         </div>
       </div>
+    </div>
+  </div>
+</section>
 
-    </section>
-
-    <!-- Additional Feature Cards Section (Fills Below-the-Fold Space) -->
-    <section class="features-grid">
-      <div class="feature-card reveal">
-        <div class="feature-icon">🎯</div>
+<!-- ===================== AI VISIBILITY RINGS ===================== -->
+<section class="visibility-section">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="section-tag">AI Search Visibility</span>
+      <h2>Where your brand shows up when nobody clicks</h2>
+      <p>Generative Engine Optimization (GEO) and Answer Engine Optimization (AEO) work together so your content is the source models actually cite — not just a link they skip.</p>
+    </div>
+    <svg width="0" height="0"><defs><linearGradient id="ringGrad" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#ffc300"/><stop offset="100%" stop-color="#e6ab00"/></linearGradient></defs></svg>
+    <div class="ring-grid reveal-stagger" id="ringGrid">
+      <div class="ring-card" data-pct="92">
+        <div class="ring-wrap">
+          <svg viewBox="0 0 120 120"><circle class="ring-track" cx="60" cy="60" r="50"/><circle class="ring-fill" cx="60" cy="60" r="50"/></svg>
+          <div class="ring-value">92%</div>
+        </div>
         <h4>Generative Visibility</h4>
-        <p>Index your key brand narratives straight into LLM training weights and real-time search synthesis graphs.</p>
+        <p>Indexed into AI answer synthesis graphs</p>
       </div>
-
-      <div class="feature-card reveal">
-        <div class="feature-icon">📊</div>
+      <div class="ring-card" data-pct="87">
+        <div class="ring-wrap">
+          <svg viewBox="0 0 120 120"><circle class="ring-track" cx="60" cy="60" r="50"/><circle class="ring-fill" cx="60" cy="60" r="50"/></svg>
+          <div class="ring-value">87%</div>
+        </div>
         <h4>Citation Tracking</h4>
-        <p>Monitor exact sentence-level citations across Perplexity Pro, Google AI Overviews, and Copilot.</p>
+        <p>Sentence-level monitoring across models</p>
       </div>
-
-      <div class="feature-card reveal">
-        <div class="feature-icon">🛡️</div>
+      <div class="ring-card" data-pct="95">
+        <div class="ring-wrap">
+          <svg viewBox="0 0 120 120"><circle class="ring-track" cx="60" cy="60" r="50"/><circle class="ring-fill" cx="60" cy="60" r="50"/></svg>
+          <div class="ring-value">95%</div>
+        </div>
         <h4>Brand Defense</h4>
-        <p>Identify hallucinated or inaccurate brand info generated by models and deploy targeted corrections.</p>
+        <p>Hallucination detection &amp; correction</p>
       </div>
-    </section>
+      <div class="ring-card" data-pct="79">
+        <div class="ring-wrap">
+          <svg viewBox="0 0 120 120"><circle class="ring-track" cx="60" cy="60" r="50"/><circle class="ring-fill" cx="60" cy="60" r="50"/></svg>
+          <div class="ring-value">79%</div>
+        </div>
+        <h4>Zero-Click Capture</h4>
+        <p>Answer-box &amp; snippet ownership</p>
+      </div>
+    </div>
+  </div>
+</section>
 
+<!-- ===================== SERVICES ===================== -->
+<section class="services-section" id="services">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="section-tag">What I Do</span>
+      <h2>Four disciplines, one AI-first playbook</h2>
+      <p>Every service is built around the same principle — get discovered by people and by the models people now ask first.</p>
+    </div>
+    <div class="services-grid reveal-stagger">
+      <div class="svc-card">
+        <span class="svc-num mono">01 / AIO · SEO</span>
+        <h3>AIO / SEO Services</h3>
+        <p>Technical SEO, keyword strategy and link building, layered with 2026-native AI Optimization so you rank in Google and get cited in AI Overviews, ChatGPT and Perplexity.</p>
+        <div class="svc-tags">
+          <span>AI Overviews</span><span>GEO</span><span>AEO</span><span>Entity SEO</span><span>Core Web Vitals</span>
+        </div>
+      </div>
+      <div class="svc-card">
+        <span class="svc-num mono">02 / Build</span>
+        <h3>Website Development</h3>
+        <p>Fast, clean, SEO-ready builds on WordPress or custom code — responsive by default, structured data baked in, and AI chatbot / assistant integration where it earns its keep.</p>
+        <div class="svc-tags">
+          <span>WordPress</span><span>Custom Code</span><span>Schema Markup</span><span>Speed</span><span>AI Chat Widgets</span>
+        </div>
+      </div>
+      <div class="svc-card">
+        <span class="svc-num mono">03 / Content</span>
+        <h3>Content Writing &amp; Marketing</h3>
+        <p>Research-backed writing across any niche — legal, healthcare, e-commerce, SaaS, finance, real estate, travel, education — structured so both readers and LLMs can parse and cite it.</p>
+        <div class="svc-tags">
+          <span>Every Niche</span><span>Case Studies</span><span>Editorial Calendars</span><span>AI-Assisted Research</span>
+        </div>
+      </div>
+      <div class="svc-card">
+        <span class="svc-num mono">04 / Social</span>
+        <h3>Social Media Management</h3>
+        <p>Consistent, on-brand presence across Instagram, LinkedIn, X, YouTube and TikTok — the brand-authority signal that makes AI systems trust and cite you more.</p>
+        <div class="svc-tags">
+          <span>Content Calendars</span><span>AI Captions</span><span>Trend Analysis</span><span>Reporting</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== CONTENT NICHES ===================== -->
+<section class="niche-section">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="section-tag">Content, Every Niche</span>
+      <h2>Writing that ranks and gets cited — in your industry</h2>
+      <p>Whatever you sell, the same discipline applies: structured, entity-rich, AI-Overview-ready writing built on real research.</p>
+    </div>
+  </div>
+  <div class="marquee">
+    <div class="marquee-track" id="marqueeTrack">
+      <div class="niche-pill"><span class="dot"></span>Legal</div>
+      <div class="niche-pill"><span class="dot"></span>Healthcare</div>
+      <div class="niche-pill"><span class="dot"></span>E-commerce</div>
+      <div class="niche-pill"><span class="dot"></span>SaaS &amp; Tech</div>
+      <div class="niche-pill"><span class="dot"></span>Finance</div>
+      <div class="niche-pill"><span class="dot"></span>Real Estate</div>
+      <div class="niche-pill"><span class="dot"></span>Travel &amp; Hospitality</div>
+      <div class="niche-pill"><span class="dot"></span>Education</div>
+      <div class="niche-pill"><span class="dot"></span>Manufacturing &amp; B2B</div>
+      <div class="niche-pill"><span class="dot"></span>Food &amp; CPG</div>
+      <div class="niche-pill"><span class="dot"></span>Legal</div>
+      <div class="niche-pill"><span class="dot"></span>Healthcare</div>
+      <div class="niche-pill"><span class="dot"></span>E-commerce</div>
+      <div class="niche-pill"><span class="dot"></span>SaaS &amp; Tech</div>
+      <div class="niche-pill"><span class="dot"></span>Finance</div>
+      <div class="niche-pill"><span class="dot"></span>Real Estate</div>
+      <div class="niche-pill"><span class="dot"></span>Travel &amp; Hospitality</div>
+      <div class="niche-pill"><span class="dot"></span>Education</div>
+      <div class="niche-pill"><span class="dot"></span>Manufacturing &amp; B2B</div>
+      <div class="niche-pill"><span class="dot"></span>Food &amp; CPG</div>
+    </div>
+  </div>
+  <div class="marquee" style="margin-top:2px;">
+    <div class="marquee-track reverse">
+      <div class="niche-pill"><span class="dot"></span>Blog &amp; Article Writing</div>
+      <div class="niche-pill"><span class="dot"></span>Case Studies</div>
+      <div class="niche-pill"><span class="dot"></span>Product Copy</div>
+      <div class="niche-pill"><span class="dot"></span>Email &amp; Newsletters</div>
+      <div class="niche-pill"><span class="dot"></span>Editorial Calendars</div>
+      <div class="niche-pill"><span class="dot"></span>FAQ &amp; Schema Content</div>
+      <div class="niche-pill"><span class="dot"></span>Blog &amp; Article Writing</div>
+      <div class="niche-pill"><span class="dot"></span>Case Studies</div>
+      <div class="niche-pill"><span class="dot"></span>Product Copy</div>
+      <div class="niche-pill"><span class="dot"></span>Email &amp; Newsletters</div>
+      <div class="niche-pill"><span class="dot"></span>Editorial Calendars</div>
+      <div class="niche-pill"><span class="dot"></span>FAQ &amp; Schema Content</div>
+    </div>
   </div>
 
-  <script src="main.js"></script>
+  <div class="wrap">
+    <div class="content-types reveal-stagger">
+      <div class="ctype-card">
+        <div class="ic">📝</div>
+        <h4>Blog &amp; Article Writing</h4>
+        <p>Long-form, research-backed pieces structured with bullet-first answers and clear headings for both readers and AI Overviews.</p>
+      </div>
+      <div class="ctype-card">
+        <div class="ic">📊</div>
+        <h4>Case Studies &amp; Whitepapers</h4>
+        <p>Proof-driven assets that build the E-E-A-T signals Google and generative models weigh most heavily in 2026.</p>
+      </div>
+      <div class="ctype-card">
+        <div class="ic">🛒</div>
+        <h4>Product &amp; Landing Copy</h4>
+        <p>Conversion-focused copy for e-commerce and SaaS pages, written to answer buyer questions directly.</p>
+      </div>
+      <div class="ctype-card">
+        <div class="ic">✉️</div>
+        <h4>Email &amp; Newsletters</h4>
+        <p>Nurture sequences and newsletters that keep your audience warm between search touchpoints.</p>
+      </div>
+      <div class="ctype-card">
+        <div class="ic">🗂️</div>
+        <h4>Editorial Calendars</h4>
+        <p>Topic-cluster planning mapped to keyword and AI-prompt research, not guesswork.</p>
+      </div>
+      <div class="ctype-card">
+        <div class="ic">🎯</div>
+        <h4>FAQ &amp; Schema Content</h4>
+        <p>Structured Q&amp;A content tagged for FAQ and How-To schema — built specifically for answer-box capture.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== PROCESS ===================== -->
+<section class="process-section" id="process">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="section-tag">How It Works</span>
+      <h2>From audit to AI citation</h2>
+      <p>A five-step engagement that moves from diagnosis to a compounding visibility system.</p>
+    </div>
+    <div class="timeline">
+      <div class="tl-item">
+        <span class="tl-tag mono">STEP 01</span>
+        <h4>Technical &amp; AI-Readiness Audit</h4>
+        <p>Full crawl, Core Web Vitals check, and an assessment of how your content currently appears (or doesn't) across Google, ChatGPT, Perplexity and Gemini.</p>
+      </div>
+      <div class="tl-item">
+        <span class="tl-tag mono">STEP 02</span>
+        <h4>Keyword &amp; Prompt Research</h4>
+        <p>Traditional keyword clustering paired with prompt-graph research — the actual questions people ask AI assistants in your category.</p>
+      </div>
+      <div class="tl-item">
+        <span class="tl-tag mono">STEP 03</span>
+        <h4>Build &amp; Restructure</h4>
+        <p>Site architecture, schema, and content restructured to be entity-first and LLM-legible — headings, tables, and answer-first paragraphs.</p>
+      </div>
+      <div class="tl-item">
+        <span class="tl-tag mono">STEP 04</span>
+        <h4>Content, Social &amp; Authority Push</h4>
+        <p>Publishing cadence across blog, social and PR channels to build the brand-trust signals AI systems weigh heavily.</p>
+      </div>
+      <div class="tl-item">
+        <span class="tl-tag mono">STEP 05</span>
+        <h4>Track, Defend &amp; Compound</h4>
+        <p>Ongoing citation tracking, hallucination correction, and reporting — so visibility keeps compounding month over month.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== CTA ===================== -->
+<section style="padding:20px 0;">
+  <div class="cta-section reveal" id="contact">
+    <h2>Ready to show up in every answer, not just every search?</h2>
+    <p>Get a free AIO + technical SEO audit — no obligation, just a clear look at where you stand today.</p>
+    <div class="hero-actions">
+      <a href="mailto:hello@athelstan.online" class="cta-btn">Get a Free AIO Audit →</a>
+      <a href="knowledge-base.html" class="cta-btn ghost">Browse Knowledge Base</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="footer-grid">
+      <div>
+        <div class="brand" style="margin-bottom:14px;">
+          <div class="brand-mark">A</div>
+          Athelstan.Online
+        </div>
+        <p style="color:var(--ink-soft);font-size:.88rem;line-height:1.6;max-width:32ch;">
+          AI &amp; growth intelligence for brands that want to be found — by people, and by the models people ask first.
+        </p>
+      </div>
+      <div>
+        <h5>Services</h5>
+        <a href="#services">AIO / SEO</a>
+        <a href="#services">Web Development</a>
+        <a href="#services">Content Writing</a>
+        <a href="#services">Social Media</a>
+      </div>
+      <div>
+        <h5>Company</h5>
+        <a href="#research">Research</a>
+        <a href="#process">Process</a>
+        <a href="knowledge-base.html">Knowledge Base</a>
+        <a href="#contact">Contact</a>
+      </div>
+      <div>
+        <h5>Get in touch</h5>
+        <a href="mailto:hello@athelstan.online">hello@athelstan.online</a>
+        <a href="#">Chennai, India</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2026 Athelstan.Online. All rights reserved.</p>
+      <p>Built &amp; optimized for Google, ChatGPT, Perplexity, Gemini &amp; Claude.</p>
+    </div>
+  </div>
+</footer>
+
+<button id="toTop" aria-label="Back to top">↑</button>
+
+<script src="main.js"></script>
 </body>
 </html>

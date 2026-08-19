@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', () => {
 
-  // 1. Intersection Observer for Scroll Reveal (Fail-Safe Animations)
+  // 1. Fail-Safe Intersection Observer for Smooth Scroll Reveal
   const observerOptions = { threshold: 0.1, rootMargin: "0px 0px -50px 0px" };
 
   const revealObserver = new IntersectionObserver((entries, observer) => {
@@ -14,10 +14,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
   document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
 
-  // 2. Dynamic Search Input Typist
+  // 2. Typing Effect for Search Bar Simulator
   const sentences = [
     "top ranking digital agency chennai",
-    "custom react & wordpress web development",
+    "AIO: generative engine optimization",
     "technical seo & backlink growth"
   ];
   const typeTarget = document.getElementById('type-output');
@@ -50,7 +50,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }
   handleTyping();
 
-  // 3. Smooth 3D Card Physics on Hover
+  // 3. Smooth 3D Card Hover Perspective
   const tiltCard = document.getElementById('hero-tilt-card');
   if (tiltCard) {
     tiltCard.addEventListener('mousemove', (e) => {

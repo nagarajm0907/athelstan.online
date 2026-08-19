@@ -60,7 +60,33 @@ document.addEventListener('DOMContentLoaded', () => {
     typeLoop();
   }
 
-  /* 3. Subtle Card Interactive Physics Tilt */
+  /* 3. Scroll Reveal Animations */
+  const revealEls = document.querySelectorAll('.reveal');
+  if (revealEls.length && 'IntersectionObserver' in window) {
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('in-view');
+          revealObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.15, rootMargin: '0px 0px -60px 0px' });
+
+    revealEls.forEach(el => revealObserver.observe(el));
+  } else {
+    revealEls.forEach(el => el.classList.add('in-view'));
+  }
+
+  /* 4. Cursor-Following Ambient Glow */
+  const cursorGlow = document.getElementById('cursor-glow');
+  if (cursorGlow) {
+    document.addEventListener('mousemove', (e) => {
+      cursorGlow.style.left = `${e.clientX}px`;
+      cursorGlow.style.top = `${e.clientY + window.scrollY}px`;
+    });
+  }
+
+  /* 5. Subtle Card Interactive Physics Tilt */
   const cards = document.querySelectorAll('.glass-card');
   cards.forEach(card => {
     card.addEventListener('mousemove', (e) => {

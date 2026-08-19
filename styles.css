@@ -87,6 +87,20 @@ body {
   inset: 0;
 }
 
+/* Cursor-following glow */
+.cursor-glow {
+  position: absolute;
+  width: 500px;
+  height: 500px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(255, 199, 0, 0.10) 0%, transparent 70%);
+  transform: translate(-50%, -50%);
+  left: 50%;
+  top: 30%;
+  transition: left 0.5s ease-out, top 0.5s ease-out;
+  will-change: left, top;
+}
+
 .particle {
   position: absolute;
   background: #ffc700;
@@ -162,6 +176,37 @@ body {
 .nav-links a.active,
 .nav-links a:hover { color: #ffffff; }
 
+.nav-links a {
+  position: relative;
+  padding-bottom: 2px;
+}
+
+.nav-links a::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: -4px;
+  width: 0%;
+  height: 2px;
+  background: linear-gradient(90deg, #ffc700, #ff8800);
+  border-radius: 2px;
+  transition: width 0.3s ease;
+}
+
+.nav-links a.active::after,
+.nav-links a:hover::after {
+  width: 100%;
+}
+
+.navbar {
+  animation: navDrop 0.7s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+@keyframes navDrop {
+  0% { opacity: 0; transform: translateY(-16px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
 .btn-glow {
   background: #ffc700;
   color: #08080a;
@@ -210,9 +255,25 @@ body {
 }
 
 .gradient-text {
-  background: linear-gradient(135deg, #ffc700 0%, #ff8800 50%, #ff3300 100%);
+  background: linear-gradient(90deg, #ffc700 0%, #ff8800 25%, #ff3300 50%, #ff8800 75%, #ffc700 100%);
+  background-size: 300% auto;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
+  animation: shimmer 6s linear infinite;
+}
+
+@keyframes shimmer {
+  0% { background-position: 0% center; }
+  100% { background-position: 300% center; }
+}
+
+.hero-pill {
+  animation: pillFloat 3.5s ease-in-out infinite;
+}
+
+@keyframes pillFloat {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-4px); }
 }
 
 .hero-header p {
@@ -545,7 +606,60 @@ body {
 }
 
 /* ==========================================================================
-   7. Responsive Design Adjustments
+   7. Scroll Reveal Animations
+   ========================================================================== */
+.reveal {
+  opacity: 0;
+  transform: translateY(36px);
+  transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.reveal.in-view {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.hero-grid .reveal.in-view:nth-child(1) { transition-delay: 0.05s; }
+.hero-grid .reveal.in-view:nth-child(2) { transition-delay: 0.18s; }
+
+.features-grid .reveal.in-view:nth-child(1) { transition-delay: 0.05s; }
+.features-grid .reveal.in-view:nth-child(2) { transition-delay: 0.16s; }
+.features-grid .reveal.in-view:nth-child(3) { transition-delay: 0.27s; }
+
+/* Feature icon gentle bob on hover */
+.feature-card:hover .feature-icon {
+  animation: iconBob 0.6s ease-in-out;
+}
+
+@keyframes iconBob {
+  0%, 100% { transform: translateY(0) scale(1); }
+  50% { transform: translateY(-5px) scale(1.12); }
+}
+
+/* Button shine sweep */
+.btn-glow {
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-glow::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -60%;
+  width: 40%;
+  height: 100%;
+  background: linear-gradient(120deg, transparent, rgba(255, 255, 255, 0.45), transparent);
+  transform: skewX(-20deg);
+  transition: left 0.6s ease;
+}
+
+.btn-glow:hover::before {
+  left: 130%;
+}
+
+/* ==========================================================================
+   8. Responsive Design Adjustments
    ========================================================================== */
 @media (max-width: 1024px) {
   .hero-grid { grid-template-columns: 1fr; }

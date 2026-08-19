@@ -3,276 +3,102 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Athelstan.Online — SEO, AIO Market Research & Web Development</title>
+  <title>Athelstan.Online — Web, SEO & Growth</title>
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
 
-  <div class="blob blob-1"></div>
-  <div class="blob blob-2"></div>
-  <div class="blob blob-3"></div>
+  <!-- Global Animated Ambient Background -->
+  <div class="bg-animation-container">
+    <div class="bg-orb bg-orb-1"></div>
+    <div class="bg-orb bg-orb-2"></div>
+    <div class="particle-container" id="bg-particle-container"></div>
+  </div>
 
   <!-- Navigation Bar -->
-  <header>
-    <div class="wrap nav">
-      <a href="index.html" class="brand">
-        <div class="brand-icon">A</div>
-        Athelstan.Online
-      </a>
-      <nav>
-        <ul>
-          <li><a href="index.html" class="active">Home</a></li>
-          <li><a href="#services">Services</a></li>
-          <li><a href="#aio-research">SEO & AIO Research</a></li>
-          <li><a href="knowledge-base.html">Knowledge Base</a></li>
-          <li><a href="#team">Team</a></li>
-        </ul>
-      </nav>
-      <a href="#contact" class="nav-cta">Get a Quote</a>
+  <header class="navbar">
+    <div class="nav-brand">
+      <span class="logo-icon">A</span>
+      <span class="logo-text">Athelstan.Online</span>
     </div>
+    <nav class="nav-links">
+      <a href="#" class="active">Home</a>
+      <a href="#">Services</a>
+      <a href="#">SEO & AIO Research</a>
+      <a href="#">Knowledge Base</a>
+      <a href="#">Team</a>
+    </nav>
+    <a href="#" class="btn-primary">Get a Quote</a>
   </header>
-<!-- SEO & AIO Market Research Interactive Widget -->
-<div class="visual-card interactive-analytics-card" id="analytics-tilt-card">
-  <!-- Live Status Badge -->
-  <div class="analytics-badge">
-    <span class="live-dot"></span>
-    <span class="badge-text">Market Intelligence Pulse</span>
-  </div>
 
-  <!-- Animated Live Bar Chart Box -->
-  <div class="analytics-graphic-box">
-    <!-- Animated Chart Bars -->
-    <div class="chart-bars-container">
-      <div class="bar-wrapper">
-        <span class="bar-value">98%</span>
-        <div class="bar bar-1"></div>
-        <span class="bar-label">Google</span>
-      </div>
-      <div class="bar-wrapper">
-        <span class="bar-value">84%</span>
-        <div class="bar bar-2"></div>
-        <span class="bar-label">ChatGPT</span>
-      </div>
-      <div class="bar-wrapper">
-        <span class="bar-value">92%</span>
-        <div class="bar bar-3"></div>
-        <span class="bar-label">Perplexity</span>
-      </div>
-      <div class="bar-wrapper">
-        <span class="bar-value">76%</span>
-        <div class="bar bar-4"></div>
-        <span class="bar-label">Claude</span>
-      </div>
-    </div>
-
-    <!-- Floating Animated Metric Badges -->
-    <div class="floating-pill pill-top-left">🚀 +340% Growth</div>
-    <div class="floating-pill pill-bottom-right">✨ Top AI Citation</div>
-  </div>
-
-  <!-- Card Meta Text -->
-  <div class="analytics-footer">
-    <h3>AIO Market Intelligence</h3>
-    <p>Real-time keyword visibility, organic rank monitoring, and AI engine market analysis.</p>
-  </div>
-</div>
-  <!-- Hero Section -->
-  <section class="hero" id="hero">
-    <div class="wrap hero-grid">
-      <div class="hero-left reveal">
-        <div class="status-badge">
-          <span class="pulse-dot"></span>
-          Freelance Digital Services · Chennai
+  <!-- Hero Section with Interactive Cards -->
+  <main class="hero-container">
+    <div class="hero-grid">
+      
+      <!-- Card 1: AIO Engine Active Widget -->
+      <div class="visual-card" id="aio-tilt-card">
+        <div class="search-bar-box">
+          <span class="search-icon">🔍</span>
+          <input type="text" class="search-typewriter" data-phrases='["AIO: generative eng", "AIO: search rank AI", "AIO: prompt optimization"]' readonly />
         </div>
-        <h1>We get your business <span>found & chosen.</span></h1>
-        <p class="hero-subtitle">
-          Master search engine algorithms and generative AI search platforms (GEO/AIO) with end-to-end web engineering, performance SEO, and market intelligence.
-        </p>
-        <div class="btn-group">
-          <a href="#contact" class="btn-primary">Talk to Us →</a>
-          <a href="#aio-research" class="btn-secondary">Explore AIO Insights</a>
+        
+        <div class="card-graphic-box">
+          <div class="radar-pulse-ring"></div>
+          <div class="lightning-center">⚡</div>
+        </div>
+
+        <div class="card-footer">
+          <h3>AIO Engine Active</h3>
+          <p>Ranked across Google, Perplexity, and ChatGPT results.</p>
         </div>
       </div>
 
-      <div class="hero-right reveal">
-        <div class="visual-card" id="hero-tilt-card">
-          <div class="search-bar">
-            <span>🔍</span>
-            <span id="type-output"></span>
-            <span class="typing-cursor"></span>
+      <!-- Card 2: SEO & AIO Market Research Analytics Widget -->
+      <div class="visual-card" id="analytics-tilt-card">
+        <div class="analytics-badge">
+          <span class="live-dot"></span>
+          <span class="badge-text">Market Intelligence Pulse</span>
+        </div>
+
+        <div class="analytics-graphic-box">
+          <!-- Bouncy Animated Chart Bars -->
+          <div class="chart-bars-container">
+            <div class="bar-wrapper">
+              <span class="bar-value">98%</span>
+              <div class="bar bar-1"></div>
+              <span class="bar-label">Google</span>
+            </div>
+            <div class="bar-wrapper">
+              <span class="bar-value">84%</span>
+              <div class="bar bar-2"></div>
+              <span class="bar-label">ChatGPT</span>
+            </div>
+            <div class="bar-wrapper">
+              <span class="bar-value">92%</span>
+              <div class="bar bar-3"></div>
+              <span class="bar-label">Perplexity</span>
+            </div>
+            <div class="bar-wrapper">
+              <span class="bar-value">76%</span>
+              <div class="bar bar-4"></div>
+              <span class="bar-label">Claude</span>
+            </div>
           </div>
-          <div class="animated-graphic">
-            <div class="ring ring-1"></div>
-            <div class="ring ring-2"></div>
-            <div style="font-size: 28px;">⚡</div>
-          </div>
-          <div style="margin-top:24px;">
-            <h3 style="font-size:20px; font-weight:700;">AIO Engine Active</h3>
-            <p style="color:var(--text-secondary); font-size:14px; margin-top:4px;">Ranked across Google, Perplexity, and ChatGPT results.</p>
-          </div>
+
+          <!-- Floating Interactive Badges -->
+          <div class="floating-pill pill-top-left">🚀 +340% Growth</div>
+          <div class="floating-pill pill-bottom-right">✨ Top AI Citation</div>
+        </div>
+
+        <div class="card-footer">
+          <h3>AIO Market Intelligence</h3>
+          <p>Real-time keyword visibility, organic rank monitoring, and AI engine market analysis.</p>
         </div>
       </div>
+
     </div>
-  </section>
-
-  <!-- Metrics Section -->
-  <section class="wrap reveal">
-    <div class="metrics-grid">
-      <div class="metric-card">
-        <div class="metric-value">98.4%</div>
-        <div class="metric-label">Google Core Index Retention</div>
-      </div>
-      <div class="metric-card">
-        <div class="metric-value">3.2x</div>
-        <div class="metric-label">AI Engine Citation Rate</div>
-      </div>
-      <div class="metric-card">
-        <div class="metric-value">&lt; 0.8s</div>
-        <div class="metric-label">Core Web Vitals Load Speed</div>
-      </div>
-      <div class="metric-card">
-        <div class="metric-value">100%</div>
-        <div class="metric-label">Organic Growth ROI Focus</div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Deep SEO & AIO Market Research Section -->
-  <section class="section" id="aio-research" style="background: rgba(255, 255, 255, 0.015); border-top: 1px solid rgba(255, 255, 255, 0.05);">
-    <div class="wrap">
-      <div class="section-header reveal">
-        <h2>SEO & AIO Market Intelligence</h2>
-        <p>The paradigm shift from traditional keyword search to Generative Engine Optimization (GEO) and AI Answer Engine citations.</p>
-      </div>
-
-      <div class="aio-content-grid">
-        <div class="aio-card reveal">
-          <span class="aio-badge">Generative Search</span>
-          <h3>AI Optimization (AIO / GEO)</h3>
-          <p>Searchers no longer click 10 blue links; LLMs synthesize direct answers. We structure your brand data using Schema markup, vector-ready content clusters, and entity relationships to ensure LLMs cite your business directly in conversational prompts.</p>
-          <ul style="color: var(--text-secondary); font-size: 14px; padding-left: 20px; margin-bottom: 20px;">
-            <li>Entity authority building</li>
-            <li>Direct answer engine injection</li>
-            <li>Perplexity & ChatGPT indexing</li>
-          </ul>
-        </div>
-
-        <div class="aio-card reveal">
-          <span class="aio-badge">Organic Fundamentals</span>
-          <h3>Technical SEO & Speed</h3>
-          <p>AI engines and traditional crawlers require flawless site architecture. We optimize Core Web Vitals, implement semantic HTML5, clean up crawl budgets, and construct authoritative backlink networks to protect organic domain authority.</p>
-          <ul style="color: var(--text-secondary); font-size: 14px; padding-left: 20px; margin-bottom: 20px;">
-            <li>Zero-latency rendering</li>
-            <li>Structured JSON-LD schema</li>
-            <li>High-tier link equity acquisition</li>
-          </ul>
-        </div>
-
-        <div class="aio-card reveal">
-          <span class="aio-badge">Market Intelligence</span>
-          <h3>Intent & Behavioral Auditing</h3>
-          <p>Traditional high-volume keywords often fail to convert. Our market research maps micro-intent, long-tail commercial queries, and buyer friction points to align your product messaging directly with high-converting search streams.</p>
-          <ul style="color: var(--text-secondary); font-size: 14px; padding-left: 20px; margin-bottom: 20px;">
-            <li>Micro-intent keyword mapping</li>
-            <li>Competitor gap analysis</li>
-            <li>Conversion rate optimization</li>
-          </ul>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Core Services Section -->
-  <section class="section" id="services">
-    <div class="wrap">
-      <div class="section-header reveal">
-        <h2>Interactive Solutions</h2>
-        <p>End-to-end digital services built for modern performance and growth.</p>
-      </div>
-
-      <div class="services-grid">
-        <div class="card reveal">
-          <div class="card-icon">💻</div>
-          <h3>Web Development</h3>
-          <p>Custom, high-speed platforms tailored for maximum conversion and lightning fast load times.</p>
-          <div class="tag-group"><span>React</span><span>WordPress</span><span>Speed</span></div>
-        </div>
-
-        <div class="card reveal">
-          <div class="card-icon">🚀</div>
-          <h3>Technical SEO & AIO</h3>
-          <p>Algorithmic rank optimization and generative AI citation strategies for global visibility.</p>
-          <div class="tag-group"><span>Rankings</span><span>GEO</span><span>Backlinks</span></div>
-        </div>
-
-        <div class="card reveal">
-          <div class="card-icon">📈</div>
-          <h3>Digital Marketing</h3>
-          <p>Targeted acquisition campaigns, precise tracking dashboards, and scalable revenue growth.</p>
-          <div class="tag-group"><span>Campaigns</span><span>Analytics</span><span>Strategy</span></div>
-        </div>
-
-        <div class="card reveal">
-          <div class="card-icon">📲</div>
-          <h3>Social Handling</h3>
-          <p>Creative visual content, social media management, and active community growth.</p>
-          <div class="tag-group"><span>Content</span><span>Growth</span><span>Social</span></div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Team Partnership Section -->
-  <section class="section" id="team" style="background: rgba(255, 255, 255, 0.02); border-top: 1px solid rgba(255, 255, 255, 0.05);">
-    <div class="wrap">
-      <div class="section-header reveal">
-        <h2>Direct Partnership</h2>
-        <p>Work directly with lead strategists to execute your growth strategy.</p>
-      </div>
-
-      <div class="team-grid">
-        <div class="team-card reveal">
-          <div class="avatar">N</div>
-          <div class="team-details">
-            <h3>Nagaraj M</h3>
-            <span class="role">Proprietor · SEO & Web</span>
-            <p>Phone: <strong>+91 81244 82710</strong></p>
-            <p>Email: <strong>nagarajm0907@gmail.com</strong></p>
-          </div>
-        </div>
-
-        <div class="team-card reveal">
-          <div class="avatar">S</div>
-          <div class="team-details">
-            <h3>Sanjai B</h3>
-            <span class="role">Proprietor · BDE</span>
-            <p>Phone: <strong>+91 90030 47992</strong></p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <footer id="contact">
-    <div class="wrap">
-      <p>© 2026 Athelstan.Online. All rights reserved. Chennai, India.</p>
-    </div>
-  </footer>
+  </main>
 
   <script src="main.js"></script>
-  <!-- Ambient Moving Background -->
-<div class="bg-animation-container">
-  <div class="bg-orb bg-orb-1"></div>
-  <div class="bg-orb bg-orb-2"></div>
-  
-  <div class="particle-container">
-    <div class="particle p1"></div>
-    <div class="particle p2"></div>
-    <div class="particle p3"></div>
-    <div class="particle p4"></div>
-    <div class="particle p5"></div>
-  </div>
-</div>
-  
 </body>
 </html>

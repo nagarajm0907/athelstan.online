@@ -206,4 +206,13 @@ nav ul li a:hover::after { width: 100%; }
   .hero-grid, .people { grid-template-columns: 1fr; }
   .hero h1 { font-size: 40px; }
   nav ul { display: none; }
+
+  /* Fallback: Ensure elements stay visible if GSAP script fails */
+.hero-content > *,
+.service-card,
+.person-card {
+  opacity: 1 !important;
+  transform: none !important;
+}
+  
 }

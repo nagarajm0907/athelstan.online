@@ -3,168 +3,137 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Athelstan.Online — SEO, Web Development & Marketing</title>
+  <title>Athelstan.Online — Web Development & SEO</title>
   <link rel="stylesheet" href="styles.css">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;500;600&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
-  
-  <!-- GSAP Animation Library CDN -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
 </head>
 <body>
 
-  <canvas id="particle-canvas"></canvas>
-  <div class="cursor-follower" id="cursor-follower"></div>
+  <div class="ambient-glow"></div>
 
+  <!-- Header -->
   <header>
     <div class="wrap nav">
-      <a href="#top" class="brand">
-        <div class="brand-logo-wrap">
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
-        </div>
+      <a href="#" class="brand">
+        <span class="brand-dot"></span>
         Athelstan.Online
       </a>
       <nav>
         <ul>
-          <li><a href="#top">Home</a></li>
           <li><a href="#services">Services</a></li>
           <li><a href="#team">Team</a></li>
           <li><a href="#contact">Contact</a></li>
         </ul>
       </nav>
-      <a href="#contact" class="nav-cta">Get a quote</a>
+      <a href="#contact" class="nav-cta">Get a Quote</a>
     </div>
   </header>
 
-  <section class="hero" id="top">
+  <!-- Hero Section -->
+  <section class="hero">
     <div class="wrap hero-grid">
-      <div class="hero-content">
-        <span class="eyebrow">Freelance Digital Services · Chennai</span>
-        <h1>We get your business <em>found.</em><br>Then we get it <em>chosen.</em></h1>
-        <p class="lead">Athelstan.Online handles web development, SEO, digital marketing and social media — end to end, with interactive execution.</p>
-        <div class="hero-ctas">
-          <a href="#contact" class="btn-primary">Talk to us →</a>
-          <a href="#services" class="btn-secondary">Explore services</a>
+      <div class="hero-left reveal">
+        <div class="highlight-badge">⚡ Freelance Digital Services · Chennai</div>
+        <h1>We get your business <span>found & chosen.</span></h1>
+        <p style="color: var(--text-muted); font-size: 18px;">
+          High-performance web development, technical SEO, and active social media management tailored for enterprise growth.
+        </p>
+        <div class="hero-btn-group">
+          <a href="#contact" class="btn-yellow">Talk to Us →</a>
+          <a href="#services" class="btn-outline">Our Services</a>
         </div>
       </div>
 
-      <div class="serp-container">
-        <div class="floating-badge">
-          <svg class="animated-pulse" width="16" height="16" viewBox="0 0 24 24" fill="#00E68A"><circle cx="12" cy="12" r="10"/></svg>
-          <span>Live Motion Analytics</span>
-        </div>
-        <div class="serp">
-          <div class="serp-bar">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
-            <span id="typed-query"></span><span class="caret"></span>
+      <div class="hero-right reveal">
+        <div class="hero-card-preview">
+          <div class="search-sim">
+            <span class="pulse-indicator"></span>
+            <span id="type-writer"></span>
           </div>
-
-          <!-- Self-Contained Animated SVG Graphic -->
-          <div class="vector-illustration">
-            <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <circle class="animated-pulse" cx="50" cy="50" r="38" fill="#FF5232" opacity="0.15"/>
-              <g class="animated-gear">
-                <rect x="46" y="10" width="8" height="80" rx="2" fill="#080F0D"/>
-                <rect x="10" y="46" width="80" height="8" rx="2" fill="#080F0D"/>
-                <rect x="20.5" y="20.5" width="8" height="80" rx="2" transform="rotate(-45 20.5 20.5)" fill="#080F0D"/>
-                <rect x="77" y="20.5" width="8" height="80" rx="2" transform="rotate(45 77 20.5)" fill="#080F0D"/>
-                <circle cx="50" cy="50" r="24" fill="#F4F2EC"/>
-              </g>
-              <circle class="animated-wave" cx="50" cy="50" r="12" fill="#FF5232"/>
-            </svg>
+          <div class="graphic-box">
+            <div class="spinning-ring"></div>
           </div>
-
-          <div style="font-weight:600; font-size:18px; color:#1a0dab; margin-bottom:4px;">Athelstan.Online — Web, SEO & Growth</div>
-          <p style="font-size:13.5px; color:#4d5156;">High-performance websites, technical SEO campaigns, and active social growth.</p>
+          <div style="margin-top:20px;">
+            <h4 style="color:#FFF; font-size:18px;">Athelstan.Online — Growth Engine</h4>
+            <p style="color:#AAA; font-size:13px; margin-top:4px;">Rank higher and convert visitors into active clients.</p>
+          </div>
         </div>
       </div>
     </div>
   </section>
 
-  <section class="section" id="services">
+  <!-- Services Section -->
+  <section id="services" style="padding: 80px 0;">
     <div class="wrap">
-      <div class="section-head">
-        <span class="eyebrow">What we do</span>
+      <div class="section-title reveal">
+        <span style="color:var(--text-muted); font-weight:700; text-transform:uppercase; font-size:12px;">What We Offer</span>
         <h2>Interactive Solutions</h2>
       </div>
 
       <div class="services-grid">
-        <!-- Card 1 -->
-        <div class="service-card">
-          <div class="service-icon-box">
-            <svg class="animated-wave" width="54" height="54" viewBox="0 0 24 24" fill="none" stroke="#FF5232" stroke-width="1.8"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
-          </div>
+        <div class="service-card reveal">
+          <div class="card-icon-wrapper">💻</div>
           <h3>Web Development</h3>
-          <p>Custom, lightning-fast web applications built for optimal conversion rates.</p>
-          <div class="service-tags"><span>React</span><span>WordPress</span><span>Speed</span></div>
+          <p>Custom, high-speed web platforms tailored for maximal visitor conversion.</p>
+          <div class="tag-list">
+            <span>React</span><span>WordPress</span><span>Optimization</span>
+          </div>
         </div>
 
-        <!-- Card 2 -->
-        <div class="service-card">
-          <div class="service-icon-box">
-            <svg class="animated-gear" width="54" height="54" viewBox="0 0 24 24" fill="none" stroke="#00995D" stroke-width="1.8"><path d="M12 2v4m0 12v4M4.93 4.93l2.83 2.83m8.48 8.48l2.83 2.83M2 12h4m12 0h4M4.93 19.07l2.83-2.83m8.48-8.48l2.83-2.83"/></svg>
-          </div>
+        <div class="service-card reveal">
+          <div class="card-icon-wrapper">🚀</div>
           <h3>Technical SEO</h3>
-          <p>Deep audits, keyword mapping, backlink building, and ranking optimization.</p>
-          <div class="service-tags"><span>Rankings</span><span>Backlinks</span><span>Local SEO</span></div>
+          <p>Deep technical audits, ranking optimizations, keyword mapping, and backlinks.</p>
+          <div class="tag-list">
+            <span>Rankings</span><span>Backlinks</span><span>Local SEO</span>
+          </div>
         </div>
 
-        <!-- Card 3 -->
-        <div class="service-card">
-          <div class="service-icon-box">
-            <svg class="animated-pulse" width="54" height="54" viewBox="0 0 24 24" fill="none" stroke="#FFB800" stroke-width="1.8"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
-          </div>
+        <div class="service-card reveal">
+          <div class="card-icon-wrapper">📊</div>
           <h3>Digital Marketing</h3>
-          <p>Targeted growth campaigns, performance tracking, and clear ROI dashboards.</p>
-          <div class="service-tags"><span>Campaigns</span><span>Analytics</span><span>Strategy</span></div>
+          <p>Targeted growth campaigns, performance tracking, and clear ROI metrics.</p>
+          <div class="tag-list">
+            <span>Campaigns</span><span>Analytics</span><span>Strategy</span>
+          </div>
         </div>
 
-        <!-- Card 4 -->
-        <div class="service-card">
-          <div class="service-icon-box">
-            <svg class="animated-wave" width="54" height="54" viewBox="0 0 24 24" fill="none" stroke="#080F0D" stroke-width="1.8"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
-          </div>
+        <div class="service-card reveal">
+          <div class="card-icon-wrapper">📲</div>
           <h3>Social Handling</h3>
-          <p>Creative visual content, audience management, and brand scaling.</p>
-          <div class="service-tags"><span>Content</span><span>Growth</span><span>Community</span></div>
+          <p>Creative visual content, social management, and continuous brand scaling.</p>
+          <div class="tag-list">
+            <span>Content</span><span>Growth</span><span>Community</span>
+          </div>
         </div>
       </div>
     </div>
   </section>
 
-  <section class="section" id="team">
+  <!-- Team Section -->
+  <section id="team" style="padding: 80px 0; background: #F2F0E6;">
     <div class="wrap">
-      <div class="section-head">
-        <span class="eyebrow">Who you work with</span>
-        <h2>Direct Partnership</h2>
+      <div class="section-title reveal">
+        <span style="color:var(--text-muted); font-weight:700; text-transform:uppercase; font-size:12px;">Direct Partnership</span>
+        <h2>Meet the Team</h2>
       </div>
-      <div class="people">
-        <div class="person-card">
-          <div class="person-avatar">
-            <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="#080F0D" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
-          </div>
-          <div class="person-info">
+
+      <div class="team-grid">
+        <div class="team-card reveal">
+          <div class="avatar-box">N</div>
+          <div class="team-info">
             <h3>Nagaraj M</h3>
-            <span class="person-role">Proprietor · SEO & Web</span>
-            <div class="person-contact">
-              <span>Phone: <strong>+91 81244 82710</strong></span>
-              <span>Email: <strong>nagarajm0907@gmail.com</strong></span>
-            </div>
+            <span class="team-role">Proprietor · SEO & Web</span>
+            <p>Phone: +91 81244 82710</p>
+            <p>Email: nagarajm0907@gmail.com</p>
           </div>
         </div>
 
-        <div class="person-card">
-          <div class="person-avatar">
-            <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="#080F0D" stroke-width="2"><path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="8.5" cy="7" r="4"/><polyline points="17 11 19 13 23 9"/></svg>
-          </div>
-          <div class="person-info">
+        <div class="team-card reveal">
+          <div class="avatar-box">S</div>
+          <div class="team-info">
             <h3>Sanjai B</h3>
-            <span class="person-role">Proprietor · BDE</span>
-            <div class="person-contact">
-              <span>Phone: <strong>+91 90030 47992</strong></span>
-            </div>
+            <span class="team-role">Proprietor · BDE</span>
+            <p>Phone: +91 90030 47992</p>
           </div>
         </div>
       </div>

@@ -1,97 +1,78 @@
 document.addEventListener('DOMContentLoaded', () => {
 
-  /* 1. Subtle 3D Card Tilt */
-  const setupTiltEffect = (cardId) => {
-    const card = document.getElementById(cardId);
-    if (!card) return;
+  /* 1. Dynamic Particles Generator */
+  const particleContainer = document.getElementById('particle-canvas');
+  if (particleContainer) {
+    for (let i = 0; i < 20; i++) {
+      const particle = document.createElement('div');
+      particle.classList.add('particle');
+      
+      const size = Math.random() * 3 + 2; // 2px to 5px
+      const left = Math.random() * 100;
+      const top = Math.random() * 100;
+      const delay = Math.random() * 5;
+      const duration = Math.random() * 5 + 5;
 
+      particle.style.width = `${size}px`;
+      particle.style.height = `${size}px`;
+      particle.style.left = `${left}%`;
+      particle.style.top = `${top}%`;
+      particle.style.animationDelay = `${delay}s`;
+      particle.style.animationDuration = `${duration}s`;
+
+      particleContainer.appendChild(particle);
+    }
+  }
+
+  /* 2. Typewriter Effect for Search Bar */
+  const typewriterInput = document.querySelector('.search-typewriter');
+  if (typewriterInput) {
+    const phrases = JSON.parse(typewriterInput.getAttribute('data-phrases') || '[]');
+    let phraseIdx = 0;
+    let charIdx = 0;
+    let isDeleting = false;
+
+    const typeLoop = () => {
+      const current = phrases[phraseIdx];
+
+      if (isDeleting) {
+        typewriterInput.value = current.substring(0, charIdx - 1);
+        charIdx--;
+      } else {
+        typewriterInput.value = current.substring(0, charIndex = charIdx + 1);
+      }
+
+      let speed = isDeleting ? 40 : 80;
+
+      if (!isDeleting && charIdx === current.length) {
+        speed = 2000;
+        isDeleting = true;
+      } else if (isDeleting && charIdx === 0) {
+        isDeleting = false;
+        phraseIdx = (phraseIdx + 1) % phrases.length;
+        speed = 500;
+      }
+
+      setTimeout(typeLoop, speed);
+    };
+
+    typeLoop();
+  }
+
+  /* 3. Subtle Card Tilt Effect */
+  const cards = document.querySelectorAll('.glass-card');
+  cards.forEach(card => {
     card.addEventListener('mousemove', (e) => {
       const rect = card.getBoundingClientRect();
       const x = e.clientX - rect.left - rect.width / 2;
       const y = e.clientY - rect.top - rect.height / 2;
 
-      card.style.transform = `perspective(1000px) rotateX(${-y / 30}deg) rotateY(${x / 30}deg)`;
+      card.style.transform = `perspective(1000px) rotateX(${-y / 35}deg) rotateY(${x / 35}deg) translateY(-4px)`;
     });
 
     card.addEventListener('mouseleave', () => {
-      card.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg)';
+      card.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) translateY(0px)';
     });
-  };
-
-  setupTiltEffect('aio-tilt-card');
-  setupTiltEffect('analytics-tilt-card');
-
-
-  /* 2. Controlled Particle Generator (No Clutter) */
-  const generateParticles = (containerSelector, count = 8) => {
-    const containers = document.querySelectorAll(containerSelector);
-
-    containers.forEach((container) => {
-      if (!container) return;
-
-      for (let i = 0; i < count; i++) {
-        const particle = document.createElement('div');
-        particle.classList.add('particle');
-
-        const size = Math.floor(Math.random() * 3) + 2; // 2px to 5px max
-        const posX = Math.floor(Math.random() * 95);
-        const posY = Math.floor(Math.random() * 95);
-        const duration = (Math.random() * 4 + 5).toFixed(1);
-        const delay = (Math.random() * -5).toFixed(1);
-
-        particle.style.width = `${size}px`;
-        particle.style.height = `${size}px`;
-        particle.style.top = `${posY}%`;
-        particle.style.left = `${posX}%`;
-        particle.style.animationDuration = `${duration}s`;
-        particle.style.animationDelay = `${delay}s`;
-
-        container.appendChild(particle);
-      }
-    });
-  };
-
-  generateParticles('#bg-particle-container', 12);
-
-
-  /* 3. Typewriter Input Loop */
-  const searchInputs = document.querySelectorAll('.search-typewriter');
-
-  searchInputs.forEach((input) => {
-    const phrases = JSON.parse(input.getAttribute('data-phrases') || '[]');
-    if (phrases.length === 0) return;
-
-    let phraseIndex = 0;
-    let charIndex = 0;
-    let isDeleting = false;
-    let typeSpeed = 100;
-
-    const type = () => {
-      const currentPhrase = phrases[phraseIndex];
-
-      if (isDeleting) {
-        input.value = currentPhrase.substring(0, charIndex - 1);
-        charIndex--;
-        typeSpeed = 40;
-      } else {
-        input.value = currentPhrase.substring(0, charIndex + 1);
-        charIndex++;
-        typeSpeed = 90;
-      }
-
-      if (!isDeleting && charIndex === currentPhrase.length) {
-        typeSpeed = 2200;
-        isDeleting = true;
-      } else if (isDeleting && charIndex === 0) {
-        isDeleting = false;
-        phraseIndex = (phraseIndex + 1) % phrases.length;
-        typeSpeed = 400;
-      }
-
-      setTimeout(type, typeSpeed);
-    };
-
-    type();
   });
 
 });

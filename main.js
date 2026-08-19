@@ -1,8 +1,6 @@
 document.addEventListener('DOMContentLoaded', () => {
 
-  /* ==========================================================================
-     1. Interactive 3D Perspective Tilt on Mouse Movement
-     ========================================================================== */
+  /* 1. Subtle 3D Card Tilt */
   const setupTiltEffect = (cardId) => {
     const card = document.getElementById(cardId);
     if (!card) return;
@@ -12,11 +10,11 @@ document.addEventListener('DOMContentLoaded', () => {
       const x = e.clientX - rect.left - rect.width / 2;
       const y = e.clientY - rect.top - rect.height / 2;
 
-      card.style.transform = `perspective(1000px) rotateX(${-y / 25}deg) rotateY(${x / 25}deg) scale3d(1.01, 1.01, 1.01)`;
+      card.style.transform = `perspective(1000px) rotateX(${-y / 30}deg) rotateY(${x / 30}deg)`;
     });
 
     card.addEventListener('mouseleave', () => {
-      card.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)';
+      card.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg)';
     });
   };
 
@@ -24,10 +22,8 @@ document.addEventListener('DOMContentLoaded', () => {
   setupTiltEffect('analytics-tilt-card');
 
 
-  /* ==========================================================================
-     2. Dynamic Ambient Dust Particles Generator
-     ========================================================================== */
-  const generateParticles = (containerSelector, count = 10) => {
+  /* 2. Controlled Particle Generator (No Clutter) */
+  const generateParticles = (containerSelector, count = 8) => {
     const containers = document.querySelectorAll(containerSelector);
 
     containers.forEach((container) => {
@@ -37,10 +33,10 @@ document.addEventListener('DOMContentLoaded', () => {
         const particle = document.createElement('div');
         particle.classList.add('particle');
 
-        const size = Math.floor(Math.random() * 5) + 3; // 3px to 8px
-        const posX = Math.floor(Math.random() * 95);   // 0% to 95%
-        const posY = Math.floor(Math.random() * 95);   // 0% to 95%
-        const duration = (Math.random() * 4 + 4).toFixed(1); // 4s to 8s
+        const size = Math.floor(Math.random() * 3) + 2; // 2px to 5px max
+        const posX = Math.floor(Math.random() * 95);
+        const posY = Math.floor(Math.random() * 95);
+        const duration = (Math.random() * 4 + 5).toFixed(1);
         const delay = (Math.random() * -5).toFixed(1);
 
         particle.style.width = `${size}px`;
@@ -55,14 +51,10 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   };
 
-  generateParticles('#bg-particle-container', 16);
-  generateParticles('.card-graphic-box', 6);
-  generateParticles('.analytics-graphic-box', 6);
+  generateParticles('#bg-particle-container', 12);
 
 
-  /* ==========================================================================
-     3. Search Bar Typewriter Typing Loop
-     ========================================================================== */
+  /* 3. Typewriter Input Loop */
   const searchInputs = document.querySelectorAll('.search-typewriter');
 
   searchInputs.forEach((input) => {
@@ -88,7 +80,7 @@ document.addEventListener('DOMContentLoaded', () => {
       }
 
       if (!isDeleting && charIndex === currentPhrase.length) {
-        typeSpeed = 2000;
+        typeSpeed = 2200;
         isDeleting = true;
       } else if (isDeleting && charIndex === 0) {
         isDeleting = false;

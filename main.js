@@ -1,7 +1,7 @@
 document.addEventListener('DOMContentLoaded', () => {
 
   /* ==========================================================================
-     1. Interactive 3D Card Tilt Effects
+     1. Interactive 3D Perspective Tilt on Mouse Movement
      ========================================================================== */
   const setupTiltEffect = (cardId) => {
     const card = document.getElementById(cardId);
@@ -12,7 +12,7 @@ document.addEventListener('DOMContentLoaded', () => {
       const x = e.clientX - rect.left - rect.width / 2;
       const y = e.clientY - rect.top - rect.height / 2;
 
-      card.style.transform = `perspective(1000px) rotateX(${-y / 20}deg) rotateY(${x / 20}deg) scale3d(1.01, 1.01, 1.01)`;
+      card.style.transform = `perspective(1000px) rotateX(${-y / 25}deg) rotateY(${x / 25}deg) scale3d(1.01, 1.01, 1.01)`;
     });
 
     card.addEventListener('mouseleave', () => {
@@ -25,7 +25,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
   /* ==========================================================================
-     2. Inject Particles Inside Analytics Cards & Background
+     2. Dynamic Ambient Dust Particles Generator
      ========================================================================== */
   const generateParticles = (containerSelector, count = 10) => {
     const containers = document.querySelectorAll(containerSelector);
@@ -55,18 +55,20 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   };
 
-  // Inject into background and inside the graphics box
-  generateParticles('.particle-container', 15);
-  generateParticles('.analytics-graphic-box', 8);
+  generateParticles('#bg-particle-container', 16);
+  generateParticles('.card-graphic-box', 6);
+  generateParticles('.analytics-graphic-box', 6);
 
 
   /* ==========================================================================
-     3. Search Bar Typewriter Effect
+     3. Search Bar Typewriter Typing Loop
      ========================================================================== */
   const searchInputs = document.querySelectorAll('.search-typewriter');
 
   searchInputs.forEach((input) => {
-    const phrases = JSON.parse(input.getAttribute('data-phrases') || '["AIO: generative eng", "SEO: rank position"]');
+    const phrases = JSON.parse(input.getAttribute('data-phrases') || '[]');
+    if (phrases.length === 0) return;
+
     let phraseIndex = 0;
     let charIndex = 0;
     let isDeleting = false;

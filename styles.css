@@ -521,6 +521,33 @@ footer{padding:60px 28px 34px;}
   .footer-grid{grid-template-columns:1fr;}
 }
 
+/* ---------- Section neural-network canvases (white/light sections) ---------- */
+.section-network{
+  position:absolute;inset:0;width:100%;height:100%;
+  z-index:0;pointer-events:none;opacity:1;
+}
+
+/* ---------- Team section (fixes: no inline grid overrides, explicit text colors) ---------- */
+.team-grid{
+  display:grid;grid-template-columns:repeat(2,1fr);gap:20px;
+  max-width:760px;margin:0 auto;position:relative;z-index:1;
+}
+.team-card{text-align:center;}
+.team-avatar{
+  width:74px;height:74px;border-radius:50%;
+  background:linear-gradient(135deg,var(--yellow),var(--yellow-deep));
+  display:flex;align-items:center;justify-content:center;margin:0 auto 18px;
+  font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:1.6rem;color:var(--ink);
+}
+.team-card .svc-num{text-align:center;display:block;}
+.team-card h3{color:#fff;margin-bottom:8px;}
+.team-card p{margin-bottom:14px;}
+.team-link{justify-content:center;color:var(--yellow) !important;}
+
+@media (max-width: 720px){
+  .team-grid{grid-template-columns:1fr;max-width:420px;}
+}
+
 /* =========================================================
    PHASE 2 — Glassmorphism, glow, typewriter, orbit rings
    Extra system used on the Knowledge Base page and reused

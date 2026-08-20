@@ -19,12 +19,12 @@
 
 <header>
   <div class="nav">
-    <div class="brand">
+    <a href="index.html" class="brand" aria-label="Athelstan.Online — home">
       <div class="brand-mark" style="position:relative;">A
         <span style="position:absolute;width:5px;height:5px;border-radius:50%;background:var(--yellow);box-shadow:0 0 8px 2px rgba(255,195,0,.8);top:-3px;right:-3px;animation:pulse-dot 2s infinite;"></span>
       </div>
       Athelstan.Online
-    </div>
+    </a>
     <nav class="links" id="navLinks">
       <a href="#services">Services</a>
       <a href="#research">SEO &amp; AIO Research</a>
@@ -102,6 +102,7 @@
 
 <!-- ===================== SEO & AI GROWTH RESEARCH ===================== -->
 <section class="growth-section" id="research" style="position:relative;overflow:hidden;">
+  <canvas class="section-network"></canvas>
   <div class="ambient-orb o3" style="top:-60px;left:8%;"></div>
   <div class="wrap">
     <div class="section-head reveal">
@@ -156,6 +157,7 @@
 
 <!-- ===================== AI VISIBILITY RINGS ===================== -->
 <section class="visibility-section" style="position:relative;overflow:hidden;">
+  <canvas class="section-network"></canvas>
   <div class="ambient-orb o2" style="top:0;right:0;"></div>
   <div class="wrap">
     <div class="section-head reveal">
@@ -247,7 +249,8 @@
 </section>
 
 <!-- ===================== CONTENT NICHES ===================== -->
-<section class="niche-section">
+<section class="niche-section" style="position:relative;overflow:hidden;">
+  <canvas class="section-network"></canvas>
   <div class="wrap">
     <div class="section-head reveal">
       <span class="section-tag">Content, Every Niche</span>
@@ -333,7 +336,8 @@
 </section>
 
 <!-- ===================== PROCESS ===================== -->
-<section class="process-section" id="process">
+<section class="process-section" id="process" style="position:relative;overflow:hidden;">
+  <canvas class="section-network"></canvas>
   <div class="wrap">
     <div class="section-head reveal">
       <span class="section-tag">How It Works</span>
@@ -372,33 +376,28 @@
 
 <!-- ===================== TEAM ===================== -->
 <section id="team" style="position:relative;overflow:hidden;">
+  <canvas class="section-network"></canvas>
   <div class="ambient-orb o1" style="top:-100px;right:-120px;"></div>
   <div class="wrap">
     <div class="section-head reveal">
       <span class="section-tag">The Team</span>
       <h2>Small team, built for the AI search era</h2>
-      <p>Three people covering the full stack — search strategy, engineering, and growth operations.</p>
+      <p>Two people covering the full stack — search strategy, front-end engineering, and growth operations.</p>
     </div>
-    <div class="services-grid reveal-stagger" style="grid-template-columns:repeat(3,1fr);">
-      <div class="svc-card glow-card" style="text-align:center;">
-        <div style="width:74px;height:74px;border-radius:50%;background:linear-gradient(135deg,var(--yellow),var(--yellow-deep));display:flex;align-items:center;justify-content:center;margin:0 auto 18px;font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:1.6rem;color:var(--ink);">NM</div>
-        <span class="svc-num mono" style="text-align:center;display:block;">PROPRIETOR</span>
+    <div class="team-grid reveal-stagger">
+      <div class="svc-card glow-card team-card">
+        <div class="team-avatar">NM</div>
+        <span class="svc-num mono">PROPRIETOR · SEO &amp; DEV</span>
         <h3>Nagaraj</h3>
-        <p style="margin-bottom:10px;">SEO — technical SEO, GA4/Looker analytics, and Generative Engine Optimization strategy.</p>
-        <a href="https://www.linkedin.com/in/nagaraj-m-585b31248/" target="_blank" rel="noopener" class="kb-read" style="justify-content:center;color:var(--yellow);">Connect on LinkedIn →</a>
+        <p>SEO &amp; front-end development — technical SEO, GA4/Looker analytics, Generative Engine Optimization strategy, and the site builds themselves.</p>
+        <a href="https://www.linkedin.com/in/nagaraj-m-585b31248/" target="_blank" rel="noopener" class="kb-read team-link">Connect on LinkedIn →</a>
       </div>
-      <div class="svc-card glow-card" style="text-align:center;">
-        <div style="width:74px;height:74px;border-radius:50%;background:linear-gradient(135deg,var(--yellow),var(--yellow-deep));display:flex;align-items:center;justify-content:center;margin:0 auto 18px;font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:1.6rem;color:var(--ink);">D</div>
-        <span class="svc-num mono" style="text-align:center;display:block;">ENGINEERING</span>
-        <h3>Dev</h3>
-        <p style="margin-bottom:10px;">Dev — front-end builds, site architecture, and performance engineering for every client project.</p>
-      </div>
-      <div class="svc-card glow-card" style="text-align:center;">
-        <div style="width:74px;height:74px;border-radius:50%;background:linear-gradient(135deg,var(--yellow),var(--yellow-deep));display:flex;align-items:center;justify-content:center;margin:0 auto 18px;font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:1.6rem;color:var(--ink);">SB</div>
-        <span class="svc-num mono" style="text-align:center;display:block;">BDE &amp; OPERATIONS</span>
+      <div class="svc-card glow-card team-card">
+        <div class="team-avatar">SB</div>
+        <span class="svc-num mono">BDE &amp; OPERATIONS</span>
         <h3>Sanjai</h3>
-        <p style="margin-bottom:10px;">BDE, Operations — client acquisition, account management, and delivery operations.</p>
-        <a href="https://www.linkedin.com/in/sanjai-b-97b514233/" target="_blank" rel="noopener" class="kb-read" style="justify-content:center;color:var(--yellow);">Connect on LinkedIn →</a>
+        <p>Client acquisition, account management, and delivery operations — keeping every engagement on track.</p>
+        <a href="https://www.linkedin.com/in/sanjai-b-97b514233/" target="_blank" rel="noopener" class="kb-read team-link">Connect on LinkedIn →</a>
       </div>
     </div>
   </div>

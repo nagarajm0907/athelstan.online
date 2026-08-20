@@ -66,29 +66,34 @@ document.addEventListener('DOMContentLoaded', () => {
     loop();
   }
 
-  /* ---------- Animated background network (hero canvas) ---------- */
-  const canvas = document.getElementById('network-canvas');
-  if (canvas) {
+  /* ---------- Animated neural-network background (reusable, multi-canvas) ---------- */
+  function initNetworkCanvas(canvas, opts = {}) {
     const ctx = canvas.getContext('2d');
-    let w, h, nodes = [], pulses = [];
+    let w, h, nodes = [], pulses = [], running = true, rafId = null;
+    const isSmall = window.innerWidth < 720;
+    const density = opts.density || (isSmall ? 0.55 : 1);
+    const baseCount = isSmall ? 26 : 52;
+    const nodeColor = opts.nodeColor || '255,195,0';
+    const lineColor = opts.lineColor || '230,171,0';
+    const pulseColor = opts.pulseColor || '255,225,140';
 
     function resize() {
       w = canvas.width = canvas.offsetWidth * devicePixelRatio;
       h = canvas.height = canvas.offsetHeight * devicePixelRatio;
     }
     function initNodes() {
-      const count = window.innerWidth < 720 ? 34 : 68;
+      const count = Math.round(baseCount * density);
       nodes = Array.from({ length: count }, () => ({
         x: Math.random() * w,
         y: Math.random() * h,
         vx: (Math.random() - 0.5) * 0.3 * devicePixelRatio,
         vy: (Math.random() - 0.5) * 0.3 * devicePixelRatio,
-        r: (Math.random() * 1.8 + 1.4) * devicePixelRatio
+        r: (Math.random() * 1.8 + 1.3) * devicePixelRatio
       }));
-      // seed a few traveling "data pulses" that ride along active connections
-      pulses = Array.from({ length: window.innerWidth < 720 ? 4 : 9 }, () => ({ t: Math.random(), a: null, b: null, speed: 0.004 + Math.random() * 0.006 }));
+      pulses = Array.from({ length: isSmall ? 3 : 7 }, () => ({ t: Math.random(), a: null, b: null, speed: 0.004 + Math.random() * 0.006 }));
     }
     function draw() {
+      if (!running) return;
       ctx.clearRect(0, 0, w, h);
       for (const n of nodes) {
         n.x += n.vx; n.y += n.vy;
@@ -104,7 +109,7 @@ document.addEventListener('DOMContentLoaded', () => {
           const dist = Math.sqrt(dx * dx + dy * dy);
           if (dist < maxDist) {
             const strength = 1 - dist / maxDist;
-            ctx.strokeStyle = `rgba(255,195,0,${strength * 0.55})`;
+            ctx.strokeStyle = `rgba(${lineColor},${strength * 0.6})`;
             ctx.lineWidth = 1.1 * devicePixelRatio * strength + 0.3;
             ctx.beginPath();
             ctx.moveTo(a.x, a.y);
@@ -114,7 +119,6 @@ document.addEventListener('DOMContentLoaded', () => {
           }
         }
       }
-      // traveling glow pulses along the strongest links = visible "neural signal" motion
       for (const p of pulses) {
         if (!p.a || p.t >= 1 || Math.random() < 0.002) {
           if (activeLinks.length) {
@@ -128,8 +132,8 @@ document.addEventListener('DOMContentLoaded', () => {
           const py = p.a.y + (p.b.y - p.a.y) * p.t;
           ctx.beginPath();
           ctx.arc(px, py, 2.6 * devicePixelRatio, 0, Math.PI * 2);
-          ctx.fillStyle = 'rgba(255,225,140,0.95)';
-          ctx.shadowColor = 'rgba(255,195,0,0.9)';
+          ctx.fillStyle = `rgba(${pulseColor},0.95)`;
+          ctx.shadowColor = `rgba(${lineColor},0.9)`;
           ctx.shadowBlur = 12 * devicePixelRatio;
           ctx.fill();
           ctx.shadowBlur = 0;
@@ -138,17 +142,39 @@ document.addEventListener('DOMContentLoaded', () => {
       for (const n of nodes) {
         ctx.beginPath();
         ctx.arc(n.x, n.y, n.r, 0, Math.PI * 2);
-        ctx.fillStyle = 'rgba(255,195,0,0.95)';
-        ctx.shadowColor = 'rgba(255,195,0,0.55)';
+        ctx.fillStyle = `rgba(${nodeColor},0.95)`;
+        ctx.shadowColor = `rgba(${nodeColor},0.55)`;
         ctx.shadowBlur = 6 * devicePixelRatio;
         ctx.fill();
         ctx.shadowBlur = 0;
       }
-      if (!prefersReduced) requestAnimationFrame(draw);
+      if (!prefersReduced && running) rafId = requestAnimationFrame(draw);
     }
     resize(); initNodes(); draw();
     window.addEventListener('resize', () => { resize(); initNodes(); });
+
+    // Pause when off-screen to keep multiple canvases cheap
+    const vis = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        const wasRunning = running;
+        running = entry.isIntersecting;
+        if (running && !wasRunning && !prefersReduced) {
+          if (rafId) cancelAnimationFrame(rafId);
+          draw();
+        }
+        if (!running && rafId) {
+          cancelAnimationFrame(rafId);
+          rafId = null;
+        }
+      });
+    }, { threshold: 0.01 });
+    vis.observe(canvas);
   }
+
+  const heroCanvas = document.getElementById('network-canvas');
+  if (heroCanvas) initNetworkCanvas(heroCanvas, { density: 1.3 });
+
+  document.querySelectorAll('.section-network').forEach(c => initNetworkCanvas(c, { density: 0.85 }));
 
   /* ---------- Reveal-on-scroll (fade-up) ---------- */
   const revealEls = document.querySelectorAll('.reveal, .reveal-stagger');

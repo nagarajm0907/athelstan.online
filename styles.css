@@ -96,18 +96,20 @@ header.scrolled{box-shadow:0 12px 30px -20px rgba(0,0,0,.25);}
 }
 .brand{display:flex;align-items:center;gap:10px;font-weight:700;font-size:1.05rem;}
 .brand-mark{
-  width:36px;height:36px;border-radius:10px;
-  background:linear-gradient(135deg,var(--yellow),var(--yellow-deep));
+  width:38px;height:38px;border-radius:10px;
+  background:var(--ink);
   display:flex;align-items:center;justify-content:center;
-  font-family:'Space Grotesk',sans-serif;font-weight:700;color:var(--ink);
+  padding:5px;
   box-shadow: var(--shadow-yellow);
   position:relative;overflow:hidden;
 }
+.brand-mark img{width:100%;height:100%;object-fit:contain;display:block;}
 .brand-mark::after{
   content:'';position:absolute;inset:0;
-  background:linear-gradient(115deg, transparent 30%, rgba(255,255,255,.55) 50%, transparent 70%);
+  background:linear-gradient(115deg, transparent 30%, rgba(255,255,255,.35) 50%, transparent 70%);
   transform:translateX(-120%);
   animation:mark-shine 3.5s ease-in-out infinite;
+  pointer-events:none;
 }
 @keyframes mark-shine{0%,60%{transform:translateX(-120%);}80%{transform:translateX(120%);}100%{transform:translateX(120%);}}
 nav.links{display:flex;gap:30px;font-size:.92rem;font-weight:500;color:var(--ink-soft);}

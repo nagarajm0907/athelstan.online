@@ -1,119 +1,244 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Knowledge Base & Blogs — Athelstan.Online</title>
-  <link rel="stylesheet" href="styles.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Knowledge Base — Athelstan.Online</title>
+<meta name="description" content="Deep dives into search engine optimization, generative AI engine updates, market research, and high-performance web development from Athelstan.Online.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="styles.css">
 </head>
 <body>
 
-  <div class="blob blob-1"></div>
-  <div class="blob blob-2"></div>
+<div id="scrollProgress"></div>
+<div id="cursorGlow"></div>
 
-  <!-- Glass Navigation Bar -->
-  <header>
-    <div class="wrap nav">
-      <a href="index.html" class="brand">
-        <div class="brand-icon">A</div>
-        Athelstan.Online
-      </a>
-      <nav>
-        <ul>
-          <li><a href="index.html">Home</a></li>
-          <li><a href="index.html#services">Services</a></li>
-          <li><a href="index.html#aio-research">SEO & AIO Research</a></li>
-          <li><a href="knowledge-base.html" class="active">Knowledge Base</a></li>
-          <li><a href="index.html#team">Team</a></li>
-        </ul>
-      </nav>
-      <a href="index.html#contact" class="nav-cta">Get a Quote</a>
+<header>
+  <div class="nav">
+    <div class="brand">
+      <div class="brand-mark" style="position:relative;">A
+        <span style="position:absolute;width:5px;height:5px;border-radius:50%;background:var(--yellow);box-shadow:0 0 8px 2px rgba(255,195,0,.8);top:-3px;right:-3px;animation:pulse-dot 2s infinite;"></span>
+      </div>
+      Athelstan.Online
     </div>
-  </header>
+    <nav class="links" id="navLinks">
+      <a href="index.html">Home</a>
+      <a href="index.html#services">Services</a>
+      <a href="index.html#research">SEO &amp; AIO Research</a>
+      <a href="knowledge-base.html">Knowledge Base</a>
+      <a href="index.html#team">Team</a>
+    </nav>
+    <div style="display:flex;align-items:center;gap:10px;">
+      <a href="index.html#contact" class="cta-btn nav-only">Get a Quote</a>
+      <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+</header>
 
-  <!-- Knowledge Base Hero -->
-  <section class="hero" style="padding: 160px 0 60px;">
-    <div class="wrap">
-      <div class="section-header reveal" style="text-align: left; margin-bottom: 0;">
-        <div class="status-badge">
-          <span class="pulse-dot"></span>
-          Insights & Technical Blogs
+<!-- ===================== KB HERO ===================== -->
+<section class="kb-hero">
+  <div class="ambient-orb o1" style="top:-140px;right:-100px;"></div>
+  <div class="ambient-orb o2" style="bottom:-120px;left:-80px;"></div>
+  <div class="ambient-orb o3" style="top:40%;right:20%;"></div>
+
+  <!-- decorative orbit rings, desktop only (hidden via CSS on small screens if needed) -->
+  <div class="orbit-wrap" style="position:absolute;top:20px;right:60px;width:180px;height:180px;z-index:1;opacity:.7;">
+    <div class="orbit-ring" data-size="180" data-duration="18" style="border-color:rgba(255,195,0,.4);">
+      <div class="orbit-sat"></div>
+    </div>
+    <div class="orbit-ring" data-size="120" data-duration="12" style="border-color:rgba(230,171,0,.35);">
+      <div class="orbit-sat" style="background:var(--yellow-deep);"></div>
+    </div>
+  </div>
+
+  <div class="floating-badge" style="top:120px;right:8%;animation-delay:.3s;">📚 12 Guides &amp; Growing</div>
+  <div class="floating-badge" style="top:210px;right:22%;animation-delay:1.1s;">🔄 Updated Aug 2026</div>
+
+  <div class="kb-hero-inner">
+    <span class="eyebrow"><span class="dot"></span> Research &amp; Playbooks</span>
+    <h1>Knowledge Base</h1>
+    <span class="tw-line" data-typewriter="Search engine optimization.|Generative AI engine updates.|Market &amp; growth research.|High-performance web development."></span>
+    <p class="kb-sub">
+      Deep dives into technical SEO, AI Optimization (AIO), GEO, market research, and modern web
+      development — the same playbooks used to run every client engagement at Athelstan.Online.
+    </p>
+
+    <div class="kb-stats-row reveal-stagger">
+      <div class="kb-stat-chip">
+        <span class="n mono">12+</span>
+        <span class="l">Guides</span>
+      </div>
+      <div class="kb-stat-chip">
+        <span class="n mono">6</span>
+        <span class="l">Categories</span>
+      </div>
+      <div class="kb-stat-chip">
+        <span class="n mono">2026</span>
+        <span class="l">Last Updated</span>
+      </div>
+      <div class="kb-stat-chip">
+        <span class="n mono">100%</span>
+        <span class="l">Field-Tested</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== FILTERS ===================== -->
+<div class="kb-filters reveal">
+  <button class="kb-filter-btn active" data-filter="all">All</button>
+  <button class="kb-filter-btn" data-filter="aio">Generative Search · AIO</button>
+  <button class="kb-filter-btn" data-filter="technical">Technical SEO</button>
+  <button class="kb-filter-btn" data-filter="research">Market Research</button>
+  <button class="kb-filter-btn" data-filter="webdev">Web Development</button>
+  <button class="kb-filter-btn" data-filter="content">Content &amp; Marketing</button>
+  <button class="kb-filter-btn" data-filter="social">Social Media</button>
+</div>
+
+<!-- ===================== ARTICLE GRID ===================== -->
+<div class="kb-grid reveal-stagger">
+
+  <article class="kb-card featured glow-card" data-category="aio">
+    <div class="kb-icon">🤖</div>
+    <span class="kb-tag">Generative Search · AIO</span>
+    <h3>How to Optimize Your Business for ChatGPT &amp; Perplexity in 2026</h3>
+    <p class="kb-excerpt">Generative AI engines pull from specific entity nodes, not full pages. Learn how to structure your brand information — naming, FAQs, and schema — so conversational search bots recommend your product line directly instead of a competitor's.</p>
+    <div class="kb-meta"><span>9 min read</span><span>Aug 2026</span></div>
+    <a href="#" class="kb-read">Read Full Guide →</a>
+  </article>
+
+  <article class="kb-card glow-card" data-category="technical">
+    <div class="kb-icon">⚡</div>
+    <span class="kb-tag">Technical SEO</span>
+    <h3>Core Web Vitals &amp; Instant Load Speeds: A Developer's Playbook</h3>
+    <p class="kb-excerpt">Google's rendering budget heavily favors ultra-fast initial response times. Here's how we build web architectures that load in under 800ms reliably, without sacrificing design.</p>
+    <div class="kb-meta"><span>7 min read</span><span>Jul 2026</span></div>
+    <a href="#" class="kb-read">Read Full Guide →</a>
+  </article>
+
+  <article class="kb-card glow-card" data-category="research">
+    <div class="kb-icon">📊</div>
+    <span class="kb-tag">Market Research</span>
+    <h3>Micro-Intent Keyword Mapping: Converting B2B Traffic into Clients</h3>
+    <p class="kb-excerpt">Not all keyword volume is equal. This framework maps buyer-journey micro-intent so content targets the exact moment a B2B visitor is ready to talk to sales.</p>
+    <div class="kb-meta"><span>11 min read</span><span>Jul 2026</span></div>
+    <a href="#" class="kb-read">Read Full Guide →</a>
+  </article>
+
+  <article class="kb-card glow-card" data-category="aio">
+    <div class="kb-icon">🧠</div>
+    <span class="kb-tag">Generative Search · AIO</span>
+    <h3>Answer Engine Optimization: Winning the Zero-Click SERP</h3>
+    <p class="kb-excerpt">AEO is the discipline behind featured snippets and AI Overview citations. Here's the exact content structure — headings, bullet-first answers, and schema — that earns the box.</p>
+    <div class="kb-meta"><span>8 min read</span><span>Jun 2026</span></div>
+    <a href="#" class="kb-read">Read Full Guide →</a>
+  </article>
+
+  <article class="kb-card glow-card" data-category="webdev">
+    <div class="kb-icon">🛠️</div>
+    <span class="kb-tag">Web Development</span>
+    <h3>WordPress vs Custom Code: Choosing the Right Build for SEO</h3>
+    <p class="kb-excerpt">A practical comparison of when a custom-coded build outperforms WordPress for search performance — and when WordPress's plugin ecosystem wins on speed to launch.</p>
+    <div class="kb-meta"><span>6 min read</span><span>Jun 2026</span></div>
+    <a href="#" class="kb-read">Read Full Guide →</a>
+  </article>
+
+  <article class="kb-card glow-card" data-category="content">
+    <div class="kb-icon">✍️</div>
+    <span class="kb-tag">Content &amp; Marketing</span>
+    <h3>Entity-First Writing: Structuring Content for LLM Comprehension</h3>
+    <p class="kb-excerpt">Semantic SEO in 2026 means writing for entities, not just keywords. This guide walks through restructuring existing articles so AI systems parse and cite them correctly.</p>
+    <div class="kb-meta"><span>10 min read</span><span>May 2026</span></div>
+    <a href="#" class="kb-read">Read Full Guide →</a>
+  </article>
+
+  <article class="kb-card glow-card" data-category="social">
+    <div class="kb-icon">📱</div>
+    <span class="kb-tag">Social Media</span>
+    <h3>Brand Authority Signals: Why Social Consistency Affects AI Citations</h3>
+    <p class="kb-excerpt">AI models weigh cross-platform brand consistency when deciding what to cite. Here's how a disciplined social cadence quietly compounds your search and AI visibility.</p>
+    <div class="kb-meta"><span>7 min read</span><span>May 2026</span></div>
+    <a href="#" class="kb-read">Read Full Guide →</a>
+  </article>
+
+  <article class="kb-card glow-card" data-category="technical">
+    <div class="kb-icon">🗺️</div>
+    <span class="kb-tag">Technical SEO</span>
+    <h3>Local SEO in the AI Era: Structured Data for Map &amp; Voice Search</h3>
+    <p class="kb-excerpt">Local pack rankings and AI voice assistants both lean on structured business data. A checklist for getting your NAP, schema, and reviews AI-ready.</p>
+    <div class="kb-meta"><span>6 min read</span><span>Apr 2026</span></div>
+    <a href="#" class="kb-read">Read Full Guide →</a>
+  </article>
+
+  <article class="kb-card glow-card" data-category="research">
+    <div class="kb-icon">🔍</div>
+    <span class="kb-tag">Market Research</span>
+    <h3>Competitive Citation Analysis: Who Is ChatGPT Actually Recommending?</h3>
+    <p class="kb-excerpt">A repeatable method for auditing which brands generative engines currently cite in your category — and the content gaps you can exploit to take that spot.</p>
+    <div class="kb-meta"><span>9 min read</span><span>Apr 2026</span></div>
+    <a href="#" class="kb-read">Read Full Guide →</a>
+  </article>
+
+</div>
+
+<!-- ===================== CTA ===================== -->
+<section style="padding:20px 0 90px;">
+  <div class="cta-section reveal">
+    <h2>Want this playbook applied to your brand?</h2>
+    <p>Get a free AIO + technical SEO audit and see exactly where you stand today.</p>
+    <div class="hero-actions">
+      <a href="mailto:athelstan.online@gmail.com" class="cta-btn">Get a Free AIO Audit →</a>
+      <a href="index.html" class="cta-btn ghost">Back to Home</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="footer-grid">
+      <div>
+        <div class="brand" style="margin-bottom:14px;">
+          <div class="brand-mark">A</div>
+          Athelstan.Online
         </div>
-        <h1 style="font-size: 52px; font-weight: 900; margin-bottom: 16px;">Knowledge Base</h1>
-        <p style="font-size: 18px; color: var(--text-secondary); max-width: 600px;">
-          Deep dives into search engine optimization, generative AI engine updates, market research, and high-performance web development.
+        <p style="color:var(--ink-soft);font-size:.88rem;line-height:1.6;max-width:32ch;">
+          AI &amp; growth intelligence for brands that want to be found — by people, and by the models people ask first.
         </p>
       </div>
-    </div>
-  </section>
-
-  <!-- Blog Grid Section -->
-  <section class="section" style="padding-top: 40px;">
-    <div class="wrap">
-      <div class="blog-grid">
-
-        <!-- Article 1 -->
-        <article class="blog-card reveal">
-          <div class="blog-img-box">🤖</div>
-          <div class="blog-content">
-            <div>
-              <div class="blog-meta">Generative Search · AIO</div>
-              <h3>How to Optimize Your Business for ChatGPT & Perplexity in 2026</h3>
-              <p>Generative AI engines pull from specific entity nodes. Learn how to structure your brand information so conversational search bots recommend your product line directly.</p>
-            </div>
-            <span class="read-more-link">Read Full Guide →</span>
-          </div>
-        </article>
-
-        <!-- Article 2 -->
-        <article class="blog-card reveal">
-          <div class="blog-img-box">⚡</div>
-          <div class="blog-content">
-            <div>
-              <div class="blog-meta">Technical SEO</div>
-              <h3>Core Web Vitals & Instant Load Speeds: A Developer's Playbook</h3>
-              <p>Google's rendering budget heavily favors ultra-fast initial response times. Here is how we build web architectures that load in under 800ms reliably.</p>
-            </div>
-            <span class="read-more-link">Read Full Guide →</span>
-          </div>
-        </article>
-
-        <!-- Article 3 -->
-        <article class="blog-card reveal">
-          <div class="blog-img-box">📊</div>
-          <div class="blog-content">
-            <div>
-              <div class="blog-meta">Market Research</div>
-              <h3>Micro-Intent Keyword Mapping: Converting B2B Traffic into Clients</h3>
-              <p>Broad high-volume search terms waste money. Discover how mapping high-intent buyer micro-queries elevates lead quality and ROI.</p>
-            </div>
-            <span class="read-more-link">Read Full Guide →</span>
-          </div>
-        </article>
-
-        <!-- Article 4 -->
-        <article class="blog-card reveal">
-          <div class="blog-img-box">🌐</div>
-          <div class="blog-content">
-            <div>
-              <div class="blog-meta">Schema & Linked Data</div>
-              <h3>JSON-LD Schema Engineering for E-Commerce & Service Brands</h3>
-              <p>A complete technical walkthrough on implementing rich entity markup so search bots immediately understand your pricing, services, and local geographic authority.</p>
-            </div>
-            <span class="read-more-link">Read Full Guide →</span>
-          </div>
-        </article>
-
+      <div>
+        <h5>Services</h5>
+        <a href="index.html#services">AIO / SEO</a>
+        <a href="index.html#services">Web Development</a>
+        <a href="index.html#services">Content Writing</a>
+        <a href="index.html#services">Social Media</a>
+      </div>
+      <div>
+        <h5>Company</h5>
+        <a href="index.html#research">Research</a>
+        <a href="index.html#process">Process</a>
+        <a href="knowledge-base.html">Knowledge Base</a>
+        <a href="index.html#team">Team</a>
+      </div>
+      <div>
+        <h5>Get in touch</h5>
+        <a href="mailto:athelstan.online@gmail.com">athelstan.online@gmail.com</a>
+        <a href="tel:+918124482710">+91 81244 82710</a>
+        <a href="#">Chennai, India</a>
       </div>
     </div>
-  </section>
-
-  <footer>
-    <div class="wrap">
-      <p>© 2026 Athelstan.Online. All rights reserved. Chennai, India.</p>
+    <div class="footer-bottom">
+      <p>© 2026 Athelstan.Online. All rights reserved.</p>
+      <p>Built &amp; optimized for Google, ChatGPT, Perplexity, Gemini &amp; Claude.</p>
     </div>
-  </footer>
+  </div>
+</footer>
 
-  <script src="main.js"></script>
+<button id="toTop" aria-label="Back to top">↑</button>
+
+<script src="main.js"></script>
 </body>
 </html>

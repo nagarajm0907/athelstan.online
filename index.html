@@ -20,13 +20,16 @@
 <header>
   <div class="nav">
     <div class="brand">
-      <div class="brand-mark">A</div>
+      <div class="brand-mark" style="position:relative;">A
+        <span style="position:absolute;width:5px;height:5px;border-radius:50%;background:var(--yellow);box-shadow:0 0 8px 2px rgba(255,195,0,.8);top:-3px;right:-3px;animation:pulse-dot 2s infinite;"></span>
+      </div>
       Athelstan.Online
     </div>
     <nav class="links" id="navLinks">
       <a href="#services">Services</a>
       <a href="#research">SEO &amp; AIO Research</a>
       <a href="#process">Process</a>
+      <a href="#team">Team</a>
       <a href="knowledge-base.html">Knowledge Base</a>
       <a href="#contact">Contact</a>
     </nav>
@@ -44,6 +47,7 @@
   <div class="hero-inner">
     <span class="eyebrow"><span class="dot"></span> Next-Gen AIO Engine · Live</span>
     <h1>Dominating search across <em>traditional &amp; AI engines</em></h1>
+    <span class="tw-line" style="display:block;margin-top:14px;font-family:'JetBrains Mono',monospace;font-size:1rem;color:var(--yellow-deep);font-weight:600;min-height:1.4em;" data-typewriter="Optimized for Google Search.|Optimized for AI Overviews.|Optimized for ChatGPT.|Optimized for Perplexity.|Optimized for Gemini."></span>
     <p class="hero-sub">
       We engineer visibility for brands across Google, AI Overviews, ChatGPT, Perplexity and Gemini —
       pairing technical SEO fundamentals with Generative Engine Optimization (GEO) so you get found
@@ -97,7 +101,8 @@
 </section>
 
 <!-- ===================== SEO & AI GROWTH RESEARCH ===================== -->
-<section class="growth-section" id="research">
+<section class="growth-section" id="research" style="position:relative;overflow:hidden;">
+  <div class="ambient-orb o3" style="top:-60px;left:8%;"></div>
   <div class="wrap">
     <div class="section-head reveal">
       <span class="section-tag">Growth Research</span>
@@ -150,7 +155,8 @@
 </section>
 
 <!-- ===================== AI VISIBILITY RINGS ===================== -->
-<section class="visibility-section">
+<section class="visibility-section" style="position:relative;overflow:hidden;">
+  <div class="ambient-orb o2" style="top:0;right:0;"></div>
   <div class="wrap">
     <div class="section-head reveal">
       <span class="section-tag">AI Search Visibility</span>
@@ -159,7 +165,7 @@
     </div>
     <svg width="0" height="0"><defs><linearGradient id="ringGrad" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#ffc300"/><stop offset="100%" stop-color="#e6ab00"/></linearGradient></defs></svg>
     <div class="ring-grid reveal-stagger" id="ringGrid">
-      <div class="ring-card" data-pct="92">
+      <div class="ring-card glow-card" data-pct="92">
         <div class="ring-wrap">
           <svg viewBox="0 0 120 120"><circle class="ring-track" cx="60" cy="60" r="50"/><circle class="ring-fill" cx="60" cy="60" r="50"/></svg>
           <div class="ring-value">92%</div>
@@ -167,7 +173,7 @@
         <h4>Generative Visibility</h4>
         <p>Indexed into AI answer synthesis graphs</p>
       </div>
-      <div class="ring-card" data-pct="87">
+      <div class="ring-card glow-card" data-pct="87">
         <div class="ring-wrap">
           <svg viewBox="0 0 120 120"><circle class="ring-track" cx="60" cy="60" r="50"/><circle class="ring-fill" cx="60" cy="60" r="50"/></svg>
           <div class="ring-value">87%</div>
@@ -175,7 +181,7 @@
         <h4>Citation Tracking</h4>
         <p>Sentence-level monitoring across models</p>
       </div>
-      <div class="ring-card" data-pct="95">
+      <div class="ring-card glow-card" data-pct="95">
         <div class="ring-wrap">
           <svg viewBox="0 0 120 120"><circle class="ring-track" cx="60" cy="60" r="50"/><circle class="ring-fill" cx="60" cy="60" r="50"/></svg>
           <div class="ring-value">95%</div>
@@ -183,7 +189,7 @@
         <h4>Brand Defense</h4>
         <p>Hallucination detection &amp; correction</p>
       </div>
-      <div class="ring-card" data-pct="79">
+      <div class="ring-card glow-card" data-pct="79">
         <div class="ring-wrap">
           <svg viewBox="0 0 120 120"><circle class="ring-track" cx="60" cy="60" r="50"/><circle class="ring-fill" cx="60" cy="60" r="50"/></svg>
           <div class="ring-value">79%</div>
@@ -204,7 +210,7 @@
       <p>Every service is built around the same principle — get discovered by people and by the models people now ask first.</p>
     </div>
     <div class="services-grid reveal-stagger">
-      <div class="svc-card">
+      <div class="svc-card glow-card">
         <span class="svc-num mono">01 / AIO · SEO</span>
         <h3>AIO / SEO Services</h3>
         <p>Technical SEO, keyword strategy and link building, layered with 2026-native AI Optimization so you rank in Google and get cited in AI Overviews, ChatGPT and Perplexity.</p>
@@ -212,7 +218,7 @@
           <span>AI Overviews</span><span>GEO</span><span>AEO</span><span>Entity SEO</span><span>Core Web Vitals</span>
         </div>
       </div>
-      <div class="svc-card">
+      <div class="svc-card glow-card">
         <span class="svc-num mono">02 / Build</span>
         <h3>Website Development</h3>
         <p>Fast, clean, SEO-ready builds on WordPress or custom code — responsive by default, structured data baked in, and AI chatbot / assistant integration where it earns its keep.</p>
@@ -220,7 +226,7 @@
           <span>WordPress</span><span>Custom Code</span><span>Schema Markup</span><span>Speed</span><span>AI Chat Widgets</span>
         </div>
       </div>
-      <div class="svc-card">
+      <div class="svc-card glow-card">
         <span class="svc-num mono">03 / Content</span>
         <h3>Content Writing &amp; Marketing</h3>
         <p>Research-backed writing across any niche — legal, healthcare, e-commerce, SaaS, finance, real estate, travel, education — structured so both readers and LLMs can parse and cite it.</p>
@@ -228,7 +234,7 @@
           <span>Every Niche</span><span>Case Studies</span><span>Editorial Calendars</span><span>AI-Assisted Research</span>
         </div>
       </div>
-      <div class="svc-card">
+      <div class="svc-card glow-card">
         <span class="svc-num mono">04 / Social</span>
         <h3>Social Media Management</h3>
         <p>Consistent, on-brand presence across Instagram, LinkedIn, X, YouTube and TikTok — the brand-authority signal that makes AI systems trust and cite you more.</p>
@@ -364,14 +370,48 @@
   </div>
 </section>
 
+<!-- ===================== TEAM ===================== -->
+<section id="team" style="position:relative;overflow:hidden;">
+  <div class="ambient-orb o1" style="top:-100px;right:-120px;"></div>
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="section-tag">The Team</span>
+      <h2>Small team, built for the AI search era</h2>
+      <p>Three people covering the full stack — search strategy, engineering, and growth operations.</p>
+    </div>
+    <div class="services-grid reveal-stagger" style="grid-template-columns:repeat(3,1fr);">
+      <div class="svc-card glow-card" style="text-align:center;">
+        <div style="width:74px;height:74px;border-radius:50%;background:linear-gradient(135deg,var(--yellow),var(--yellow-deep));display:flex;align-items:center;justify-content:center;margin:0 auto 18px;font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:1.6rem;color:var(--ink);">NM</div>
+        <span class="svc-num mono" style="text-align:center;display:block;">PROPRIETOR</span>
+        <h3>Nagaraj</h3>
+        <p style="margin-bottom:10px;">SEO — technical SEO, GA4/Looker analytics, and Generative Engine Optimization strategy.</p>
+        <a href="https://www.linkedin.com/in/nagaraj-m-585b31248/" target="_blank" rel="noopener" class="kb-read" style="justify-content:center;color:var(--yellow);">Connect on LinkedIn →</a>
+      </div>
+      <div class="svc-card glow-card" style="text-align:center;">
+        <div style="width:74px;height:74px;border-radius:50%;background:linear-gradient(135deg,var(--yellow),var(--yellow-deep));display:flex;align-items:center;justify-content:center;margin:0 auto 18px;font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:1.6rem;color:var(--ink);">D</div>
+        <span class="svc-num mono" style="text-align:center;display:block;">ENGINEERING</span>
+        <h3>Dev</h3>
+        <p style="margin-bottom:10px;">Dev — front-end builds, site architecture, and performance engineering for every client project.</p>
+      </div>
+      <div class="svc-card glow-card" style="text-align:center;">
+        <div style="width:74px;height:74px;border-radius:50%;background:linear-gradient(135deg,var(--yellow),var(--yellow-deep));display:flex;align-items:center;justify-content:center;margin:0 auto 18px;font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:1.6rem;color:var(--ink);">SB</div>
+        <span class="svc-num mono" style="text-align:center;display:block;">BDE &amp; OPERATIONS</span>
+        <h3>Sanjai</h3>
+        <p style="margin-bottom:10px;">BDE, Operations — client acquisition, account management, and delivery operations.</p>
+        <a href="https://www.linkedin.com/in/sanjai-b-97b514233/" target="_blank" rel="noopener" class="kb-read" style="justify-content:center;color:var(--yellow);">Connect on LinkedIn →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- ===================== CTA ===================== -->
 <section style="padding:20px 0;">
   <div class="cta-section reveal" id="contact">
     <h2>Ready to show up in every answer, not just every search?</h2>
     <p>Get a free AIO + technical SEO audit — no obligation, just a clear look at where you stand today.</p>
     <div class="hero-actions">
-      <a href="mailto:hello@athelstan.online" class="cta-btn">Get a Free AIO Audit →</a>
-      <a href="knowledge-base.html" class="cta-btn ghost">Browse Knowledge Base</a>
+      <a href="mailto:athelstan.online@gmail.com" class="cta-btn">Get a Free AIO Audit →</a>
+      <a href="tel:+918124482710" class="cta-btn ghost">Call 81244 82710</a>
     </div>
   </div>
 </section>
@@ -399,12 +439,13 @@
         <h5>Company</h5>
         <a href="#research">Research</a>
         <a href="#process">Process</a>
+        <a href="#team">Team</a>
         <a href="knowledge-base.html">Knowledge Base</a>
-        <a href="#contact">Contact</a>
       </div>
       <div>
         <h5>Get in touch</h5>
-        <a href="mailto:hello@athelstan.online">hello@athelstan.online</a>
+        <a href="mailto:athelstan.online@gmail.com">athelstan.online@gmail.com</a>
+        <a href="tel:+918124482710">+91 81244 82710</a>
         <a href="#">Chennai, India</a>
       </div>
     </div>
@@ -414,6 +455,7 @@
     </div>
   </div>
 </footer>
+
 
 <button id="toTop" aria-label="Back to top">↑</button>
 

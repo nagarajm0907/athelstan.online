@@ -70,21 +70,23 @@ document.addEventListener('DOMContentLoaded', () => {
   const canvas = document.getElementById('network-canvas');
   if (canvas) {
     const ctx = canvas.getContext('2d');
-    let w, h, nodes = [];
+    let w, h, nodes = [], pulses = [];
 
     function resize() {
       w = canvas.width = canvas.offsetWidth * devicePixelRatio;
       h = canvas.height = canvas.offsetHeight * devicePixelRatio;
     }
     function initNodes() {
-      const count = window.innerWidth < 720 ? 22 : 46;
+      const count = window.innerWidth < 720 ? 34 : 68;
       nodes = Array.from({ length: count }, () => ({
         x: Math.random() * w,
         y: Math.random() * h,
-        vx: (Math.random() - 0.5) * 0.35 * devicePixelRatio,
-        vy: (Math.random() - 0.5) * 0.35 * devicePixelRatio,
-        r: (Math.random() * 1.6 + 1) * devicePixelRatio
+        vx: (Math.random() - 0.5) * 0.3 * devicePixelRatio,
+        vy: (Math.random() - 0.5) * 0.3 * devicePixelRatio,
+        r: (Math.random() * 1.8 + 1.4) * devicePixelRatio
       }));
+      // seed a few traveling "data pulses" that ride along active connections
+      pulses = Array.from({ length: window.innerWidth < 720 ? 4 : 9 }, () => ({ t: Math.random(), a: null, b: null, speed: 0.004 + Math.random() * 0.006 }));
     }
     function draw() {
       ctx.clearRect(0, 0, w, h);
@@ -93,27 +95,54 @@ document.addEventListener('DOMContentLoaded', () => {
         if (n.x < 0 || n.x > w) n.vx *= -1;
         if (n.y < 0 || n.y > h) n.vy *= -1;
       }
+      const maxDist = 210 * devicePixelRatio;
+      const activeLinks = [];
       for (let i = 0; i < nodes.length; i++) {
         for (let j = i + 1; j < nodes.length; j++) {
           const a = nodes[i], b = nodes[j];
           const dx = a.x - b.x, dy = a.y - b.y;
           const dist = Math.sqrt(dx * dx + dy * dy);
-          const maxDist = 160 * devicePixelRatio;
           if (dist < maxDist) {
-            ctx.strokeStyle = `rgba(230,171,0,${(1 - dist / maxDist) * 0.35})`;
-            ctx.lineWidth = 1;
+            const strength = 1 - dist / maxDist;
+            ctx.strokeStyle = `rgba(255,195,0,${strength * 0.55})`;
+            ctx.lineWidth = 1.1 * devicePixelRatio * strength + 0.3;
             ctx.beginPath();
             ctx.moveTo(a.x, a.y);
             ctx.lineTo(b.x, b.y);
             ctx.stroke();
+            if (strength > 0.45) activeLinks.push([a, b]);
           }
+        }
+      }
+      // traveling glow pulses along the strongest links = visible "neural signal" motion
+      for (const p of pulses) {
+        if (!p.a || p.t >= 1 || Math.random() < 0.002) {
+          if (activeLinks.length) {
+            const link = activeLinks[Math.floor(Math.random() * activeLinks.length)];
+            p.a = link[0]; p.b = link[1]; p.t = 0;
+          }
+        }
+        if (p.a && p.b) {
+          p.t += p.speed;
+          const px = p.a.x + (p.b.x - p.a.x) * p.t;
+          const py = p.a.y + (p.b.y - p.a.y) * p.t;
+          ctx.beginPath();
+          ctx.arc(px, py, 2.6 * devicePixelRatio, 0, Math.PI * 2);
+          ctx.fillStyle = 'rgba(255,225,140,0.95)';
+          ctx.shadowColor = 'rgba(255,195,0,0.9)';
+          ctx.shadowBlur = 12 * devicePixelRatio;
+          ctx.fill();
+          ctx.shadowBlur = 0;
         }
       }
       for (const n of nodes) {
         ctx.beginPath();
         ctx.arc(n.x, n.y, n.r, 0, Math.PI * 2);
-        ctx.fillStyle = 'rgba(255,195,0,0.85)';
+        ctx.fillStyle = 'rgba(255,195,0,0.95)';
+        ctx.shadowColor = 'rgba(255,195,0,0.55)';
+        ctx.shadowBlur = 6 * devicePixelRatio;
         ctx.fill();
+        ctx.shadowBlur = 0;
       }
       if (!prefersReduced) requestAnimationFrame(draw);
     }
@@ -186,19 +215,100 @@ document.addEventListener('DOMContentLoaded', () => {
   document.querySelectorAll('.pulse-panel, .chart-card, .ring-grid')
     .forEach(el => statObserver.observe(el));
 
-  /* ---------- Tilt effect on service / ring cards (desktop) ---------- */
+  /* ---------- Tilt effect on service / ring / kb cards (desktop) ---------- */
   if (window.innerWidth > 980 && !prefersReduced) {
-    document.querySelectorAll('.svc-card, .ring-card, .ctype-card').forEach(card => {
+    document.querySelectorAll('.svc-card, .ring-card, .ctype-card, .kb-card').forEach(card => {
       card.addEventListener('mousemove', (e) => {
         const rect = card.getBoundingClientRect();
         const x = e.clientX - rect.left;
         const y = e.clientY - rect.top;
-        const rx = ((y / rect.height) - 0.5) * -6;
-        const ry = ((x / rect.width) - 0.5) * 6;
-        card.style.transform = `perspective(700px) rotateX(${rx}deg) rotateY(${ry}deg) translateY(-6px)`;
+        const rx = ((y / rect.height) - 0.5) * -5;
+        const ry = ((x / rect.width) - 0.5) * 5;
+        card.style.transform = `perspective(800px) rotateX(${rx}deg) rotateY(${ry}deg) translateY(-6px)`;
       });
       card.addEventListener('mouseleave', () => {
         card.style.transform = '';
+      });
+    });
+  }
+
+  /* ---------- Typewriter cycling text ---------- */
+  document.querySelectorAll('[data-typewriter]').forEach(el => {
+    const words = el.dataset.typewriter.split('|');
+    const cursor = document.createElement('span');
+    cursor.className = 'tw-cursor';
+    const textNode = document.createElement('span');
+    el.textContent = '';
+    el.classList.add('typewriter');
+    el.appendChild(textNode);
+    el.appendChild(cursor);
+
+    if (prefersReduced) {
+      textNode.textContent = words[0];
+      return;
+    }
+
+    let wordIndex = 0, charIndex = 0, deleting = false;
+    const typeSpeed = 55, deleteSpeed = 30, holdTime = 1400, gapTime = 300;
+
+    function tick() {
+      const current = words[wordIndex];
+      if (!deleting) {
+        charIndex++;
+        textNode.textContent = current.slice(0, charIndex);
+        if (charIndex === current.length) {
+          deleting = true;
+          setTimeout(tick, holdTime);
+          return;
+        }
+        setTimeout(tick, typeSpeed);
+      } else {
+        charIndex--;
+        textNode.textContent = current.slice(0, charIndex);
+        if (charIndex === 0) {
+          deleting = false;
+          wordIndex = (wordIndex + 1) % words.length;
+          setTimeout(tick, gapTime);
+          return;
+        }
+        setTimeout(tick, deleteSpeed);
+      }
+    }
+    tick();
+  });
+
+  /* ---------- Orbit rings: position satellites ---------- */
+  document.querySelectorAll('.orbit-ring').forEach(ring => {
+    const size = ring.dataset.size || 120;
+    const duration = ring.dataset.duration || 14;
+    ring.style.width = size + 'px';
+    ring.style.height = size + 'px';
+    ring.style.animationDuration = duration + 's';
+  });
+
+  /* ---------- Knowledge Base: filter tabs ---------- */
+  const kbFilters = document.querySelectorAll('.kb-filter-btn');
+  const kbCards = document.querySelectorAll('.kb-card');
+  if (kbFilters.length) {
+    kbFilters.forEach(btn => {
+      btn.addEventListener('click', () => {
+        kbFilters.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        const filter = btn.dataset.filter;
+        kbCards.forEach(card => {
+          const match = filter === 'all' || card.dataset.category === filter;
+          if (match) {
+            card.classList.remove('hidden-card');
+            card.style.animation = 'none';
+            requestAnimationFrame(() => {
+              card.style.animation = '';
+              card.classList.add('reveal');
+              requestAnimationFrame(() => card.classList.add('in'));
+            });
+          } else {
+            card.classList.add('hidden-card');
+          }
+        });
       });
     });
   }

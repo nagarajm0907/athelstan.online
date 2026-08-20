@@ -744,18 +744,24 @@ footer{padding:60px 28px 34px;}
    ========================================================= */
 #chatWidget{position:fixed;bottom:26px;right:26px;z-index:95;font-family:'Inter',system-ui,sans-serif;}
 #chatToggle{
-  width:56px;height:56px;border-radius:50%;border:none;cursor:pointer;
+  height:52px;padding:0 20px 0 16px;border-radius:999px;border:none;cursor:pointer;
   background:var(--ink);color:var(--yellow);
-  display:flex;align-items:center;justify-content:center;
+  display:flex;align-items:center;gap:9px;font-weight:700;font-size:.9rem;
   box-shadow:0 14px 30px -14px rgba(0,0,0,.4);
   transition:transform .25s ease, background .25s ease, box-shadow .25s ease;
   position:relative;
+  animation:chat-bob 3.2s ease-in-out infinite;
 }
 #chatToggle::after{
-  content:'';position:absolute;inset:-4px;border-radius:50%;
+  content:'';position:absolute;inset:-4px;border-radius:999px;
   border:1.5px solid rgba(255,195,0,.5);opacity:0;
   animation:chat-ring 2.4s ease-out infinite;
 }
+@keyframes chat-ring{0%{transform:scale(.92);opacity:.7;}100%{transform:scale(1.12);opacity:0;}}
+@keyframes chat-bob{0%,100%{transform:translateY(0);}50%{transform:translateY(-5px);}}
+#chatToggle:hover{transform:translateY(-3px) scale(1.03);background:var(--yellow-deep);box-shadow:var(--shadow-yellow);animation-play-state:paused;}
+#chatToggle svg{position:relative;z-index:1;flex-shrink:0;}
+#chatToggle span{position:relative;z-index:1;}
 @keyframes chat-ring{0%{transform:scale(.85);opacity:.7;}100%{transform:scale(1.25);opacity:0;}}
 #chatToggle:hover{transform:translateY(-3px) scale(1.05);background:var(--yellow-deep);box-shadow:var(--shadow-yellow);}
 #chatToggle svg{position:relative;z-index:1;}

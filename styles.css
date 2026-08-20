@@ -479,18 +479,6 @@ footer{padding:60px 28px 34px;}
 .footer-bottom{display:flex;justify-content:space-between;align-items:center;padding-top:26px;flex-wrap:wrap;gap:14px;}
 .footer-bottom p{font-size:.82rem;color:#9a9a9f;}
 
-/* ---------- BACK TO TOP ---------- */
-#toTop{
-  position:fixed;bottom:26px;right:26px;width:46px;height:46px;border-radius:50%;
-  background:var(--ink);color:var(--yellow);border:none;cursor:pointer;
-  display:flex;align-items:center;justify-content:center;font-size:1.1rem;
-  opacity:0;pointer-events:none;transform:translateY(12px);
-  transition:opacity .3s ease, transform .3s ease, background .3s ease;
-  z-index:90;box-shadow:0 14px 30px -14px rgba(0,0,0,.4);
-}
-#toTop.show{opacity:1;pointer-events:auto;transform:translateY(0);}
-#toTop:hover{background:var(--yellow-deep);color:var(--ink);}
-
 /* ---------- RESPONSIVE ---------- */
 @media (max-width: 980px){
   .growth-grid{grid-template-columns:1fr;}
@@ -524,18 +512,12 @@ footer{padding:60px 28px 34px;}
   .footer-grid{grid-template-columns:1fr 1fr;gap:26px;}
   .cta-section{margin:0 14px;padding:50px 22px;}
   .bars{height:130px;}
-  #toTop{bottom:18px;right:18px;width:42px;height:42px;}
 }
 @media (max-width: 480px){
   .pulse-grid{grid-template-columns:1fr 1fr;}
   .footer-grid{grid-template-columns:1fr;}
-  .ring-grid{grid-template-columns:repeat(2,1fr);gap:10px;}
-  .ring-card{padding:18px 10px;min-width:0;}
-  .ring-wrap{width:88px;height:88px;margin:0 auto 12px;}
-  .ring-value{font-size:1.05rem;}
-  .ring-card h4{font-size:.88rem;}
-  .ring-card p{font-size:.72rem;}
 }
+
 /* ---------- Section neural-network canvases (white/light sections) ---------- */
 .section-network{
   position:absolute;inset:0;width:100%;height:100%;
@@ -760,18 +742,26 @@ footer{padding:60px 28px 34px;}
    Matches the dark charcoal / yellow glassmorphism system
    used across the pulse panel and services section.
    ========================================================= */
-#chatWidget{position:fixed;bottom:26px;left:26px;z-index:95;font-family:'Inter',system-ui,sans-serif;}
+#chatWidget{position:fixed;bottom:26px;right:26px;z-index:95;font-family:'Inter',system-ui,sans-serif;}
 #chatToggle{
   width:56px;height:56px;border-radius:50%;border:none;cursor:pointer;
-  background:var(--ink);color:var(--yellow);font-size:1.4rem;
+  background:var(--ink);color:var(--yellow);
   display:flex;align-items:center;justify-content:center;
   box-shadow:0 14px 30px -14px rgba(0,0,0,.4);
-  transition:transform .25s ease, background .25s ease;
+  transition:transform .25s ease, background .25s ease, box-shadow .25s ease;
+  position:relative;
 }
-#chatToggle:hover{transform:translateY(-3px) scale(1.05);background:var(--yellow-deep);color:var(--ink);}
+#chatToggle::after{
+  content:'';position:absolute;inset:-4px;border-radius:50%;
+  border:1.5px solid rgba(255,195,0,.5);opacity:0;
+  animation:chat-ring 2.4s ease-out infinite;
+}
+@keyframes chat-ring{0%{transform:scale(.85);opacity:.7;}100%{transform:scale(1.25);opacity:0;}}
+#chatToggle:hover{transform:translateY(-3px) scale(1.05);background:var(--yellow-deep);box-shadow:var(--shadow-yellow);}
+#chatToggle svg{position:relative;z-index:1;}
 
 #chatPanel{
-  position:absolute;bottom:70px;left:0;width:320px;max-width:88vw;max-height:440px;
+  position:absolute;bottom:70px;right:0;width:320px;max-width:88vw;max-height:440px;
   background:var(--glass-dark-bg);border:1px solid var(--glass-dark-border);
   backdrop-filter:blur(18px) saturate(160%);-webkit-backdrop-filter:blur(18px) saturate(160%);
   border-radius:18px;overflow:hidden;display:none;flex-direction:column;
@@ -814,6 +804,7 @@ footer{padding:60px 28px 34px;}
 .chat-send-btn:hover{background:var(--yellow-deep);}
 
 @media (max-width:480px){
-  #chatWidget{bottom:18px;left:18px;}
-  #chatPanel{width:86vw;bottom:66px;}
+  #chatWidget{bottom:18px;right:18px;}
+  #chatToggle{width:48px;height:48px;}
+  #chatPanel{width:86vw;bottom:60px;right:0;}
 }

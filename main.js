@@ -39,15 +39,6 @@ document.addEventListener('DOMContentLoaded', () => {
   window.addEventListener('scroll', updateProgress, { passive: true });
   updateProgress();
 
-  /* ---------- Back to top ---------- */
-  const toTop = document.getElementById('toTop');
-  if (toTop) {
-    window.addEventListener('scroll', () => {
-      toTop.classList.toggle('show', window.scrollY > 700);
-    }, { passive: true });
-    toTop.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
-  }
-
   /* ---------- Cursor glow (desktop only) ---------- */
   const glow = document.getElementById('cursorGlow');
   if (glow && window.innerWidth > 980 && !prefersReduced) {

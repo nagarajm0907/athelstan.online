@@ -529,8 +529,13 @@ footer{padding:60px 28px 34px;}
 @media (max-width: 480px){
   .pulse-grid{grid-template-columns:1fr 1fr;}
   .footer-grid{grid-template-columns:1fr;}
+  .ring-grid{grid-template-columns:repeat(2,1fr);gap:10px;}
+  .ring-card{padding:18px 10px;min-width:0;}
+  .ring-wrap{width:88px;height:88px;margin:0 auto 12px;}
+  .ring-value{font-size:1.05rem;}
+  .ring-card h4{font-size:.88rem;}
+  .ring-card p{font-size:.72rem;}
 }
-
 /* ---------- Section neural-network canvases (white/light sections) ---------- */
 .section-network{
   position:absolute;inset:0;width:100%;height:100%;

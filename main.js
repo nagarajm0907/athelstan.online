@@ -338,4 +338,106 @@ document.addEventListener('DOMContentLoaded', () => {
       });
     });
   }
+
+  /* ---------- Chatbot Widget ---------- */
+  (function () {
+    const FORMSPREE_ID = 'YOUR_FORM_ID'; // <-- paste your Formspree form ID here
+
+    const toggle = document.getElementById('chatToggle');
+    const panel = document.getElementById('chatPanel');
+    const closeBtn = document.getElementById('chatClose');
+    const body = document.getElementById('chatBody');
+    if (!toggle || !panel) return;
+
+    let opened = false;
+
+    function addBubble(text, from) {
+      const b = document.createElement('div');
+      b.className = 'chat-bubble ' + from;
+      b.textContent = text;
+      body.appendChild(b);
+      body.scrollTop = body.scrollHeight;
+    }
+
+    function addOptions(options) {
+      const wrap = document.createElement('div');
+      wrap.className = 'chat-options';
+      options.forEach(opt => {
+        const btn = document.createElement('button');
+        btn.className = 'chat-opt-btn';
+        btn.textContent = opt.label;
+        btn.onclick = () => {
+          addBubble(opt.label, 'user');
+          wrap.remove();
+          opt.action();
+        };
+        wrap.appendChild(btn);
+      });
+      body.appendChild(wrap);
+      body.scrollTop = body.scrollHeight;
+    }
+
+    function askEmail(context) {
+      const wrap = document.createElement('div');
+      wrap.innerHTML = `
+        <input type="email" id="chatEmailInput" placeholder="you@company.com" />
+        <button class="chat-send-btn" id="chatEmailSend">Send</button>
+      `;
+      body.appendChild(wrap);
+      body.scrollTop = body.scrollHeight;
+
+      document.getElementById('chatEmailSend').onclick = async () => {
+        const emailInput = document.getElementById('chatEmailInput');
+        const email = emailInput.value.trim();
+        if (!email || !email.includes('@')) {
+          emailInput.style.borderColor = '#e05555';
+          return;
+        }
+        wrap.remove();
+        addBubble(email, 'user');
+
+        try {
+          await fetch(`https://formspree.io/f/${FORMSPREE_ID}`, {
+            method: 'POST',
+            headers: { 'Accept': 'application/json', 'Content-Type': 'application/json' },
+            body: JSON.stringify({ email, interest: context })
+          });
+          addBubble("Got it — I'll be in touch shortly. You can also email athelstan.online@gmail.com directly anytime.", 'bot');
+        } catch (e) {
+          addBubble("Something went wrong sending that — please email athelstan.online@gmail.com directly.", 'bot');
+        }
+      };
+    }
+
+    function startChat() {
+      body.innerHTML = '';
+      addBubble("Hi! I'm here to help. What are you looking for?", 'bot');
+      addOptions([
+        { label: 'SEO / AIO services', action: () => {
+          addBubble("We handle technical SEO plus AI Optimization (GEO/AEO) — getting you ranked in Google and cited in ChatGPT, Perplexity and AI Overviews.", 'bot');
+          addBubble("Want a free audit of where you currently stand?", 'bot');
+          addOptions([{ label: 'Yes, send me an audit', action: () => askEmail('Free AIO audit request') }]);
+        }},
+        { label: 'Website development', action: () => {
+          addBubble("We build fast, SEO-ready sites — WordPress or custom code — with schema and Core Web Vitals handled from day one.", 'bot');
+          addOptions([{ label: 'Get a quote', action: () => askEmail('Website development quote') }]);
+        }},
+        { label: 'Pricing', action: () => {
+          addBubble("Pricing depends on scope — leave your email and we'll send a tailored quote within a day.", 'bot');
+          askEmail('Pricing enquiry');
+        }},
+        { label: 'Just leave my email', action: () => askEmail('General enquiry') }
+      ]);
+    }
+
+    toggle.addEventListener('click', () => {
+      opened = !opened;
+      panel.classList.toggle('open', opened);
+      if (opened && body.children.length === 0) startChat();
+    });
+    closeBtn.addEventListener('click', () => {
+      opened = false;
+      panel.classList.remove('open');
+    });
+  })();
 });

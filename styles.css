@@ -120,7 +120,7 @@ header.scrolled{box-shadow:0 12px 30px -20px rgba(0,0,0,.25);}
   pointer-events:none;
 }
 @keyframes mark-shine{0%,60%{transform:translateX(-120%);}80%{transform:translateX(120%);}100%{transform:translateX(120%);}}
-nav.links{display:flex;gap:30px;font-size:.92rem;font-weight:500;color:var(--ink-soft);}
+nav.links{display:flex;gap:30px;font-size:.92rem;font-weight:500;color:var(--ink-soft);align-items:center;}
 nav.links a{position:relative;padding:4px 0;transition:color .2s;}
 nav.links a:hover{color:var(--ink);}
 nav.links a::after{
@@ -128,6 +128,44 @@ nav.links a::after{
   transition:width .25s ease;
 }
 nav.links a:hover::after{width:100%;}
+
+/* ---------- Nav dropdown (AIO Audit) ---------- */
+.nav-dropdown{position:relative;display:flex;align-items:center;gap:2px;}
+.nav-dropdown-label{position:relative;padding:4px 0;transition:color .2s;}
+.nav-dropdown-label:hover{color:var(--ink);}
+.nav-dropdown-label::after{
+  content:'';position:absolute;left:0;bottom:-2px;width:0;height:2px;background:var(--yellow-deep);
+  transition:width .25s ease;
+}
+.nav-dropdown-label:hover::after{width:100%;}
+.nav-dropdown-caret{
+  background:none;border:none;cursor:pointer;font-size:.62rem;color:var(--ink-soft);
+  padding:6px 4px;display:flex;align-items:center;transition:transform .25s ease, color .2s ease;
+}
+.nav-dropdown-caret:hover{color:var(--ink);}
+.nav-dropdown:hover .nav-dropdown-caret,
+.nav-dropdown.open .nav-dropdown-caret{transform:rotate(180deg);}
+.nav-dropdown-menu{
+  position:absolute;top:100%;left:0;margin-top:14px;
+  background:#fff;border:1px solid var(--line);border-radius:14px;padding:8px;min-width:250px;
+  box-shadow:0 26px 54px -20px rgba(0,0,0,.28);
+  opacity:0;visibility:hidden;transform:translateY(6px);
+  transition:opacity .25s ease, transform .25s ease, visibility .25s;
+  z-index:60;
+}
+.nav-dropdown:hover .nav-dropdown-menu,
+.nav-dropdown.open .nav-dropdown-menu{opacity:1;visibility:visible;transform:translateY(0);}
+.nav-dropdown-menu a{
+  display:flex;flex-direction:column;gap:2px;padding:10px 12px;border-radius:9px;
+  font-size:.86rem;font-weight:600;color:var(--ink);transition:background .2s ease;
+}
+.nav-dropdown-menu a small{font-size:.74rem;font-weight:400;color:#9a9a9f;}
+.nav-dropdown-menu a:hover{background:var(--yellow-pale);}
+.nav-dropdown-menu a::after{display:none;}
+.nav-badge{
+  display:inline-block;background:var(--ink);color:var(--yellow);font-size:.6rem;font-weight:700;
+  letter-spacing:.04em;padding:2px 7px;border-radius:999px;margin-left:7px;vertical-align:middle;
+}
 .cta-btn{
   background:var(--ink);color:#fff;padding:11px 20px;border-radius:999px;
   font-size:.88rem;font-weight:600;border:none;cursor:pointer;
@@ -479,6 +517,18 @@ footer{padding:60px 28px 34px;}
 .footer-bottom{display:flex;justify-content:space-between;align-items:center;padding-top:26px;flex-wrap:wrap;gap:14px;}
 .footer-bottom p{font-size:.82rem;color:#9a9a9f;}
 
+/* ---------- BACK TO TOP ---------- */
+#toTop{
+  position:fixed;bottom:26px;right:26px;width:46px;height:46px;border-radius:50%;
+  background:var(--ink);color:var(--yellow);border:none;cursor:pointer;
+  display:flex;align-items:center;justify-content:center;font-size:1.1rem;
+  opacity:0;pointer-events:none;transform:translateY(12px);
+  transition:opacity .3s ease, transform .3s ease, background .3s ease;
+  z-index:90;box-shadow:0 14px 30px -14px rgba(0,0,0,.4);
+}
+#toTop.show{opacity:1;pointer-events:auto;transform:translateY(0);}
+#toTop:hover{background:var(--yellow-deep);color:var(--ink);}
+
 /* ---------- RESPONSIVE ---------- */
 @media (max-width: 980px){
   .growth-grid{grid-template-columns:1fr;}
@@ -499,8 +549,25 @@ footer{padding:60px 28px 34px;}
   }
   nav.links.open{transform:translateY(0);opacity:1;}
   nav.links a{padding:12px 0;border-bottom:1px solid #f2f0e6;}
+  nav.links > a:last-of-type{border-bottom:none;}
   .menu-toggle{display:block;}
   .cta-btn.nav-only{display:none;}
+
+  /* Nav dropdown becomes a static accordion on mobile */
+  .nav-dropdown{
+    flex-wrap:wrap;justify-content:space-between;width:100%;
+    border-bottom:1px solid #f2f0e6;padding:12px 0;
+  }
+  .nav-dropdown-label{padding:0;border-bottom:none;flex:1;}
+  .nav-dropdown-caret{padding:2px 6px;}
+  .nav-dropdown-menu{
+    position:static;opacity:1;visibility:visible;transform:none;
+    box-shadow:none;border:none;padding:0;margin-top:0;min-width:0;
+    width:100%;max-height:0;overflow:hidden;transition:max-height .3s ease;
+  }
+  .nav-dropdown.open .nav-dropdown-menu{max-height:200px;margin-top:10px;}
+  .nav-dropdown-menu a{padding:9px 10px;border-radius:8px;}
+
   .hero{padding:56px 20px 50px;}
   .hero-actions .cta-btn{width:100%;justify-content:center;}
   .hero-actions{flex-direction:column;}
@@ -512,6 +579,7 @@ footer{padding:60px 28px 34px;}
   .footer-grid{grid-template-columns:1fr 1fr;gap:26px;}
   .cta-section{margin:0 14px;padding:50px 22px;}
   .bars{height:130px;}
+  #toTop{bottom:18px;right:18px;width:42px;height:42px;}
 }
 @media (max-width: 480px){
   .pulse-grid{grid-template-columns:1fr 1fr;}
@@ -738,79 +806,136 @@ footer{padding:60px 28px 34px;}
 }
 
 /* =========================================================
-   PHASE 3 — Chatbot Widget
-   Matches the dark charcoal / yellow glassmorphism system
-   used across the pulse panel and services section.
+   AIO AUDIT PAGES (hub + 2 tool pages)
    ========================================================= */
-#chatWidget{position:fixed;bottom:26px;right:26px;z-index:95;font-family:'Inter',system-ui,sans-serif;}
-#chatToggle{
-  height:52px;padding:0 20px 0 16px;border-radius:999px;border:none;cursor:pointer;
-  background:var(--ink);color:var(--yellow);
-  display:flex;align-items:center;gap:9px;font-weight:700;font-size:.9rem;
-  box-shadow:0 14px 30px -14px rgba(0,0,0,.4);
-  transition:transform .25s ease, background .25s ease, box-shadow .25s ease;
-  position:relative;
-  animation:chat-bob 3.2s ease-in-out infinite;
-}
-#chatToggle::after{
-  content:'';position:absolute;inset:-4px;border-radius:999px;
-  border:1.5px solid rgba(255,195,0,.5);opacity:0;
-  animation:chat-ring 2.4s ease-out infinite;
-}
-@keyframes chat-ring{0%{transform:scale(.92);opacity:.7;}100%{transform:scale(1.12);opacity:0;}}
-@keyframes chat-bob{0%,100%{transform:translateY(0);}50%{transform:translateY(-5px);}}
-#chatToggle:hover{transform:translateY(-3px) scale(1.03);background:var(--yellow-deep);box-shadow:var(--shadow-yellow);animation-play-state:paused;}
-#chatToggle svg{position:relative;z-index:1;flex-shrink:0;}
-#chatToggle span{position:relative;z-index:1;}
-@keyframes chat-ring{0%{transform:scale(.85);opacity:.7;}100%{transform:scale(1.25);opacity:0;}}
-#chatToggle:hover{transform:translateY(-3px) scale(1.05);background:var(--yellow-deep);box-shadow:var(--shadow-yellow);}
-#chatToggle svg{position:relative;z-index:1;}
 
-#chatPanel{
-  position:absolute;bottom:70px;right:0;width:320px;max-width:88vw;max-height:440px;
-  background:var(--glass-dark-bg);border:1px solid var(--glass-dark-border);
-  backdrop-filter:blur(18px) saturate(160%);-webkit-backdrop-filter:blur(18px) saturate(160%);
-  border-radius:18px;overflow:hidden;display:none;flex-direction:column;
-  box-shadow:0 30px 70px -30px rgba(0,0,0,.6);
+.audit-hero{
+  position:relative;overflow:hidden;padding:100px 28px 70px;
+  background:
+    radial-gradient(ellipse 900px 500px at 15% -10%, var(--yellow-pale) 0%, transparent 60%),
+    radial-gradient(ellipse 700px 500px at 100% 10%, #fff9e0 0%, transparent 55%),
+    var(--paper);
+  text-align:center;
 }
-#chatPanel.open{display:flex;}
+.audit-hero-inner{position:relative;z-index:2;max-width:760px;margin:0 auto;}
+.audit-hero h1{font-size:clamp(2.1rem,5vw,3.4rem);margin-top:18px;}
+.audit-hero p.sub{margin-top:18px;font-size:1.05rem;line-height:1.65;color:var(--ink-soft);max-width:60ch;margin-left:auto;margin-right:auto;}
 
-.chat-head{
-  display:flex;justify-content:space-between;align-items:center;
-  padding:14px 16px;background:rgba(255,195,0,.08);border-bottom:1px solid var(--glass-dark-border);
-  color:#fff;font-weight:700;font-size:.92rem;
+/* Tool selector cards on the AIO Audit hub */
+.tool-grid{
+  display:grid;grid-template-columns:repeat(2,1fr);gap:22px;
+  max-width:900px;margin:44px auto 0;position:relative;z-index:2;
 }
-.chat-head button{background:none;border:none;color:#9a9a9f;cursor:pointer;font-size:.95rem;}
-.chat-head button:hover{color:var(--yellow);}
+.tool-card{
+  background:#fff;border:1px solid var(--line);border-radius:var(--radius);
+  padding:30px;text-align:left;transition:transform .35s var(--ease-out), box-shadow .35s ease, border-color .35s ease;
+  display:flex;flex-direction:column;gap:12px;
+}
+.tool-card:hover{transform:translateY(-8px);box-shadow:var(--shadow-yellow);border-color:var(--yellow-line);}
+.tool-card .tool-icon{
+  width:52px;height:52px;border-radius:14px;background:var(--yellow-pale);
+  display:flex;align-items:center;justify-content:center;font-size:1.5rem;
+}
+.tool-card h3{font-size:1.2rem;}
+.tool-card p{font-size:.9rem;color:var(--ink-soft);line-height:1.6;flex:1;}
+.tool-card .tool-cta{font-weight:700;font-size:.9rem;color:var(--ink);display:inline-flex;align-items:center;gap:6px;transition:gap .25s ease, color .25s ease;}
+.tool-card:hover .tool-cta{gap:10px;color:var(--yellow-deep);}
 
-.chat-body{padding:14px;overflow-y:auto;flex:1;display:flex;flex-direction:column;gap:10px;}
-.chat-bubble{
-  max-width:85%;padding:10px 13px;border-radius:14px;font-size:.86rem;line-height:1.5;
+/* Audit lead form */
+.audit-form-wrap{
+  max-width:460px;margin:46px auto 0;position:relative;z-index:2;
+  background:#fffdf6;border:1px solid var(--yellow-line);border-radius:22px;
+  padding:36px 32px;box-shadow:0 40px 80px -40px rgba(0,0,0,.2);
+  text-align:left;
 }
-.chat-bubble.bot{background:var(--charcoal-2);color:#e4e4e6;border:1px solid #2a2a2f;align-self:flex-start;border-bottom-left-radius:4px;}
-.chat-bubble.user{background:var(--yellow);color:var(--ink);align-self:flex-end;border-bottom-right-radius:4px;font-weight:600;}
+.audit-form-wrap h2{font-size:1.35rem;text-align:center;}
+.audit-form-wrap > p{text-align:center;color:var(--ink-soft);font-size:.9rem;margin-top:8px;margin-bottom:24px;}
+.audit-form label{display:block;font-size:.82rem;font-weight:600;color:var(--ink-soft);margin-bottom:6px;margin-top:16px;}
+.audit-form label:first-of-type{margin-top:0;}
+.audit-form input{
+  width:100%;padding:12px 14px;border-radius:10px;border:1.5px solid var(--line);
+  font-family:'Inter',sans-serif;font-size:.92rem;transition:border-color .2s ease, box-shadow .2s ease;
+}
+.audit-form input:focus{outline:none;border-color:var(--yellow-deep);box-shadow:0 0 0 3px rgba(255,195,0,.18);}
+.audit-form button[type="submit"]{
+  width:100%;margin-top:22px;background:var(--ink);color:#fff;border:none;
+  padding:14px;border-radius:999px;font-size:.95rem;font-weight:700;cursor:pointer;
+  transition:background .25s ease, transform .25s ease;
+}
+.audit-form button[type="submit"]:hover{background:var(--yellow-deep);color:var(--ink);transform:translateY(-2px);}
+.audit-form-note{text-align:center;font-size:.76rem;color:#9a9a9f;margin-top:14px;}
 
-.chat-options{display:flex;flex-wrap:wrap;gap:8px;margin-top:2px;}
-.chat-opt-btn{
-  background:transparent;border:1px solid rgba(255,195,0,.35);color:var(--yellow);
-  padding:7px 12px;border-radius:999px;font-size:.78rem;cursor:pointer;
-  transition:background .2s ease, transform .2s ease;
+.audit-success{
+  display:none;text-align:center;padding:20px 6px;
+  opacity:0;transform:translateY(10px);transition:opacity .5s ease, transform .5s ease;
 }
-.chat-opt-btn:hover{background:rgba(255,195,0,.12);transform:translateY(-1px);}
+.audit-success.in{opacity:1;transform:translateY(0);}
+.audit-success .check{
+  width:60px;height:60px;border-radius:50%;background:var(--yellow-pale);
+  display:flex;align-items:center;justify-content:center;margin:0 auto 18px;font-size:1.6rem;color:var(--yellow-deep);
+}
+.audit-success h3{font-size:1.15rem;margin-bottom:10px;}
+.audit-success p{color:var(--ink-soft);font-size:.9rem;line-height:1.6;}
 
-.chat-body input[type="email"]{
-  width:100%;padding:9px 12px;border-radius:10px;border:1px solid #2a2a2f;
-  background:var(--charcoal-2);color:#fff;font-size:.85rem;margin-top:6px;
+/* How it works — 3 step row */
+.audit-steps{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;max-width:var(--maxw);margin:0 auto;}
+.audit-step{
+  background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:26px;
+  transition:transform .3s var(--ease-out), box-shadow .3s ease;
 }
-.chat-body input[type="email"]::placeholder{color:#7a7a80;}
-.chat-send-btn{
-  margin-top:8px;background:var(--yellow);color:var(--ink);border:none;
-  padding:9px 14px;border-radius:10px;font-weight:700;font-size:.82rem;cursor:pointer;width:100%;
+.audit-step:hover{transform:translateY(-6px);box-shadow:0 24px 48px -30px rgba(0,0,0,.25);}
+.audit-step .num{
+  width:38px;height:38px;border-radius:10px;background:var(--ink);color:var(--yellow);
+  display:flex;align-items:center;justify-content:center;font-family:'JetBrains Mono',monospace;font-weight:700;margin-bottom:16px;
 }
-.chat-send-btn:hover{background:var(--yellow-deep);}
+.audit-step h4{font-size:1.02rem;margin-bottom:8px;}
+.audit-step p{font-size:.88rem;color:var(--ink-soft);line-height:1.6;}
 
-@media (max-width:480px){
-  #chatWidget{bottom:18px;right:18px;}
-  #chatToggle{height:46px;padding:0 16px 0 12px;font-size:.82rem;}
-  #chatPanel{width:86vw;bottom:60px;right:0;}
+/* Sample report preview */
+.sample-tag{
+  display:inline-block;font-size:.7rem;font-weight:700;letter-spacing:.05em;text-transform:uppercase;
+  color:#9a9a9f;background:#f1efe4;padding:4px 10px;border-radius:999px;margin-bottom:18px;
+}
+.score-gauge-row{display:flex;gap:20px;flex-wrap:wrap;justify-content:center;}
+.score-gauge{
+  background:#fff;border:1px solid var(--line);border-radius:18px;padding:24px;text-align:center;
+  width:150px;transition:transform .3s var(--ease-out);
+}
+.score-gauge:hover{transform:translateY(-6px);}
+.score-gauge .g-value{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:2rem;}
+.score-gauge .g-label{font-size:.76rem;color:#9a9a9f;margin-top:6px;}
+
+/* FAQ accordion */
+.faq-list{max-width:760px;margin:0 auto;display:flex;flex-direction:column;gap:12px;}
+.faq-item{background:#fff;border:1px solid var(--line);border-radius:14px;overflow:hidden;}
+.faq-q{
+  width:100%;text-align:left;background:none;border:none;cursor:pointer;
+  padding:18px 22px;display:flex;justify-content:space-between;align-items:center;
+  font-size:.95rem;font-weight:600;color:var(--ink);
+}
+.faq-q .plus{font-size:1.2rem;color:var(--yellow-deep);transition:transform .3s ease;}
+.faq-item.open .faq-q .plus{transform:rotate(45deg);}
+.faq-a{max-height:0;overflow:hidden;transition:max-height .35s ease;}
+.faq-a-inner{padding:0 22px 20px;font-size:.88rem;color:var(--ink-soft);line-height:1.65;}
+.faq-item.open .faq-a{max-height:260px;}
+
+/* Roadmap teaser */
+.roadmap-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;max-width:var(--maxw);margin:0 auto;}
+.roadmap-card{
+  border:1.5px dashed var(--yellow-line);border-radius:16px;padding:22px;text-align:center;
+  color:var(--ink-soft);background:var(--paper-warm);
+}
+.roadmap-card .icon{font-size:1.4rem;margin-bottom:10px;}
+.roadmap-card h4{font-size:.94rem;color:var(--ink);margin-bottom:6px;}
+.roadmap-card p{font-size:.8rem;line-height:1.5;}
+
+@media (max-width: 860px){
+  .tool-grid{grid-template-columns:1fr;}
+  .audit-steps{grid-template-columns:1fr;}
+  .roadmap-grid{grid-template-columns:1fr;}
+}
+@media (max-width: 560px){
+  .audit-form-wrap{padding:28px 20px;}
+  .score-gauge-row{gap:12px;}
+  .score-gauge{width:calc(50% - 8px);}
 }

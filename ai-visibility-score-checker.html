@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>AI Visibility Score Checker — Free Tool | Athelstan.Online</title>
+<meta name="description" content="Check your AI Visibility Score for free. See how well ChatGPT, Perplexity, Gemini and Google AI Overviews can find, parse, and recommend your website.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+
+<link rel="icon" type="image/png" sizes="512x512" href="favicon-512.png">
+<link rel="icon" type="image/png" sizes="192x192" href="favicon-192.png">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
+<link rel="apple-touch-icon" href="favicon-192.png">
+
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<div id="scrollProgress"></div>
+<div id="cursorGlow"></div>
+
+<header>
+  <div class="nav">
+    <a href="index.html" class="brand" aria-label="Athelstan.Online — home">
+      <div class="brand-mark" style="position:relative;">
+        <img src="logo.png" alt="Athelstan.Online logo">
+        <span style="position:absolute;width:5px;height:5px;border-radius:50%;background:var(--yellow);box-shadow:0 0 8px 2px rgba(255,195,0,.8);top:-3px;right:-3px;animation:pulse-dot 2s infinite;z-index:2;"></span>
+      </div>
+      Athelstan.Online
+    </a>
+    <nav class="links" id="navLinks">
+      <a href="index.html#services">Services</a>
+      <div class="nav-dropdown">
+        <a href="aio-audit.html" class="nav-dropdown-label">AIO Audit</a>
+        <button class="nav-dropdown-caret" aria-label="Toggle AIO Audit submenu" aria-expanded="false">▾</button>
+        <div class="nav-dropdown-menu">
+          <a href="ai-visibility-score-checker.html">AI Visibility Score Checker<small>How AI engines see your site</small></a>
+          <a href="citation-checker.html">Citation Checker<small>Who ChatGPT &amp; Perplexity cite</small></a>
+        </div>
+      </div>
+      <a href="index.html#research">SEO &amp; AIO Research</a>
+      <a href="index.html#process">Process</a>
+      <a href="index.html#team">Team</a>
+      <a href="knowledge-base.html">Knowledge Base</a>
+      <a href="index.html#contact">Contact</a>
+    </nav>
+    <div style="display:flex;align-items:center;gap:10px;">
+      <a href="index.html#contact" class="cta-btn nav-only">Get a Quote</a>
+      <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+</header>
+
+<!-- ===================== HERO + FORM ===================== -->
+<section class="audit-hero">
+  <canvas class="section-network"></canvas>
+  <div class="ambient-orb o1" style="top:-140px;right:-100px;"></div>
+  <div class="ambient-orb o3" style="top:40%;right:15%;"></div>
+
+  <div class="audit-hero-inner">
+    <span class="eyebrow"><span class="dot"></span> AIO Audit · Tool 1 of 2</span>
+    <h1>See how your site reads to AI, before your customers do</h1>
+    <p class="sub">We check crawlability, structured data, and answer-readiness — the technical signals that decide whether ChatGPT, Perplexity, Gemini and Google AI Overviews can find and recommend you.</p>
+  </div>
+
+  <div class="audit-form-wrap reveal">
+    <form class="audit-form">
+      <h2>Check your score</h2>
+      <p>Enter your details and we'll scan your site.</p>
+      <label for="vname">Name</label>
+      <input id="vname" name="name" type="text" placeholder="Your full name" required>
+      <label for="vemail">Email</label>
+      <input id="vemail" name="email" type="email" placeholder="you@company.com" required>
+      <label for="vurl">Website URL</label>
+      <input id="vurl" name="website" type="url" placeholder="https://www.yoursite.com" required>
+      <button type="submit">Run Free Visibility Check</button>
+      <p class="audit-form-note">No card required. We'll email your score report within a few minutes.</p>
+    </form>
+    <div class="audit-success">
+      <div class="check">✓</div>
+      <h3>Your scan is running</h3>
+      <p>We're checking crawlability, structured data, and answer-readiness for your site now. Your AI Visibility Score report will land in your inbox shortly.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== WHAT WE CHECK ===================== -->
+<section style="position:relative;overflow:hidden;">
+  <canvas class="section-network"></canvas>
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="section-tag">What Gets Scored</span>
+      <h2>Four signals that decide if AI engines trust your site</h2>
+      <p>Your score isn't a vague grade — it's built from the same signals ChatGPT, Perplexity, and Google AI Overviews actually weigh when deciding what to cite.</p>
+    </div>
+    <div class="services-grid reveal-stagger" style="grid-template-columns:repeat(2,1fr);">
+      <div class="svc-card glow-card">
+        <span class="svc-num mono">01 / CRAWLABILITY</span>
+        <h3>Can AI crawlers reach your content?</h3>
+        <p>Robots.txt rules, JavaScript-rendered content, sitemap coverage, and response times — the basics that determine whether a crawler can even see your pages.</p>
+      </div>
+      <div class="svc-card glow-card">
+        <span class="svc-num mono">02 / STRUCTURED DATA</span>
+        <h3>Is your business machine-readable?</h3>
+        <p>Organization, Service, FAQ and Product schema coverage — the structured confirmation AI systems use to verify what your prose claims.</p>
+      </div>
+      <div class="svc-card glow-card">
+        <span class="svc-num mono">03 / ANSWER-READINESS</span>
+        <h3>Are your pages built to be extracted?</h3>
+        <p>Whether key pages lead with a direct answer, use clear headings, and structure content in a way models can confidently quote and attribute.</p>
+      </div>
+      <div class="svc-card glow-card">
+        <span class="svc-num mono">04 / ENTITY CLARITY</span>
+        <h3>Do you state who you are, plainly?</h3>
+        <p>Consistent naming, clear definitions, and unambiguous descriptions of your product or service — the difference between being findable and being guessed at.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== SAMPLE REPORT ===================== -->
+<section class="process-section">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="section-tag">What You'll Get</span>
+      <h2>A sample of your report</h2>
+      <p>Every audit returns a score out of 100 for each signal, plus the specific fixes to move the needle.</p>
+    </div>
+    <span class="sample-tag">Illustrative example — your results will vary</span>
+    <div class="score-gauge-row reveal-stagger">
+      <div class="score-gauge">
+        <div class="g-value mono">78</div>
+        <div class="g-label">Crawlability</div>
+      </div>
+      <div class="score-gauge">
+        <div class="g-value mono">42</div>
+        <div class="g-label">Structured Data</div>
+      </div>
+      <div class="score-gauge">
+        <div class="g-value mono">61</div>
+        <div class="g-label">Answer-Readiness</div>
+      </div>
+      <div class="score-gauge">
+        <div class="g-value mono">55</div>
+        <div class="g-label">Entity Clarity</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== FAQ ===================== -->
+<section>
+  <div class="wrap">
+    <div class="section-head reveal" style="text-align:center;max-width:640px;margin-left:auto;margin-right:auto;">
+      <span class="section-tag">FAQ</span>
+      <h2>Common questions</h2>
+    </div>
+    <div class="faq-list reveal">
+      <div class="faq-item">
+        <button class="faq-q">Is this really free? <span class="plus">+</span></button>
+        <div class="faq-a"><div class="faq-a-inner">Yes — the scan and your first score report are completely free, no card required. It's the entry point into the wider AIO Audit toolkit.</div></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">How long does the scan take? <span class="plus">+</span></button>
+        <div class="faq-a"><div class="faq-a-inner">Most reports are emailed within a few minutes. Larger sites with many pages can take a little longer.</div></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">What's the difference between this and the Citation Checker? <span class="plus">+</span></button>
+        <div class="faq-a"><div class="faq-a-inner">This tool audits your site's technical AI-readiness. The Citation Checker goes further and asks real AI engines your category's questions to see who actually gets recommended.</div></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">Do I need to fix everything myself? <span class="plus">+</span></button>
+        <div class="faq-a"><div class="faq-a-inner">No — your report ranks fixes by impact, and our team can implement the technical SEO and AIO changes for you if you'd rather hand it off.</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== CTA ===================== -->
+<section style="padding:20px 0 90px;">
+  <div class="cta-section reveal">
+    <h2>Want to also check who AI engines are citing in your category?</h2>
+    <p>Run the Citation Checker next — same free process, different signal.</p>
+    <div class="hero-actions">
+      <a href="citation-checker.html" class="cta-btn">Run Citation Check →</a>
+      <a href="aio-audit.html" class="cta-btn ghost">Back to AIO Audit</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="footer-grid">
+      <div>
+        <div class="brand" style="margin-bottom:14px;">
+          <div class="brand-mark"><img src="logo.png" alt="Athelstan.Online logo"></div>
+          Athelstan.Online
+        </div>
+        <p style="color:var(--ink-soft);font-size:.88rem;line-height:1.6;max-width:32ch;">
+          AI &amp; growth intelligence for brands that want to be found — by people, and by the models people ask first.
+        </p>
+      </div>
+      <div>
+        <h5>AIO Audit</h5>
+        <a href="aio-audit.html">Overview</a>
+        <a href="ai-visibility-score-checker.html">AI Visibility Score</a>
+        <a href="citation-checker.html">Citation Checker</a>
+      </div>
+      <div>
+        <h5>Company</h5>
+        <a href="index.html#research">Research</a>
+        <a href="index.html#process">Process</a>
+        <a href="index.html#team">Team</a>
+        <a href="knowledge-base.html">Knowledge Base</a>
+      </div>
+      <div>
+        <h5>Get in touch</h5>
+        <a href="mailto:athelstan.online@gmail.com">athelstan.online@gmail.com</a>
+        <a href="tel:+918124482710">+91 81244 82710</a>
+        <a href="#">Chennai, India</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2026 Athelstan.Online. All rights reserved.</p>
+      <p>Built &amp; optimized for Google, ChatGPT, Perplexity, Gemini &amp; Claude.</p>
+    </div>
+  </div>
+</footer>
+
+<button id="toTop" aria-label="Back to top">↑</button>
+
+<script src="main.js"></script>
+</body>
+</html>

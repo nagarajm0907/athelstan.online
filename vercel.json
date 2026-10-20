@@ -1,0 +1,7 @@
+{
+  "cleanUrls": true,
+  "trailingSlash": false,
+  "redirects": [
+    { "source": "/knowledge-base", "destination": "/blog", "permanent": true }
+  ]
+}

@@ -4,8 +4,9 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <title>Athelstan.Online | AI Search &amp; SEO Optimization</title>
-<meta name="description" content="Athelstan.Online runs a free, automated AIO Audit and delivers expert-led AI Optimization, SEO, Content Optimization, and Website Development, built for the AI search era.">
+<meta name="description" content="Athelstan.Online runs a free, automated AIO Audit and delivers expert-led AI Optimization and SEO, built for the AI search era.">
 
+<link rel="canonical" href="https://athelstan.online/">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
@@ -16,7 +17,6 @@
 <link rel="apple-touch-icon" href="favicon-192.png">
 
 <link rel="stylesheet" href="styles.css">
-<link rel="stylesheet" href="fixes.css">
 </head>
 <body>
 
@@ -25,28 +25,29 @@
 
 <header>
   <div class="nav">
-    <a href="index.html" class="brand" aria-label="Athelstan.Online home">
+    <a href="/" class="brand" aria-label="Athelstan.Online home">
       <div class="brand-mark" style="position:relative;">
         <img src="logo.png" alt="Athelstan.Online logo">
-        <span style="position:absolute;width:5px;height:5px;border-radius:50%;background:var(--yellow);box-shadow:0 0 8px 2px rgba(255,195,0,.8);top:-3px;right:-3px;animation:pulse-dot 2s infinite;z-index:2;"></span>
+        <span style="position:absolute;width:5px;height:5px;border-radius:50%;background:var(--yellow);box-shadow:0 0 8px 2px rgba(216,200,164,.8);top:-3px;right:-3px;animation:pulse-dot 2s infinite;z-index:2;"></span>
       </div>
       Athelstan.Online
     </a>
     <nav class="links" id="navLinks">
-      <a href="#services">Services</a>
+      <a href="/">Home</a>
       <div class="nav-dropdown">
-        <a href="aio-audit.html" class="nav-dropdown-label">AIO Audit</a>
-        <button class="nav-dropdown-caret" aria-label="Toggle AIO Audit submenu" aria-expanded="false">▾</button>
+        <a href="/aio-audit" class="nav-dropdown-label">AI SEO Tools</a>
+        <button class="nav-dropdown-caret" aria-label="Toggle AI SEO Tools submenu" aria-expanded="false">▾</button>
         <div class="nav-dropdown-menu">
-          <a href="ai-visibility-score-checker.html">AI Visibility Score Checker<small>How AI engines see your site</small></a>
-          <a href="citation-checker.html">Citation Checker<small>Who ChatGPT &amp; Perplexity cite</small></a>
+          <a href="/ai-visibility-score-checker">AI Visibility Checker<small>How AI engines see your site</small></a>
+          <a href="/citation-checker">Citation Checker<small>Who ChatGPT &amp; Perplexity cite</small></a>
         </div>
       </div>
-      <a href="knowledge-base.html">Knowledge Base</a>
-      <a href="#contact">Contact</a>
+      <a href="/about">About</a>
+      <a href="/blog">Blogs</a>
+      <a href="/contact">Contact Us</a>
     </nav>
     <div style="display:flex;align-items:center;gap:10px;">
-      <a href="#contact" class="cta-btn nav-only">Get a Quote</a>
+      <a href="/contact" class="cta-btn nav-only">Get a Quote</a>
       <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu"><span></span><span></span><span></span></button>
     </div>
   </div>
@@ -57,59 +58,14 @@
   <div class="blob blob-2"></div>
   <canvas id="network-canvas"></canvas>
   <div class="hero-inner">
-    <span class="eyebrow"><span class="dot"></span> AI SEO Automation · Live Tool</span>
     <h1>Automated AI Audits. <em>Expert-Led Optimization.</em></h1>
     <span class="tw-line" style="display:block;margin-top:14px;font-family:'JetBrains Mono',monospace;font-size:1rem;color:var(--yellow-deep);font-weight:600;min-height:1.4em;" data-typewriter="Optimized for Google Search.|Optimized for AI Overviews.|Optimized for ChatGPT.|Optimized for Perplexity.|Optimized for Gemini."></span>
     <p class="hero-sub">
-      Run our free, automated AIO Audit to see exactly how AI engines read your site today. Then let our team handle AI Optimization, SEO, Content Optimization, and Website Development to fix what it finds.
+      Run our free, automated AIO Audit to see exactly how AI engines read your site today. Then let our team handle AI Optimization and SEO to fix what it finds.
     </p>
     <div class="hero-actions">
-      <a href="aio-audit.html" class="cta-btn">Run Your Free AIO Audit →</a>
-      <a href="#services" class="cta-btn ghost">View Services</a>
-    </div>
-
-    <div class="engine-row">
-      <div class="engine-chip"><span class="swatch" style="background:#10a37f;color:#10a37f;"></span>ChatGPT</div>
-      <div class="engine-chip"><span class="swatch" style="background:#20808d;color:#20808d;"></span>Perplexity</div>
-      <div class="engine-chip"><span class="swatch" style="background:#4285f4;color:#4285f4;"></span>Gemini</div>
-      <div class="engine-chip"><span class="swatch" style="background:#ea4335;color:#ea4335;"></span>Google AI Overviews</div>
-      <div class="engine-chip"><span class="swatch" style="background:#111114;color:#111114;"></span>Copilot</div>
-    </div>
-
-    <div class="pulse-panel">
-      <div class="pulse-head">
-        <div>
-          <h3>Sample AIO Visibility Report</h3>
-          <p>An example of the scores our free audit reports for each platform. These numbers are illustrative, not live data.</p>
-        </div>
-        <span class="live-tag">SAMPLE DATA</span>
-      </div>
-      <div class="pulse-grid" id="pulseGrid">
-        <div class="pulse-card">
-          <div class="label"><span>Google</span><span>98%</span></div>
-          <div class="bar-track"><div class="bar-fill" data-fill="98"></div></div>
-          <div class="value" data-count="98">0%</div>
-        </div>
-        <div class="pulse-card">
-          <div class="label"><span>Perplexity</span><span>92%</span></div>
-          <div class="bar-track"><div class="bar-fill" data-fill="92"></div></div>
-          <div class="value" data-count="92">0%</div>
-        </div>
-        <div class="pulse-card">
-          <div class="label"><span>ChatGPT</span><span>84%</span></div>
-          <div class="bar-track"><div class="bar-fill" data-fill="84"></div></div>
-          <div class="value" data-count="84">0%</div>
-        </div>
-        <div class="pulse-card">
-          <div class="label"><span>Claude</span><span>76%</span></div>
-          <div class="bar-track"><div class="bar-fill" data-fill="76"></div></div>
-          <div class="value" data-count="76">0%</div>
-        </div>
-      </div>
-      <div class="pulse-foot">
-        <p>Want your real scores? The free audit shows where your site stands today.</p>
-        <a href="aio-audit.html">Get my real score →</a>
-      </div>
+      <a href="/aio-audit" class="cta-btn">Run Your Free AIO Audit →</a>
+      <a href="#tools" class="cta-btn ghost">See the Tools</a>
     </div>
   </div>
 </section>
@@ -123,18 +79,18 @@
         <h2>Run a free AIO Audit and see exactly how AI engines read your site</h2>
         <p>Two automated checks, one report: your AI Visibility Score and a live Citation Check across ChatGPT and Perplexity. No card required.</p>
       </div>
-      <a href="aio-audit.html" class="cta-btn">Start Free Audit →</a>
+      <a href="/aio-audit" class="cta-btn">Start Free Audit →</a>
     </div>
   </div>
 </section>
 
 <!-- ===================== SERVICES ===================== -->
-<section class="services-section" id="services" style="position:relative;overflow:hidden;">
+<section class="services-section" id="tools" style="position:relative;overflow:hidden;">
   <canvas class="section-network"></canvas>
   <div class="wrap">
     <div class="section-head reveal">
-      <span class="section-tag">What We Do</span>
-      <h2>One automated tool. Four expert-led services.</h2>
+      <span class="section-tag">What We Offer</span>
+      <h2>One automated tool. Two expert-led services.</h2>
       <p>Everything here is built around one goal: getting your brand found by Google, and by the AI engines people now ask first.</p>
     </div>
 
@@ -150,7 +106,7 @@
     </div>
 
     <!-- Featured automated service -->
-    <a href="aio-audit.html" class="svc-card glow-card reveal" style="display:block;margin-bottom:20px;border:1px solid rgba(255,195,0,.35);">
+    <a href="/aio-audit" class="svc-card glow-card reveal" style="display:block;margin-bottom:20px;border:1px solid rgba(255,195,0,.35);">
       <span class="svc-num mono" style="color:var(--yellow);">AUTOMATED · RUNS ON THIS SITE</span>
       <h3 style="font-size:1.4rem;">AIO Audit</h3>
       <p style="max-width:70ch;">Our own automated engine scans your site's crawlability, structured data, and answer-readiness, then checks live citations across ChatGPT and Perplexity. No manual work, results in minutes.</p>
@@ -176,22 +132,6 @@
           <span>Technical SEO</span><span>Keyword Strategy</span><span>Link Building</span><span>Core Web Vitals</span>
         </div>
       </div>
-      <div class="svc-card glow-card">
-        <span class="svc-num mono">MANAGED SERVICE</span>
-        <h3>Content Optimization</h3>
-        <p>Research-backed writing and restructuring across any niche (legal, healthcare, e-commerce, SaaS, finance and more), built so both readers and AI models can parse and cite it.</p>
-        <div class="svc-tags">
-          <span>Any Niche</span><span>Entity-First Writing</span><span>FAQ &amp; Schema</span><span>Case Studies</span>
-        </div>
-      </div>
-      <div class="svc-card glow-card">
-        <span class="svc-num mono">MANAGED SERVICE</span>
-        <h3>Website Development</h3>
-        <p>Fast, clean, SEO-ready builds on WordPress or custom code. Responsive by default, structured data baked in, and AI chatbot integration where it earns its keep.</p>
-        <div class="svc-tags">
-          <span>WordPress</span><span>Custom Code</span><span>Schema Markup</span><span>Speed</span>
-        </div>
-      </div>
     </div>
   </div>
 </section>
@@ -203,7 +143,7 @@
     <h2>Ready to automate your AI visibility?</h2>
     <p>Run the free AIO Audit first. Then let's talk about fixing what it finds.</p>
     <div class="hero-actions">
-      <a href="aio-audit.html" class="cta-btn">Run Your Free AIO Audit →</a>
+      <a href="/aio-audit" class="cta-btn">Run Your Free AIO Audit →</a>
       <a href="tel:+918124482710" class="cta-btn ghost">Call 81244 82710</a>
     </div>
   </div>
@@ -218,38 +158,27 @@
           Athelstan.Online
         </div>
         <p style="color:var(--ink-soft);font-size:.88rem;line-height:1.6;max-width:34ch;">
-          AI SEO automation and expert-led optimization for brands that want to be found, by people and by the models people ask first.
+          AI SEO tools and expert-led optimization for brands that want to be found, by people and by the models people ask first.
         </p>
       </div>
       <div>
-        <h5>Services</h5>
-        <a href="#services">AI Optimization</a>
-        <a href="#services">Search Engine Optimization</a>
-        <a href="#services">Content Optimization</a>
-        <a href="#services">Website Development</a>
+        <h5>AI SEO Tools</h5>
+        <a href="/ai-visibility-score-checker">AI Visibility Checker</a>
+        <a href="/citation-checker">Citation Checker</a>
       </div>
       <div>
-        <h5>AIO Audit</h5>
-        <a href="aio-audit.html">Overview</a>
-        <a href="ai-visibility-score-checker.html">AI Visibility Score</a>
-        <a href="citation-checker.html">Citation Checker</a>
-        <a href="knowledge-base.html">Knowledge Base</a>
-      </div>
-      <div>
-        <h5>Get in touch</h5>
+        <h5>Get in Touch</h5>
         <a href="mailto:athelstan.online@gmail.com">athelstan.online@gmail.com</a>
-        <a href="tel:+918124482710">+91 81244 82710</a>
-        <span class="footer-text">Chennai, India</span>
       </div>
     </div>
     <div class="footer-bottom">
       <p>© 2026 Athelstan.Online. All rights reserved.</p>
-      <p><a href="legal.html">Privacy, Terms &amp; Copyright</a></p>
+      <p><a href="/legal">Privacy, Terms &amp; Copyright</a></p>
     </div>
     <p class="footer-legal">
       ChatGPT, Perplexity, Gemini, Google AI Overviews, Claude and Copilot are trademarks of their respective owners.
       Athelstan.Online is an independent company and is not affiliated with, endorsed by or sponsored by them.
-      See our <a href="legal.html#trademarks">trademark notice</a>.
+      See our <a href="/legal#trademarks">trademark notice</a>.
     </p>
   </div>
 </footer>

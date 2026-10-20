@@ -6,6 +6,7 @@
 <title>Privacy, Terms &amp; Copyright | Athelstan.Online</title>
 <meta name="description" content="Privacy policy, terms of use, copyright and trademark notices for Athelstan.Online.">
 
+<link rel="canonical" href="https://athelstan.online/legal">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
@@ -16,7 +17,6 @@
 <link rel="apple-touch-icon" href="favicon-192.png">
 
 <link rel="stylesheet" href="styles.css">
-<link rel="stylesheet" href="fixes.css">
 </head>
 <body>
 
@@ -24,18 +24,29 @@
 
 <header>
   <div class="nav">
-    <a href="index.html" class="brand" aria-label="Athelstan.Online home">
-      <div class="brand-mark"><img src="logo.png" alt="Athelstan.Online logo"></div>
+    <a href="/" class="brand" aria-label="Athelstan.Online home">
+      <div class="brand-mark" style="position:relative;">
+        <img src="logo.png" alt="Athelstan.Online logo">
+        <span style="position:absolute;width:5px;height:5px;border-radius:50%;background:var(--yellow);box-shadow:0 0 8px 2px rgba(216,200,164,.8);top:-3px;right:-3px;animation:pulse-dot 2s infinite;z-index:2;"></span>
+      </div>
       Athelstan.Online
     </a>
     <nav class="links" id="navLinks">
-      <a href="index.html">Home</a>
-      <a href="index.html#services">Services</a>
-      <a href="aio-audit.html">AIO Audit</a>
-      <a href="knowledge-base.html">Knowledge Base</a>
+      <a href="/">Home</a>
+      <div class="nav-dropdown">
+        <a href="/aio-audit" class="nav-dropdown-label">AI SEO Tools</a>
+        <button class="nav-dropdown-caret" aria-label="Toggle AI SEO Tools submenu" aria-expanded="false">▾</button>
+        <div class="nav-dropdown-menu">
+          <a href="/ai-visibility-score-checker">AI Visibility Checker<small>How AI engines see your site</small></a>
+          <a href="/citation-checker">Citation Checker<small>Who ChatGPT &amp; Perplexity cite</small></a>
+        </div>
+      </div>
+      <a href="/about">About</a>
+      <a href="/blog">Blogs</a>
+      <a href="/contact">Contact Us</a>
     </nav>
     <div style="display:flex;align-items:center;gap:10px;">
-      <a href="index.html#contact" class="cta-btn nav-only">Get a Quote</a>
+      <a href="/contact" class="cta-btn nav-only">Get a Quote</a>
       <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu"><span></span><span></span><span></span></button>
     </div>
   </div>
@@ -56,7 +67,7 @@
     </nav>
 
     <h2 id="privacy">Privacy policy</h2>
-    <p>Athelstan.Online ("we", "us") is an SEO and AI search optimization service based in Chennai, India. This section explains what information we collect through this website and how we use it.</p>
+    <p>Athelstan.Online ("we", "us") is an SEO and AI search optimization company. This section explains what information we collect through this website and how we use it.</p>
     <h3>What we collect</h3>
     <ul>
       <li><strong>Details you give us.</strong> If you fill in a form, send an email or call us, we receive what you share, such as your name, email address, phone number and website address.</li>
@@ -102,10 +113,35 @@
 
 <footer>
   <div class="wrap">
-    <div class="footer-bottom" style="padding-top:0;">
-      <p>© 2026 Athelstan.Online. All rights reserved.</p>
-      <p><a href="index.html">Back to Home</a></p>
+    <div class="footer-grid">
+      <div>
+        <div class="brand" style="margin-bottom:14px;">
+          <div class="brand-mark"><img src="logo.png" alt="Athelstan.Online logo"></div>
+          Athelstan.Online
+        </div>
+        <p style="color:var(--ink-soft);font-size:.88rem;line-height:1.6;max-width:34ch;">
+          AI SEO tools and expert-led optimization for brands that want to be found, by people and by the models people ask first.
+        </p>
+      </div>
+      <div>
+        <h5>AI SEO Tools</h5>
+        <a href="/ai-visibility-score-checker">AI Visibility Checker</a>
+        <a href="/citation-checker">Citation Checker</a>
+      </div>
+      <div>
+        <h5>Get in Touch</h5>
+        <a href="mailto:athelstan.online@gmail.com">athelstan.online@gmail.com</a>
+      </div>
     </div>
+    <div class="footer-bottom">
+      <p>© 2026 Athelstan.Online. All rights reserved.</p>
+      <p><a href="/legal">Privacy, Terms &amp; Copyright</a></p>
+    </div>
+    <p class="footer-legal">
+      ChatGPT, Perplexity, Gemini, Google AI Overviews, Claude and Copilot are trademarks of their respective owners.
+      Athelstan.Online is an independent company and is not affiliated with, endorsed by or sponsored by them.
+      See our <a href="/legal#trademarks">trademark notice</a>.
+    </p>
   </div>
 </footer>
 

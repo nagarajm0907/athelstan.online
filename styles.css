@@ -1,5 +1,5 @@
 /* =========================================================
-   Athelstan.Online — Stylesheet
+   Athelstan.Online : Stylesheet
    Theme: Yellow (#ffc300) + White, high-motion, AI/search identity
    ========================================================= */
 
@@ -614,7 +614,7 @@ footer{padding:60px 28px 34px;}
 }
 
 /* =========================================================
-   PHASE 2 — Glassmorphism, glow, typewriter, orbit rings
+   PHASE 2 : Glassmorphism, glow, typewriter, orbit rings
    Extra system used on the Knowledge Base page and reused
    across the site for higher-density motion.
    ========================================================= */
@@ -722,15 +722,6 @@ footer{padding:60px 28px 34px;}
 }
 .kb-hero p.kb-sub{margin-top:20px;max-width:56ch;font-size:1.05rem;line-height:1.65;color:var(--ink-soft);}
 
-.kb-stats-row{display:flex;gap:14px;margin-top:38px;flex-wrap:wrap;}
-.kb-stat-chip{
-  display:flex;flex-direction:column;gap:2px;
-  background:#fff;border:1px solid var(--line);border-radius:14px;padding:14px 20px;
-  min-width:130px;transition:transform .3s var(--ease-out), box-shadow .3s ease;
-}
-.kb-stat-chip:hover{transform:translateY(-6px);box-shadow:var(--shadow-yellow);}
-.kb-stat-chip .n{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:1.5rem;}
-.kb-stat-chip .l{font-size:.72rem;color:#9a9a9f;text-transform:uppercase;letter-spacing:.05em;}
 
 /* ---------- Filter tabs ---------- */
 .kb-filters{
@@ -801,8 +792,6 @@ footer{padding:60px 28px 34px;}
   .kb-filters{padding:0 20px;}
   .kb-grid{grid-template-columns:1fr;padding:0 20px 30px;}
   .kb-card.featured{grid-column:span 1;}
-  .kb-stats-row{gap:10px;}
-  .kb-stat-chip{min-width:44%;flex:1;}
 }
 
 /* =========================================================
@@ -877,7 +866,7 @@ footer{padding:60px 28px 34px;}
 .audit-success h3{font-size:1.15rem;margin-bottom:10px;}
 .audit-success p{color:var(--ink-soft);font-size:.9rem;line-height:1.6;}
 
-/* How it works — 3 step row */
+/* How it works : 3 step row */
 .audit-steps{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;max-width:var(--maxw);margin:0 auto;}
 .audit-step{
   background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:26px;
@@ -991,13 +980,6 @@ footer{padding:60px 28px 34px;}
 @media (max-width:720px){.svc-legend{grid-template-columns:1fr;}}
 
 /* #17 Knowledge Base badges now sit in the page, not floating */
-.kb-badges{display:flex;gap:10px;flex-wrap:wrap;margin-top:22px;}
-.kb-badge{
-  display:inline-flex;align-items:center;gap:8px;
-  background:#fff;border:1px solid var(--line);border-radius:999px;
-  padding:8px 14px;font-size:.78rem;font-weight:600;
-  box-shadow:0 14px 34px -18px rgba(0,0,0,.3);
-}
 
 /* #1 Footer */
 footer{padding:64px 28px 30px;border-top:1px solid var(--line);}
@@ -1274,7 +1256,6 @@ nav.links a:hover{color:var(--ink);}
 }
 .hero-sub,.kb-hero p.kb-sub{margin-left:auto;margin-right:auto;text-align:center;font-size:1.12rem;}
 .hero-actions{justify-content:center;}
-.kb-stats-row,.kb-badges{justify-content:center;}
 .eyebrow{background:#fff;color:var(--ink);border:1px solid var(--line);animation:none;font-weight:600;}
 .eyebrow .dot{background:var(--yellow);}
 
@@ -1413,3 +1394,64 @@ a.svc-card[href="/aio-audit"]{border-color:var(--yellow-line) !important;}
   .tool-big{padding:22px;}
   .mini-row{grid-template-columns:104px 1fr 26px;}
 }
+
+/* ---------- Logo and wordmark: match the light minimal look ---------- */
+.brand{gap:11px;font-family:'Inter',system-ui,sans-serif;font-weight:700;font-size:1.08rem;letter-spacing:-0.02em;}
+.brand-tld{color:var(--yellow-deep);font-weight:600;}
+.brand-mark{
+  width:40px;height:40px;border-radius:12px;padding:6px;
+  background:var(--ink);border:1px solid #2a2a2a;box-shadow:none;
+}
+.brand-mark::after{display:none;}
+footer .brand-mark{width:36px;height:36px;border-radius:11px;}
+
+
+/* ---------- Forms (shared by Visibility Check and Citation Check) ---------- */
+.audit-form-wrap{padding:32px;}
+.audit-form h2{text-align:center;margin:0 0 8px;}
+.audit-form > p:not(.audit-form-note){
+  text-align:center;max-width:36ch;margin:0 auto 20px;line-height:1.5;
+  font-size:.92rem;color:var(--ink-soft);
+}
+.audit-form label,.audit-form label:first-of-type{display:block;margin:0 0 6px;}
+.audit-form input{margin:0 0 16px;}
+.audit-form button[type="submit"]{margin-top:8px;}
+.audit-form-note{margin-top:14px;}
+@media (max-width:480px){.audit-form-wrap{padding:24px;}}
+
+/* ---------- Blog: category filters ---------- */
+.kb-filters{
+  display:flex;flex-wrap:wrap;justify-content:center;gap:10px 12px;
+  margin:32px auto 36px;padding:0 28px;max-width:var(--maxw);
+  position:relative;z-index:1;transform:none;
+}
+.kb-filter-btn{
+  display:inline-flex;align-items:center;justify-content:center;box-sizing:border-box;
+  height:40px;padding:0 18px;margin:0;border:1px solid var(--line);border-radius:999px;
+  background:#fff;color:var(--ink-soft);font-family:'Inter',system-ui,sans-serif;
+  font-size:.86rem;font-weight:600;line-height:1;white-space:nowrap;
+  position:static;top:auto;left:auto;transform:none;
+}
+.kb-filter-btn:hover{transform:none;border-color:var(--ink);}
+.kb-filter-btn.active{border-color:var(--ink);}
+@media (max-width:720px){.kb-filters{padding:0 20px;margin:24px auto 28px;}}
+
+/* ---------- Blog promo line ---------- */
+.kb-promo{margin-top:18px;font-size:.95rem;color:var(--ink-soft);}
+.kb-promo a{font-weight:600;color:var(--ink);border-bottom:2px solid var(--yellow);}
+
+/* ---------- Home: next-gen tools section ---------- */
+.nextgen-section{padding:72px 28px 24px;}
+.nextgen-section .section-head{margin-bottom:28px;}
+.nextgen-actions{display:flex;justify-content:center;gap:14px;flex-wrap:wrap;}
+@media (max-width:720px){
+  .nextgen-section{padding:56px 20px 16px;}
+  .nextgen-actions .cta-btn{width:100%;justify-content:center;}
+}
+
+/* ---------- Logo color matches site accent ---------- */
+.brand-mark img{filter:hue-rotate(-30deg) saturate(1.1);}
+
+/* ---------- LinkedIn link in footer ---------- */
+.footer-grid a.footer-social{display:inline-flex;align-items:center;gap:8px;margin-top:2px;}
+.footer-grid a.footer-social:hover{transform:none;}

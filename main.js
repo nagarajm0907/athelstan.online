@@ -370,7 +370,11 @@ document.addEventListener('DOMContentLoaded', () => {
       if (!submitBtn || submitBtn.disabled) return;
 
       const urlField = form.querySelector('input[type="url"], input[name="website"]');
-      if (urlField && urlField.value && !/^https?:\/\/.+\..+/.test(urlField.value.trim())) {
+      // Accept "yoursite.com" as well as "https://yoursite.com"
+      if (urlField && urlField.value.trim() && !/^https?:\/\//i.test(urlField.value.trim())) {
+        urlField.value = 'https://' + urlField.value.trim();
+      }
+      if (urlField && urlField.value && !/^https?:\/\/[^\s\/]+\.[^\s]{2,}$/i.test(urlField.value.trim())) {
         urlField.focus();
         urlField.style.borderColor = '#e05252';
         setTimeout(() => { urlField.style.borderColor = ''; }, 1600);

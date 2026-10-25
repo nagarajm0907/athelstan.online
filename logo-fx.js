@@ -18,8 +18,8 @@
     var r = wrap.getBoundingClientRect();
     var px = (e.clientX - (r.left + r.width / 2)) / (window.innerWidth / 2);
     var py = (e.clientY - (r.top + r.height / 2)) / (window.innerHeight / 2);
-    ty = clamp(px, -1, 1) * 22;
-    tx = clamp(py, -1, 1) * -16;
+    ty = clamp(px, -1, 1) * 16;
+    tx = clamp(py, -1, 1) * -11;
     lastMove = performance.now();
   }, { passive: true });
 
@@ -27,8 +27,8 @@
     if (visible) {
       // when nobody is moving the mouse (or on touch screens), drift gently on its own
       if (now - lastMove > 1800) {
-        ty = Math.sin(now / 1700) * 18;
-        tx = Math.cos(now / 2300) * 9;
+        ty = Math.sin(now / 1900) * 12;
+        tx = Math.cos(now / 2500) * 6;
       }
       cx += (tx - cx) * 0.07;
       cy += (ty - cy) * 0.07;

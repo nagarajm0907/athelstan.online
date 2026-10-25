@@ -1456,24 +1456,25 @@ footer .brand-mark{width:36px;height:36px;border-radius:11px;}
 .footer-grid a.footer-social{display:inline-flex;align-items:center;gap:8px;margin-top:2px;}
 .footer-grid a.footer-social:hover{transform:none;}
 
-/* ---------- Hero logo: reflective, moving ---------- */
-.hero-logo{display:flex;justify-content:center;margin:0 0 56px;}
-.hero-logo-float{perspective:900px;animation:logo-float 6s ease-in-out infinite;}
-@keyframes logo-float{0%,100%{transform:translateY(0);}50%{transform:translateY(-10px);}}
+/* ---------- Hero logo: reflective, moving (sharp version) ---------- */
+.hero-logo{display:flex;justify-content:center;margin:0 0 clamp(84px,9vw,104px);}
+.hero-logo-float{perspective:1000px;animation:logo-float 6s ease-in-out infinite;}
+@keyframes logo-float{0%,100%{transform:translateY(0);}50%{transform:translateY(-8px);}}
 .hero-logo-stage{
-  position:relative;width:clamp(140px,20vw,220px);aspect-ratio:1/1;
-  transform-style:preserve-3d;will-change:transform;
-  -webkit-box-reflect:below -6px linear-gradient(transparent 52%, rgba(0,0,0,.30));
+  position:relative;width:clamp(150px,21vw,240px);aspect-ratio:1/1;
+  transform-style:preserve-3d;will-change:transform;backface-visibility:hidden;
+  -webkit-box-reflect:below 2px linear-gradient(transparent 68%, rgba(0,0,0,.20));
 }
 .hero-logo-img{
   display:block;width:100%;height:100%;object-fit:contain;
-  filter:hue-rotate(-30deg) saturate(1.15) contrast(1.06) drop-shadow(0 20px 22px rgba(17,17,17,.28));
+  image-rendering:auto;
+  filter:hue-rotate(-30deg) drop-shadow(0 8px 10px rgba(17,17,17,.16));
 }
 .hero-logo-sheen{
-  position:absolute;inset:0;pointer-events:none;mix-blend-mode:screen;
+  position:absolute;inset:0;pointer-events:none;mix-blend-mode:overlay;opacity:.7;
   background:
-    radial-gradient(circle at var(--gx,50%) var(--gy,32%), rgba(255,255,255,.85), rgba(255,255,255,0) 42%),
-    linear-gradient(115deg, rgba(255,255,255,0) 38%, rgba(255,255,255,.95) 50%, rgba(255,255,255,0) 62%);
+    radial-gradient(circle at var(--gx,50%) var(--gy,32%), rgba(255,255,255,.55), rgba(255,255,255,0) 40%),
+    linear-gradient(115deg, rgba(255,255,255,0) 40%, rgba(255,255,255,.75) 50%, rgba(255,255,255,0) 60%);
   background-size:100% 100%, 260% 100%;
   background-repeat:no-repeat;
   background-position:0 0, 130% 0;
@@ -1486,8 +1487,8 @@ footer .brand-mark{width:36px;height:36px;border-radius:11px;}
   100%{background-position:0 0, -130% 0;}
 }
 @media (max-width:720px){
-  .hero-logo{margin-bottom:44px;}
-  .hero-logo-stage{width:clamp(120px,38vw,160px);}
+  .hero-logo{margin-bottom:76px;}
+  .hero-logo-stage{width:clamp(130px,42vw,170px);}
 }
 
 /* ---------- Form error message ---------- */

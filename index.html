@@ -207,6 +207,51 @@
 </footer>
 
 <script src="main.js"></script>
-<script src="logo-fx.js" defer></script>
+<script>
+(function () {
+  var wrap = document.getElementById('heroLogo');
+  if (!wrap) return;
+  var stage = wrap.querySelector('.hero-logo-stage');
+  var sheen = wrap.querySelector('.hero-logo-sheen');
+  // If the visitor's system asks for less motion, only follow the pointer (no automatic drifting)
+  var calm = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var tx = 0, ty = 0, cx = 0, cy = 0, lastMove = 0, visible = true;
+
+  function clamp(v, a, b) { return Math.max(a, Math.min(b, v)); }
+
+  function onPointer(x, y) {
+    var r = wrap.getBoundingClientRect();
+    var px = (x - (r.left + r.width / 2)) / (window.innerWidth / 2);
+    var py = (y - (r.top + r.height / 2)) / (window.innerHeight / 2);
+    ty = clamp(px, -1, 1) * 16;
+    tx = clamp(py, -1, 1) * -11;
+    lastMove = performance.now();
+  }
+  window.addEventListener('mousemove', function (e) { onPointer(e.clientX, e.clientY); }, { passive: true });
+  window.addEventListener('pointermove', function (e) { onPointer(e.clientX, e.clientY); }, { passive: true });
+  window.addEventListener('touchmove', function (e) {
+    if (e.touches && e.touches[0]) onPointer(e.touches[0].clientX, e.touches[0].clientY);
+  }, { passive: true });
+
+  function frame(now) {
+    if (visible) {
+      if (!calm && now - lastMove > 1800) {
+        ty = Math.sin(now / 1900) * 12;
+        tx = Math.cos(now / 2500) * 6;
+      }
+      cx += (tx - cx) * 0.09;
+      cy += (ty - cy) * 0.09;
+      stage.style.transform = 'rotateX(' + cx.toFixed(2) + 'deg) rotateY(' + cy.toFixed(2) + 'deg)';
+      sheen.style.setProperty('--gx', (50 + cy * 2.4).toFixed(1) + '%');
+      sheen.style.setProperty('--gy', (32 - cx * 2.6).toFixed(1) + '%');
+    }
+    requestAnimationFrame(frame);
+  }
+  if ('IntersectionObserver' in window) {
+    new IntersectionObserver(function (entries) { visible = entries[0].isIntersecting; }, { threshold: 0.05 }).observe(wrap);
+  }
+  requestAnimationFrame(frame);
+})();
+</script>
 </body>
 </html>

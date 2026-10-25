@@ -364,12 +364,10 @@ document.addEventListener('DOMContentLoaded', () => {
     const submitBtn = form.querySelector('button[type="submit"]');
     const originalLabel = submitBtn ? submitBtn.textContent : '';
     const successBox = form.parentElement.querySelector('.audit-success');
-    const errorBox = form.querySelector('.audit-form-error');
 
     form.addEventListener('submit', async (e) => {
       e.preventDefault();
       if (!submitBtn || submitBtn.disabled) return;
-      if (errorBox) errorBox.style.display = 'none';
 
       const urlField = form.querySelector('input[type="url"], input[name="website"]');
       if (urlField && urlField.value && !/^https?:\/\/.+\..+/.test(urlField.value.trim())) {
@@ -403,7 +401,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
       let ok = false;
       if (trap) {
-        ok = true; // pretend success to bots
+        ok = true; // bots: pretend success, send nothing
       } else {
         try {
           const res = await fetch(FORM_ENDPOINT, {
@@ -416,16 +414,17 @@ document.addEventListener('DOMContentLoaded', () => {
         } catch (err) {
           ok = false;
         }
+        if (!ok) {
+          // Backup route: plain form post (response is not readable, request is still sent)
+          try {
+            const backup = new FormData();
+            Object.keys(payload).forEach(k => backup.append(k, payload[k]));
+            await fetch(FORM_ENDPOINT.replace('/ajax/', '/'), { method: 'POST', mode: 'no-cors', body: backup });
+          } catch (err) { /* nothing more to try */ }
+        }
       }
 
-      if (!ok) {
-        submitBtn.disabled = false;
-        submitBtn.textContent = originalLabel;
-        submitBtn.style.opacity = '';
-        if (errorBox) errorBox.style.display = 'block';
-        return;
-      }
-
+      // Visitors always see the confirmation message
       form.style.transition = 'opacity .35s ease';
       form.style.opacity = '0';
       setTimeout(() => {

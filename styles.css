@@ -1455,3 +1455,42 @@ footer .brand-mark{width:36px;height:36px;border-radius:11px;}
 /* ---------- LinkedIn link in footer ---------- */
 .footer-grid a.footer-social{display:inline-flex;align-items:center;gap:8px;margin-top:2px;}
 .footer-grid a.footer-social:hover{transform:none;}
+
+/* ---------- Hero logo: reflective, moving ---------- */
+.hero-logo{display:flex;justify-content:center;margin:0 0 56px;}
+.hero-logo-float{perspective:900px;animation:logo-float 6s ease-in-out infinite;}
+@keyframes logo-float{0%,100%{transform:translateY(0);}50%{transform:translateY(-10px);}}
+.hero-logo-stage{
+  position:relative;width:clamp(140px,20vw,220px);aspect-ratio:1/1;
+  transform-style:preserve-3d;will-change:transform;
+  -webkit-box-reflect:below -6px linear-gradient(transparent 52%, rgba(0,0,0,.30));
+}
+.hero-logo-img{
+  display:block;width:100%;height:100%;object-fit:contain;
+  filter:hue-rotate(-30deg) saturate(1.15) contrast(1.06) drop-shadow(0 20px 22px rgba(17,17,17,.28));
+}
+.hero-logo-sheen{
+  position:absolute;inset:0;pointer-events:none;mix-blend-mode:screen;
+  background:
+    radial-gradient(circle at var(--gx,50%) var(--gy,32%), rgba(255,255,255,.85), rgba(255,255,255,0) 42%),
+    linear-gradient(115deg, rgba(255,255,255,0) 38%, rgba(255,255,255,.95) 50%, rgba(255,255,255,0) 62%);
+  background-size:100% 100%, 260% 100%;
+  background-repeat:no-repeat;
+  background-position:0 0, 130% 0;
+  -webkit-mask:url("logo.png") center/contain no-repeat;
+  mask:url("logo.png") center/contain no-repeat;
+  animation:logo-sheen 5s ease-in-out infinite;
+}
+@keyframes logo-sheen{
+  0%,45%{background-position:0 0, 130% 0;}
+  100%{background-position:0 0, -130% 0;}
+}
+@media (max-width:720px){
+  .hero-logo{margin-bottom:44px;}
+  .hero-logo-stage{width:clamp(120px,38vw,160px);}
+}
+
+/* ---------- Form error message ---------- */
+.audit-success .audit-success-note{margin-top:12px;font-size:.82rem;color:#9a9a9f;}
+.audit-success-note a{color:var(--ink);font-weight:600;border-bottom:1px solid var(--yellow);}
+.audit-form-error{display:none;text-align:center;color:#b3261e;font-size:.82rem;line-height:1.5;margin-top:12px;}

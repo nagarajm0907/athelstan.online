@@ -65,7 +65,8 @@
   </div>
 
   <div class="audit-form-wrap reveal">
-    <form class="audit-form">
+    <form class="audit-form" data-tool="AI Visibility Checker">
+      <input type="text" name="_honey" tabindex="-1" autocomplete="off" aria-hidden="true" style="display:none">
       <h2>Check your score</h2>
       <p>Enter your details to scan your site.</p>
       <label for="vname">Name</label>
@@ -75,6 +76,7 @@
       <label for="vurl">Website URL</label>
       <input id="vurl" name="website" type="url" placeholder="https://www.yoursite.com" required>
       <button type="submit">Run Free Visibility Check</button>
+      <p class="audit-form-error">Something went wrong sending your request. Please try again in a moment.</p>
       <p class="audit-form-note">No card required. We'll email your score report within a few minutes.</p>
     </form>
     <div class="audit-success">

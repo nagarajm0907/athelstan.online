@@ -65,7 +65,8 @@
   </div>
 
   <div class="audit-form-wrap reveal">
-    <form class="audit-form">
+    <form class="audit-form" data-tool="Citation Checker">
+      <input type="text" name="_honey" tabindex="-1" autocomplete="off" aria-hidden="true" style="display:none">
       <h2>Run your citation check</h2>
       <p>Enter your details to test your visibility.</p>
       <label for="cname">Name</label>
@@ -75,6 +76,7 @@
       <label for="curl">Website URL</label>
       <input id="curl" name="website" type="url" placeholder="https://www.yoursite.com" required>
       <button type="submit">Run Free Citation Check</button>
+      <p class="audit-form-error">Something went wrong sending your request. Please try again in a moment.</p>
       <p class="audit-form-note">No card required. We'll email your citation report within a few minutes.</p>
     </form>
     <div class="audit-success">

@@ -1,6 +1,6 @@
 // =========================================================
-// Athelstan.Online — main.js
-// Canvas network, scroll reveals, cursor glow, counters, nav
+// Athelstan.Online: main.js
+// Canvas network, scroll reveals, cursor glow, counters, nav, forms
 // =========================================================
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -355,14 +355,22 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  /* ---------- Audit forms (AIO Audit / AI Visibility / Citation Checker) ---------- */
+  /* ---------- Tool request forms (Visibility Checker / Citation Checker) ----------
+     Sends each request to athelstan.online@gmail.com through FormSubmit.
+     To change where requests go, change FORM_ENDPOINT below. */
+  const FORM_ENDPOINT = 'https://formsubmit.co/ajax/athelstan.online@gmail.com';
+
   document.querySelectorAll('.audit-form').forEach(form => {
     const submitBtn = form.querySelector('button[type="submit"]');
     const originalLabel = submitBtn ? submitBtn.textContent : '';
     const successBox = form.parentElement.querySelector('.audit-success');
+    const errorBox = form.querySelector('.audit-form-error');
 
-    form.addEventListener('submit', (e) => {
+    form.addEventListener('submit', async (e) => {
       e.preventDefault();
+      if (!submitBtn || submitBtn.disabled) return;
+      if (errorBox) errorBox.style.display = 'none';
+
       const urlField = form.querySelector('input[type="url"], input[name="website"]');
       if (urlField && urlField.value && !/^https?:\/\/.+\..+/.test(urlField.value.trim())) {
         urlField.focus();
@@ -370,22 +378,63 @@ document.addEventListener('DOMContentLoaded', () => {
         setTimeout(() => { urlField.style.borderColor = ''; }, 1600);
         return;
       }
-      if (!submitBtn) return;
+
+      const fd = new FormData(form);
+      const tool = form.dataset.tool || 'Tool request';
+      const website = (fd.get('website') || '').toString().trim();
+
+      // Spam trap: real visitors never fill this hidden field
+      const trap = (fd.get('_honey') || '').toString();
+
       submitBtn.disabled = true;
       submitBtn.textContent = 'Scanning your site…';
       submitBtn.style.opacity = '.75';
 
+      const payload = {
+        name: (fd.get('name') || '').toString().trim(),
+        email: (fd.get('email') || '').toString().trim(),
+        website: website,
+        tool: tool,
+        page: window.location.href,
+        _subject: `New ${tool} request: ${website}`,
+        _template: 'table',
+        _captcha: 'false'
+      };
+
+      let ok = false;
+      if (trap) {
+        ok = true; // pretend success to bots
+      } else {
+        try {
+          const res = await fetch(FORM_ENDPOINT, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+            body: JSON.stringify(payload)
+          });
+          const data = await res.json().catch(() => ({}));
+          ok = res.ok && data.success !== 'false' && data.success !== false;
+        } catch (err) {
+          ok = false;
+        }
+      }
+
+      if (!ok) {
+        submitBtn.disabled = false;
+        submitBtn.textContent = originalLabel;
+        submitBtn.style.opacity = '';
+        if (errorBox) errorBox.style.display = 'block';
+        return;
+      }
+
+      form.style.transition = 'opacity .35s ease';
+      form.style.opacity = '0';
       setTimeout(() => {
-        form.style.transition = 'opacity .35s ease';
-        form.style.opacity = '0';
-        setTimeout(() => {
-          form.style.display = 'none';
-          if (successBox) {
-            successBox.style.display = 'block';
-            requestAnimationFrame(() => successBox.classList.add('in'));
-          }
-        }, 350);
-      }, 1400);
+        form.style.display = 'none';
+        if (successBox) {
+          successBox.style.display = 'block';
+          requestAnimationFrame(() => successBox.classList.add('in'));
+        }
+      }, 350);
     });
   });
 

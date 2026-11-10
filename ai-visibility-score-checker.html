@@ -172,12 +172,6 @@
       <button type="submit">Run Free Visibility Check</button>
       <p class="audit-form-note">No card required. Your score appears on this page, usually in under a minute.</p>
     </form>
-    <div class="audit-success">
-      <div class="check">✓</div>
-      <h3>Your request is in</h3>
-      <p>Thanks. Your scan is running and your score will appear just below. Our team also receives your details and may follow up with extra advice.</p>
-      <p class="audit-success-note">Questions? Write to <a href="mailto:athelstan.online@gmail.com">athelstan.online@gmail.com</a>.</p>
-    </div>
   </div>
 </section>
 
@@ -378,7 +372,7 @@
 </script>
 <script>
 /* Live scan: sends the website to /api/check and draws the real result.
-   The existing form handler in main.js still sends the lead as before. */
+   This script takes over the form: it sends the lead email through the same request. */
 (function(){
   var form=document.querySelector('.audit-form[data-tool="AI Visibility Checker"]');
   var sec=document.getElementById('avcResult'), out=document.getElementById('avcOut');
@@ -420,18 +414,19 @@
       fg.style.strokeDashoffset=String(213.6*(1-r.score/100));
       fills.forEach(function(x){x[0].style.width=x[1]+'%'})})});
   }
-  form.addEventListener('submit',function(e){
-    e.preventDefault();
+  window.addEventListener('submit',function(e){
+    if(e.target!==form) return;
+    e.preventDefault();e.stopImmediatePropagation();
     var url=(form.elements.website.value||'').trim();
     if(busy||!url||(form.elements._honey&&form.elements._honey.value)) return;
-    busy=true;loading();
+    busy=true;loading();var btn=form.querySelector('button[type=submit]');if(btn)btn.disabled=true;
     var ctl=window.AbortController?new AbortController():null,timer=setTimeout(function(){ctl&&ctl.abort()},65000);
-    fetch('/api/check',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({url:url}),signal:ctl?ctl.signal:undefined})
+    fetch('/api/check',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({url:url,name:form.elements.name.value,email:form.elements.email.value,_honey:form.elements._honey?form.elements._honey.value:''}),signal:ctl?ctl.signal:undefined})
       .then(function(r){return r.json().catch(function(){return{ok:false}})})
       .then(function(d){d&&d.ok?render(d):fail((d&&d.error)||'The scan could not finish. Please try again in a moment.')})
       .catch(function(){fail('The scan took too long or could not start. Please try again, or write to athelstan.online@gmail.com and we will review your site by hand.')})
-      .then(function(){clearTimeout(timer);busy=false});
-  });
+      .then(function(){clearTimeout(timer);busy=false;if(btn)btn.disabled=false});
+  },true);
 })();
 </script>
 </body>

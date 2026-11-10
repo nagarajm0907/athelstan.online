@@ -96,6 +96,20 @@
   .rp-bars{width:100%}
   .rp-badge{right:10px}
 }
+
+/* ===== Live result (real scan) ===== */
+#avcResult{padding:10px 28px 60px}
+#avcResult .rp-wrap{grid-template-columns:1fr;max-width:760px;margin-top:0}
+#avcResult .rp-ring .fg,#avcResult .rp-bar i u{transition:stroke-dashoffset 1.2s ease,width 1s ease}
+#avcResult .rp-bar i u{background:var(--c,#1f9d63)}
+#avcResult .rp-fix{align-items:flex-start}
+#avcResult .rp-fix span{display:block;margin-top:3px;line-height:1.45}
+#avcResult .rp-fix .how{color:var(--rp-text);margin-top:6px}
+.avc-loading{text-align:center;padding:34px 18px;color:var(--rp-soft)}
+.avc-spin{width:34px;height:34px;margin:0 auto 14px;border:4px solid var(--rp-track);border-top-color:#e6ab00;border-radius:50%;animation:avcspin .9s linear infinite}
+@keyframes avcspin{to{transform:rotate(360deg)}}
+.avc-err{background:#fde3da;color:#8a2a12;border-radius:12px;padding:14px 16px;font-size:.9rem;line-height:1.5}
+.avc-note{font-size:.75rem;color:var(--rp-soft);margin:14px 2px 0;line-height:1.5}
 </style>
 </head>
 <body>
@@ -156,15 +170,20 @@
       <label for="vurl">Website URL</label>
       <input id="vurl" name="website" type="text" inputmode="url" autocapitalize="off" autocomplete="url" placeholder="https://www.yoursite.com" required>
       <button type="submit">Run Free Visibility Check</button>
-      <p class="audit-form-note">No card required. We'll email your score report within a few minutes.</p>
+      <p class="audit-form-note">No card required. Your score appears on this page, usually in under a minute.</p>
     </form>
     <div class="audit-success">
       <div class="check">✓</div>
       <h3>Your request is in</h3>
-      <p>Your request has been received. Our automated results are still being built, so in the meantime our team will review your site and email your Visibility report to the address you provided. Have a great day!</p>
+      <p>Thanks. Your scan is running and your score will appear just below. Our team also receives your details and may follow up with extra advice.</p>
       <p class="audit-success-note">Questions? Write to <a href="mailto:athelstan.online@gmail.com">athelstan.online@gmail.com</a>.</p>
     </div>
   </div>
+</section>
+
+<!-- ===================== LIVE RESULT ===================== -->
+<section id="avcResult" hidden>
+  <div class="rp-wrap"><div class="rp-card"><div class="rp-card-in" id="avcOut" aria-live="polite"></div></div></div>
 </section>
 
 <!-- ===================== WHAT WE CHECK ===================== -->
@@ -264,11 +283,11 @@
     <div class="faq-list reveal">
       <div class="faq-item">
         <button class="faq-q">Is this really free? <span class="plus">+</span></button>
-        <div class="faq-a"><div class="faq-a-inner">Yes, the scan and your first score report are completely free, no card required. It's the entry point into the wider AIO Audit toolkit.</div></div>
+        <div class="faq-a"><div class="faq-a-inner">Yes, the scan and your score report are completely free, no card required. It's the entry point into the wider AIO Audit toolkit.</div></div>
       </div>
       <div class="faq-item">
         <button class="faq-q">How long does the scan take? <span class="plus">+</span></button>
-        <div class="faq-a"><div class="faq-a-inner">Most reports are emailed within a few minutes. Larger sites with many pages can take a little longer.</div></div>
+        <div class="faq-a"><div class="faq-a-inner">Usually under a minute. Your score appears on this page as soon as the scan finishes. We read your homepage and a handful of other pages, so very slow sites can take a little longer.</div></div>
       </div>
       <div class="faq-item">
         <button class="faq-q">What's the difference between this and the Citation Checker? <span class="plus">+</span></button>
@@ -277,6 +296,10 @@
       <div class="faq-item">
         <button class="faq-q">Do I need to fix everything myself? <span class="plus">+</span></button>
         <div class="faq-a"><div class="faq-a-inner">No, your report ranks fixes by impact, and our team can implement the technical SEO and AIO changes for you if you'd rather hand it off.</div></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">Why did my scan fail? <span class="plus">+</span></button>
+        <div class="faq-a"><div class="faq-a-inner">Some sites block automated visits (for example with a firewall such as Cloudflare), so we can't read them. Check the address, try again, or write to us and we'll review the site by hand.</div></div>
       </div>
     </div>
   </div>
@@ -351,6 +374,64 @@
   new IntersectionObserver(function(es,o){
     es.forEach(function(x){if(x.isIntersecting){run();o.disconnect()}});
   },{threshold:.35}).observe(card);
+})();
+</script>
+<script>
+/* Live scan: sends the website to /api/check and draws the real result.
+   The existing form handler in main.js still sends the lead as before. */
+(function(){
+  var form=document.querySelector('.audit-form[data-tool="AI Visibility Checker"]');
+  var sec=document.getElementById('avcResult'), out=document.getElementById('avcOut');
+  if(!form||!sec||!out) return;
+  var busy=false, COLORS={High:'#1f9d63',Medium:'#c98a00',Low:'#c8452a'};
+  function el(tag,cls,txt){var e=document.createElement(tag);if(cls)e.className=cls;if(txt!=null)e.textContent=txt;return e}
+  function show(node){out.textContent='';out.appendChild(node);sec.hidden=false;
+    setTimeout(function(){sec.scrollIntoView({behavior:'smooth',block:'start'})},250)}
+  function loading(){var d=el('div','avc-loading');d.appendChild(el('div','avc-spin'));
+    d.appendChild(el('p',null,'Scanning your site. This usually takes under a minute.'));show(d)}
+  function fail(msg){show(el('div','avc-err',msg))}
+  function render(r){
+    var col=COLORS[r.band]||COLORS.Low, frag=document.createDocumentFragment();
+    var top=el('div','rp-top'),b=el('b');b.appendChild(el('span','rp-dot','◎'));b.appendChild(document.createTextNode(' AI Visibility Report'));
+    top.appendChild(b);top.appendChild(el('span',null,'✓ '+r.host+' scanned ('+r.pages_scanned+' pages)'));frag.appendChild(top);
+    var t=el('div','rp-title');t.appendChild(el('h4',null,'Overall AI Visibility Score: '+r.band));
+    t.appendChild(el('p',null,'How easily AI chatbots and AI search can find, read and recommend your website, based on four technical signals.'));frag.appendChild(t);
+    var sc=el('div','rp-score'),ring=el('div','rp-ring');
+    ring.innerHTML='<svg viewBox="0 0 80 80"><circle class="bg" cx="40" cy="40" r="34"/><circle class="fg" cx="40" cy="40" r="34"/></svg>';
+    var fg=ring.querySelector('.fg');fg.style.stroke=col;fg.style.strokeDashoffset='213.6';
+    var v=el('div','v');v.appendChild(el('span',null,String(r.score)));ring.appendChild(v);sc.appendChild(ring);
+    var bars=el('div','rp-bars'),fills=[];
+    r.signals.forEach(function(s){var row=el('div','rp-bar');row.appendChild(document.createTextNode(s.name));
+      var i=document.createElement('i'),u=document.createElement('u');u.style.setProperty('--c',COLORS[s.score>=71?'High':s.score>=41?'Medium':'Low']);u.style.width='0';
+      i.appendChild(u);row.appendChild(i);row.appendChild(el('em',null,String(s.score)));bars.appendChild(row);fills.push([u,s.score])});
+    sc.appendChild(bars);frag.appendChild(sc);
+    frag.appendChild(el('p','rp-sub',r.fixes.length?'Fix these first':'No major fixes found'));
+    var list=el('div','rp-fixes');
+    r.fixes.forEach(function(f){var row=el('div','rp-fix'),d=document.createElement('div');
+      d.appendChild(el('b',null,f.title));d.appendChild(el('span',null,f.detail));
+      if(f.fix)d.appendChild(el('span','how','How to fix: '+f.fix));row.appendChild(d);
+      var p=f.priority==='High'?'high':f.priority==='Medium'?'med':'low';
+      row.appendChild(el('span','rp-pill '+p,f.priority==='Medium'?'MED':f.priority.toUpperCase()));list.appendChild(row)});
+    frag.appendChild(list);
+    if(r.passed&&r.passed.length)frag.appendChild(el('p','avc-note','Working well: '+r.passed.join(', ')+'.'));
+    frag.appendChild(el('p','avc-note','This is a technical check of up to '+r.pages_scanned+' pages. It shows how readable your site is to AI. It does not guarantee rankings or AI citations. Want the fixes done for you? Write to athelstan.online@gmail.com.'));
+    show(frag);
+    requestAnimationFrame(function(){requestAnimationFrame(function(){
+      fg.style.strokeDashoffset=String(213.6*(1-r.score/100));
+      fills.forEach(function(x){x[0].style.width=x[1]+'%'})})});
+  }
+  form.addEventListener('submit',function(e){
+    e.preventDefault();
+    var url=(form.elements.website.value||'').trim();
+    if(busy||!url||(form.elements._honey&&form.elements._honey.value)) return;
+    busy=true;loading();
+    var ctl=window.AbortController?new AbortController():null,timer=setTimeout(function(){ctl&&ctl.abort()},65000);
+    fetch('/api/check',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({url:url}),signal:ctl?ctl.signal:undefined})
+      .then(function(r){return r.json().catch(function(){return{ok:false}})})
+      .then(function(d){d&&d.ok?render(d):fail((d&&d.error)||'The scan could not finish. Please try again in a moment.')})
+      .catch(function(){fail('The scan took too long or could not start. Please try again, or write to athelstan.online@gmail.com and we will review your site by hand.')})
+      .then(function(){clearTimeout(timer);busy=false});
+  });
 })();
 </script>
 </body>

@@ -17,100 +17,6 @@
 <link rel="apple-touch-icon" href="favicon-192.png">
 
 <link rel="stylesheet" href="styles.css">
-<style>
-/* ===== Sample report card (light theme, animated) ===== */
-.rp-wrap{
-  --rp-card:#ffffff; --rp-inner:#f4f1ea; --rp-row:#ffffff; --rp-line:#e6e1d6;
-  --rp-text:#1b2430; --rp-soft:#5b6675; --rp-good:#1f9d63; --rp-good-bg:#dff3e8; --rp-track:#e9e5db;
-  display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,1fr);gap:56px;align-items:center;
-  max-width:1080px;margin:36px auto 0;
-}
-.rp-card{position:relative;background:var(--rp-card);border:1px solid var(--rp-line);border-radius:22px;padding:14px;
-  box-shadow:0 24px 60px rgba(27,36,48,.12)}
-.rp-card-in{background:var(--rp-inner);border-radius:14px;padding:18px}
-.rp-top{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-bottom:14px;font-size:.85rem}
-.rp-top b{display:flex;align-items:center;gap:8px;color:var(--rp-text);font-weight:600}
-.rp-dot{width:26px;height:26px;border-radius:50%;background:var(--rp-good-bg);color:var(--rp-good);display:grid;place-items:center;font-size:.8rem}
-.rp-top > span{color:var(--rp-good);font-size:.78rem;font-weight:500}
-.rp-badge{position:absolute;top:-18px;right:20px;z-index:2;background:#fff;border:1px solid var(--rp-line);
-  border-radius:12px;padding:8px 14px;font-size:.82rem;font-weight:600;color:var(--rp-text);
-  box-shadow:0 10px 26px rgba(27,36,48,.16)}
-.rp-badge b{color:var(--rp-good)}
-.rp-badge small{display:block;color:var(--rp-soft);font-size:.68rem;font-weight:400;margin-top:1px}
-.rp-title{background:var(--rp-row);border:1px solid var(--rp-line);border-radius:12px;padding:14px 16px;margin-bottom:18px}
-.rp-title h4{margin:0 0 4px;font-size:1rem;color:var(--rp-text);font-weight:600}
-.rp-title p{margin:0;font-size:.82rem;line-height:1.5;color:var(--rp-soft)}
-.rp-score{display:flex;align-items:center;gap:22px;margin-bottom:20px}
-.rp-ring{position:relative;width:92px;height:92px;flex:none}
-.rp-ring svg{width:100%;height:100%;transform:rotate(-90deg)}
-.rp-ring circle{fill:none;stroke-width:7}
-.rp-ring .bg{stroke:var(--rp-track)}
-.rp-ring .fg{stroke:var(--rp-good);stroke-linecap:round;stroke-dasharray:213.6;stroke-dashoffset:var(--off,0)}
-.rp-ring .v{position:absolute;inset:0;display:grid;place-content:center;text-align:center;color:var(--rp-text);
-  font-family:'Space Grotesk',sans-serif;font-size:1.6rem;font-weight:700;line-height:1;font-variant-numeric:tabular-nums}
-.rp-ring .v small{font-size:.66rem;color:var(--rp-good);font-weight:600;margin-top:4px}
-.rp-bars{flex:1;display:grid;gap:11px}
-.rp-bar{display:grid;grid-template-columns:118px 1fr 40px;align-items:center;gap:10px;font-size:.78rem;color:var(--rp-soft);white-space:nowrap}
-.rp-bar i{display:block;height:7px;border-radius:99px;background:var(--rp-track);overflow:hidden}
-.rp-bar i u{display:block;height:100%;width:var(--w,0);border-radius:99px;text-decoration:none;
-  background:linear-gradient(90deg,#27b574,#1f9d63)}
-.rp-bar em{font-style:normal;text-align:right;color:var(--rp-text);font-weight:700;font-variant-numeric:tabular-nums}
-.rp-sub{margin:0 0 8px;font-size:.78rem;font-weight:600;color:var(--rp-text)}
-.rp-fixes{display:grid;gap:8px}
-.rp-fix{display:flex;justify-content:space-between;align-items:center;gap:12px;background:var(--rp-row);
-  border:1px solid var(--rp-line);border-radius:11px;padding:11px 14px}
-.rp-fix b{display:block;font-size:.85rem;font-weight:600;color:var(--rp-text)}
-.rp-fix span{font-size:.74rem;color:var(--rp-soft)}
-.rp-pill{flex:none;font-size:.66rem;font-weight:700;letter-spacing:.04em;padding:4px 10px;border-radius:99px}
-.rp-pill.high{background:#fde3da;color:#b2381a}
-.rp-pill.med{background:#fcefc2;color:#7d5a00}
-.rp-pill.low{background:#e8e6e0;color:#4d5868}
-.rp-copy h3{font-family:'Space Grotesk',sans-serif;font-size:clamp(1.7rem,3vw,2.3rem);line-height:1.15;margin:10px 0 16px;color:var(--ink,#1b2430)}
-.rp-copy p{color:var(--ink-soft,#5b6675);line-height:1.7;margin:0 0 14px}
-
-/* ---- animation (only active once JS adds .rp-ready; page still works without JS) ---- */
-.rp-ready .rp-ring .fg{stroke-dashoffset:213.6}
-.rp-ready .rp-bar i u{width:0}
-.rp-ready .rp-fix{opacity:0;transform:translateY(14px)}
-.rp-ready .rp-badge{opacity:0;transform:translateY(10px) scale(.92)}
-.rp-ready .rp-title{opacity:0;transform:translateY(8px)}
-.rp-live .rp-title{opacity:1;transform:none;transition:opacity .5s ease,transform .5s ease}
-.rp-live .rp-ring .fg{stroke-dashoffset:var(--off,0);transition:stroke-dashoffset 1.6s cubic-bezier(.22,.8,.24,1) .15s}
-.rp-live .rp-bar i u{width:var(--w,0);transition:width 1.3s cubic-bezier(.22,.8,.24,1);transition-delay:calc(.25s + var(--i,0) * .12s)}
-.rp-live .rp-fix{opacity:1;transform:none;transition:opacity .5s ease,transform .5s ease;transition-delay:calc(1s + var(--i,0) * .15s)}
-.rp-live .rp-badge{opacity:1;transform:none;transition:opacity .5s ease,transform .6s cubic-bezier(.3,1.5,.5,1);transition-delay:1.5s}
-.rp-done .rp-bar i u{background-size:200% 100%;background-image:linear-gradient(90deg,#27b574 0%,#6fdca6 50%,#27b574 100%);animation:rpShine 2.8s ease-in-out 1}
-@keyframes rpShine{from{background-position:100% 0}to{background-position:-100% 0}}
-@media (prefers-reduced-motion:reduce){
-  .rp-ready .rp-ring .fg{stroke-dashoffset:var(--off,0)}
-  .rp-ready .rp-bar i u{width:var(--w,0)}
-  .rp-ready .rp-fix,.rp-ready .rp-badge,.rp-ready .rp-title{opacity:1;transform:none}
-  .rp-wrap *{transition:none!important;animation:none!important}
-}
-@media (max-width:860px){
-  .rp-wrap{grid-template-columns:1fr;gap:36px}
-  .rp-bar{grid-template-columns:100px 1fr 36px}
-}
-@media (max-width:480px){
-  .rp-score{flex-direction:column;align-items:flex-start}
-  .rp-bars{width:100%}
-  .rp-badge{right:10px}
-}
-
-/* ===== Live result (real scan) ===== */
-#avcResult{padding:10px 28px 60px}
-#avcResult .rp-wrap{grid-template-columns:1fr;max-width:760px;margin-top:0}
-#avcResult .rp-ring .fg,#avcResult .rp-bar i u{transition:stroke-dashoffset 1.2s ease,width 1s ease}
-#avcResult .rp-bar i u{background:var(--c,#1f9d63)}
-#avcResult .rp-fix{align-items:flex-start}
-#avcResult .rp-fix span{display:block;margin-top:3px;line-height:1.45}
-#avcResult .rp-fix .how{color:var(--rp-text);margin-top:6px}
-.avc-loading{text-align:center;padding:34px 18px;color:var(--rp-soft)}
-.avc-spin{width:34px;height:34px;margin:0 auto 14px;border:4px solid var(--rp-track);border-top-color:#e6ab00;border-radius:50%;animation:avcspin .9s linear infinite}
-@keyframes avcspin{to{transform:rotate(360deg)}}
-.avc-err{background:#fde3da;color:#8a2a12;border-radius:12px;padding:14px 16px;font-size:.9rem;line-height:1.5}
-.avc-note{font-size:.75rem;color:var(--rp-soft);margin:14px 2px 0;line-height:1.5}
-</style>
 </head>
 <body>
 
@@ -127,20 +33,13 @@
     </a>
     <nav class="links" id="navLinks">
       <a href="/">Home</a>
-      <div class="nav-dropdown">
-        <a href="/aio-audit" class="nav-dropdown-label">AI SEO Tools</a>
-        <button class="nav-dropdown-caret" aria-label="Toggle AI SEO Tools submenu" aria-expanded="false">▾</button>
-        <div class="nav-dropdown-menu">
-          <a href="/ai-visibility-score-checker">AI Visibility Checker</a>
-          <a href="/citation-checker">Citation Checker</a>
-        </div>
-      </div>
+      <a href="/ai-visibility-score-checker">AI SEO Tools</a>
       <a href="/about">About</a>
       <a href="/blog">Blogs</a>
       <a href="/contact">Contact Us</a>
     </nav>
     <div style="display:flex;align-items:center;gap:10px;">
-      <a href="/contact" class="cta-btn nav-only">Contact</a>
+      <a href="/contact" class="cta-btn nav-only">Get a Quote</a>
       <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu"><span></span><span></span><span></span></button>
     </div>
   </div>
@@ -153,7 +52,7 @@
   <div class="ambient-orb o3" style="top:40%;right:15%;"></div>
 
   <div class="audit-hero-inner">
-    <span class="eyebrow">AIO Audit · Tool 1 of 2</span>
+    <span class="eyebrow">Free Tool</span>
     <h1>See how your site reads to AI, before your customers do</h1>
     <p class="sub">We check crawlability, structured data, and answer-readiness: the technical signals that decide whether AI chatbots and AI search can find and recommend you.</p>
   </div>
@@ -170,14 +69,14 @@
       <label for="vurl">Website URL</label>
       <input id="vurl" name="website" type="text" inputmode="url" autocapitalize="off" autocomplete="url" placeholder="https://www.yoursite.com" required>
       <button type="submit">Run Free Visibility Check</button>
-      <p class="audit-form-note">No card required. Your score appears on this page, usually in under a minute.</p>
+      <p class="audit-form-note">No card required. We'll email your score report within a few minutes.</p>
     </form>
+    <div class="audit-success">
+      <div class="check">✓</div>
+      <h3>Your request is in</h3>
+      <p>Your request has been received. Our automated results are still being built, so in the meantime our team will review your site and email your AI Visibility report to the address you provided. Have a great day!</p><p class="audit-success-note">Questions? Write to <a href="mailto:athelstan.online@gmail.com">athelstan.online@gmail.com</a>.</p></p>
+    </div>
   </div>
-</section>
-
-<!-- ===================== LIVE RESULT ===================== -->
-<section id="avcResult" hidden>
-  <div class="rp-wrap"><div class="rp-card"><div class="rp-card-in" id="avcOut" aria-live="polite"></div></div></div>
 </section>
 
 <!-- ===================== WHAT WE CHECK ===================== -->
@@ -214,54 +113,31 @@
   </div>
 </section>
 
+<!-- ===================== SAMPLE REPORT ===================== -->
 <section class="process-section">
   <div class="wrap">
     <div class="section-head reveal">
       <span class="section-tag">What You'll Get</span>
       <h2>A sample of your report</h2>
-      <p>Every audit scores your site out of 100 on each signal, then lists the exact fixes in order of impact.</p>
+      <p>Every audit returns a score out of 100 for each signal, plus the specific fixes to move the needle.</p>
     </div>
     <span class="sample-tag">Illustrative example. Your results will vary</span>
-
-    <div class="rp-wrap reveal">
-      <div class="rp-card">
-        <div class="rp-badge">59 <b>→ 76</b> projected<small>after these fixes</small></div>
-        <div class="rp-card-in">
-          <div class="rp-top"><b><span class="rp-dot">◎</span> AI Visibility Report</b><span>✓ yoursite.com scanned</span></div>
-
-          <div class="rp-title">
-            <h4>Overall AI Visibility Score</h4>
-            <p>How easily AI chatbots and AI search can find, read and recommend your website, based on four technical signals.</p>
-          </div>
-
-          <div class="rp-score">
-            <div class="rp-ring">
-              <svg viewBox="0 0 80 80"><circle class="bg" cx="40" cy="40" r="34"/><circle class="fg" cx="40" cy="40" r="34" style="--off:87.6"/></svg>
-              <div class="v"><span data-count="59">59</span><small>→ <span data-count="76">76</span></small></div>
-            </div>
-            <div class="rp-bars">
-              <div class="rp-bar">Crawlability<i><u style="--w:78%"></u></i><em data-count="78">78</em></div>
-              <div class="rp-bar">Structured data<i><u style="--w:42%"></u></i><em data-count="42">42</em></div>
-              <div class="rp-bar">Answer-readiness<i><u style="--w:61%"></u></i><em data-count="61">61</em></div>
-              <div class="rp-bar">Entity clarity<i><u style="--w:55%"></u></i><em data-count="55">55</em></div>
-            </div>
-          </div>
-
-          <p class="rp-sub">Fix these first</p>
-          <div class="rp-fixes">
-            <div class="rp-fix"><div><b>Add Organization and Service schema</b><span>Missing on 6 of 8 key pages</span></div><span class="rp-pill high">HIGH</span></div>
-            <div class="rp-fix"><div><b>Lead key pages with a direct answer</b><span>5 pages open with a long intro instead</span></div><span class="rp-pill med">MED</span></div>
-            <div class="rp-fix"><div><b>Allow AI crawlers in robots.txt</b><span>2 AI crawlers are currently blocked</span></div><span class="rp-pill low">LOW</span></div>
-          </div>
-        </div>
+    <div class="score-gauge-row reveal-stagger">
+      <div class="score-gauge">
+        <div class="g-value mono">78</div>
+        <div class="g-label">Crawlability</div>
       </div>
-
-      <div class="rp-copy">
-        <span class="section-tag">The work, not a guess</span>
-        <h3>Scored on four signals, with the fix beside every gap.</h3>
-        <p>We scan your site the way an AI crawler does, then score crawlability, structured data, answer-readiness and entity clarity out of 100.</p>
-        <p>Each weak spot comes with a plain-language fix, ranked by impact, so you can see what moves your score most before you change anything.</p>
-        <p>Do it yourself or hand it to our team. You decide what ships.</p>
+      <div class="score-gauge">
+        <div class="g-value mono">42</div>
+        <div class="g-label">Structured Data</div>
+      </div>
+      <div class="score-gauge">
+        <div class="g-value mono">61</div>
+        <div class="g-label">Answer-Readiness</div>
+      </div>
+      <div class="score-gauge">
+        <div class="g-value mono">55</div>
+        <div class="g-label">Entity Clarity</div>
       </div>
     </div>
   </div>
@@ -277,23 +153,15 @@
     <div class="faq-list reveal">
       <div class="faq-item">
         <button class="faq-q">Is this really free? <span class="plus">+</span></button>
-        <div class="faq-a"><div class="faq-a-inner">Yes, the scan and your score report are completely free, no card required. It's the entry point into the wider AIO Audit toolkit.</div></div>
+        <div class="faq-a"><div class="faq-a-inner">Yes, the scan and your first score report are completely free, no card required.</div></div>
       </div>
       <div class="faq-item">
         <button class="faq-q">How long does the scan take? <span class="plus">+</span></button>
-        <div class="faq-a"><div class="faq-a-inner">Usually under a minute. Your score appears on this page as soon as the scan finishes. We read your homepage and a handful of other pages, so very slow sites can take a little longer.</div></div>
-      </div>
-      <div class="faq-item">
-        <button class="faq-q">What's the difference between this and the Citation Checker? <span class="plus">+</span></button>
-        <div class="faq-a"><div class="faq-a-inner">This tool audits your site's technical AI-readiness. The Citation Checker goes further and asks real AI engines your category's questions to see who actually gets recommended.</div></div>
+        <div class="faq-a"><div class="faq-a-inner">Most reports are emailed within a few minutes. Larger sites with many pages can take a little longer.</div></div>
       </div>
       <div class="faq-item">
         <button class="faq-q">Do I need to fix everything myself? <span class="plus">+</span></button>
         <div class="faq-a"><div class="faq-a-inner">No, your report ranks fixes by impact, and our team can implement the technical SEO and AIO changes for you if you'd rather hand it off.</div></div>
-      </div>
-      <div class="faq-item">
-        <button class="faq-q">Why did my scan fail? <span class="plus">+</span></button>
-        <div class="faq-a"><div class="faq-a-inner">Some sites block automated visits (for example with a firewall such as Cloudflare), so we can't read them. Check the address, try again, or write to us and we'll review the site by hand.</div></div>
       </div>
     </div>
   </div>
@@ -302,11 +170,11 @@
 <!-- ===================== CTA ===================== -->
 <section style="padding:20px 0 90px;">
   <div class="cta-section reveal">
-    <h2>Want to also check who AI engines are citing in your category?</h2>
-    <p>Run the Citation Checker next. Same free process, different signal.</p>
+    <h2>Want help fixing what your report finds?</h2>
+    <p>Our team can implement the technical SEO and AI Optimization changes for you.</p>
     <div class="hero-actions">
-      <a href="/citation-checker" class="cta-btn">Run Citation Check →</a>
-      <a href="/aio-audit" class="cta-btn ghost">Back to AIO Audit</a>
+      <a href="/contact" class="cta-btn">Contact Us →</a>
+      <a href="/" class="cta-btn ghost">Back to Home</a>
     </div>
   </div>
 </section>
@@ -326,7 +194,6 @@
       <div>
         <h5>AI SEO Tools</h5>
         <a href="/ai-visibility-score-checker">AI Visibility Checker</a>
-        <a href="/citation-checker">Citation Checker</a>
       </div>
       <div>
         <h5>Get in Touch</h5>
@@ -342,92 +209,5 @@
 </footer>
 
 <script src="main.js"></script>
-<script>
-(function(){
-  var card=document.querySelector('.rp-card'); if(!card) return;
-  var wrap=card.closest('.rp-wrap')||card;
-  var nums=[].slice.call(card.querySelectorAll('[data-count]'));
-  var reduce=window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches;
-  card.querySelectorAll('.rp-bar').forEach(function(b,i){var u=b.querySelector('u');if(u)u.style.setProperty('--i',i)});
-  card.querySelectorAll('.rp-fix').forEach(function(f,i){f.style.setProperty('--i',i)});
-  if(reduce||!('IntersectionObserver' in window)) return;
-  function fmt(el,v){el.textContent=Math.round(v)+(el.getAttribute('data-suffix')||'')}
-  nums.forEach(function(n){fmt(n,0)});
-  card.classList.add('rp-ready');
-  function run(){
-    card.classList.add('rp-live');
-    var start=null,dur=1700;
-    function tick(t){
-      if(!start)start=t;
-      var p=Math.min((t-start)/dur,1), e=1-Math.pow(1-p,3);
-      nums.forEach(function(n){fmt(n,(+n.getAttribute('data-count'))*e)});
-      if(p<1)requestAnimationFrame(tick); else card.classList.add('rp-done');
-    }
-    setTimeout(function(){requestAnimationFrame(tick)},150);
-  }
-  new IntersectionObserver(function(es,o){
-    es.forEach(function(x){if(x.isIntersecting){run();o.disconnect()}});
-  },{threshold:.35}).observe(card);
-})();
-</script>
-<script>
-/* Live scan: sends the website to /api/check and draws the real result.
-   This script takes over the form: it sends the lead email through the same request. */
-(function(){
-  var form=document.querySelector('.audit-form[data-tool="AI Visibility Checker"]');
-  var sec=document.getElementById('avcResult'), out=document.getElementById('avcOut');
-  if(!form||!sec||!out) return;
-  var busy=false, COLORS={High:'#1f9d63',Medium:'#c98a00',Low:'#c8452a'};
-  function el(tag,cls,txt){var e=document.createElement(tag);if(cls)e.className=cls;if(txt!=null)e.textContent=txt;return e}
-  function show(node){out.textContent='';out.appendChild(node);sec.hidden=false;
-    setTimeout(function(){sec.scrollIntoView({behavior:'smooth',block:'start'})},250)}
-  function loading(){var d=el('div','avc-loading');d.appendChild(el('div','avc-spin'));
-    d.appendChild(el('p',null,'Scanning your site. This usually takes under a minute.'));show(d)}
-  function fail(msg){show(el('div','avc-err',msg))}
-  function render(r){
-    var col=COLORS[r.band]||COLORS.Low, frag=document.createDocumentFragment();
-    var top=el('div','rp-top'),b=el('b');b.appendChild(el('span','rp-dot','◎'));b.appendChild(document.createTextNode(' AI Visibility Report'));
-    top.appendChild(b);top.appendChild(el('span',null,'✓ '+r.host+' scanned ('+r.pages_scanned+' pages)'));frag.appendChild(top);
-    var t=el('div','rp-title');t.appendChild(el('h4',null,'Overall AI Visibility Score: '+r.band));
-    t.appendChild(el('p',null,'How easily AI chatbots and AI search can find, read and recommend your website, based on four technical signals.'));frag.appendChild(t);
-    var sc=el('div','rp-score'),ring=el('div','rp-ring');
-    ring.innerHTML='<svg viewBox="0 0 80 80"><circle class="bg" cx="40" cy="40" r="34"/><circle class="fg" cx="40" cy="40" r="34"/></svg>';
-    var fg=ring.querySelector('.fg');fg.style.stroke=col;fg.style.strokeDashoffset='213.6';
-    var v=el('div','v');v.appendChild(el('span',null,String(r.score)));ring.appendChild(v);sc.appendChild(ring);
-    var bars=el('div','rp-bars'),fills=[];
-    r.signals.forEach(function(s){var row=el('div','rp-bar');row.appendChild(document.createTextNode(s.name));
-      var i=document.createElement('i'),u=document.createElement('u');u.style.setProperty('--c',COLORS[s.score>=71?'High':s.score>=41?'Medium':'Low']);u.style.width='0';
-      i.appendChild(u);row.appendChild(i);row.appendChild(el('em',null,String(s.score)));bars.appendChild(row);fills.push([u,s.score])});
-    sc.appendChild(bars);frag.appendChild(sc);
-    frag.appendChild(el('p','rp-sub',r.fixes.length?'Fix these first':'No major fixes found'));
-    var list=el('div','rp-fixes');
-    r.fixes.forEach(function(f){var row=el('div','rp-fix'),d=document.createElement('div');
-      d.appendChild(el('b',null,f.title));d.appendChild(el('span',null,f.detail));
-      if(f.fix)d.appendChild(el('span','how','How to fix: '+f.fix));row.appendChild(d);
-      var p=f.priority==='High'?'high':f.priority==='Medium'?'med':'low';
-      row.appendChild(el('span','rp-pill '+p,f.priority==='Medium'?'MED':f.priority.toUpperCase()));list.appendChild(row)});
-    frag.appendChild(list);
-    if(r.passed&&r.passed.length)frag.appendChild(el('p','avc-note','Working well: '+r.passed.join(', ')+'.'));
-    frag.appendChild(el('p','avc-note','This is a technical check of up to '+r.pages_scanned+' pages. It shows how readable your site is to AI. It does not guarantee rankings or AI citations. Want the fixes done for you? Write to athelstan.online@gmail.com.'));
-    show(frag);
-    requestAnimationFrame(function(){requestAnimationFrame(function(){
-      fg.style.strokeDashoffset=String(213.6*(1-r.score/100));
-      fills.forEach(function(x){x[0].style.width=x[1]+'%'})})});
-  }
-  window.addEventListener('submit',function(e){
-    if(e.target!==form) return;
-    e.preventDefault();e.stopImmediatePropagation();
-    var url=(form.elements.website.value||'').trim();
-    if(busy||!url||(form.elements._honey&&form.elements._honey.value)) return;
-    busy=true;loading();var btn=form.querySelector('button[type=submit]');if(btn)btn.disabled=true;
-    var ctl=window.AbortController?new AbortController():null,timer=setTimeout(function(){ctl&&ctl.abort()},65000);
-    fetch('/api/check',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({url:url,name:form.elements.name.value,email:form.elements.email.value,_honey:form.elements._honey?form.elements._honey.value:''}),signal:ctl?ctl.signal:undefined})
-      .then(function(r){return r.json().catch(function(){return{ok:false}})})
-      .then(function(d){d&&d.ok?render(d):fail((d&&d.error)||'The scan could not finish. Please try again in a moment.')})
-      .catch(function(){fail('The scan took too long or could not start. Please try again, or write to athelstan.online@gmail.com and we will review your site by hand.')})
-      .then(function(){clearTimeout(timer);busy=false;if(btn)btn.disabled=false});
-  },true);
-})();
-</script>
 </body>
 </html>

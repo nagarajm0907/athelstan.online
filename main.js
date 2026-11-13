@@ -408,11 +408,15 @@ document.addEventListener('DOMContentLoaded', () => {
         ok = true; // bots: pretend success, send nothing
       } else {
         try {
+          const ctl = new AbortController();
+          const timer = setTimeout(() => ctl.abort(), 12000);
           const res = await fetch(FORM_ENDPOINT, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
-            body: JSON.stringify(payload)
+            body: JSON.stringify(payload),
+            signal: ctl.signal
           });
+          clearTimeout(timer);
           const data = await res.json().catch(() => ({}));
           ok = res.ok && data.success !== 'false' && data.success !== false;
         } catch (err) {
@@ -423,7 +427,10 @@ document.addEventListener('DOMContentLoaded', () => {
           try {
             const backup = new FormData();
             Object.keys(payload).forEach(k => backup.append(k, payload[k]));
-            await fetch(FORM_ENDPOINT.replace('/ajax/', '/'), { method: 'POST', mode: 'no-cors', body: backup });
+            const ctl2 = new AbortController();
+            const timer2 = setTimeout(() => ctl2.abort(), 8000);
+            await fetch(FORM_ENDPOINT.replace('/ajax/', '/'), { method: 'POST', mode: 'no-cors', body: backup, signal: ctl2.signal });
+            clearTimeout(timer2);
           } catch (err) { /* nothing more to try */ }
         }
       }
@@ -436,6 +443,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (successBox) {
           successBox.style.display = 'block';
           requestAnimationFrame(() => successBox.classList.add('in'));
+          try { successBox.scrollIntoView({ behavior: 'smooth', block: 'center' }); } catch (err) {}
         }
       }, 350);
     });

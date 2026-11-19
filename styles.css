@@ -1,6 +1,7 @@
 /* =========================================================
    Athelstan.Online : Stylesheet
-   Theme: Yellow (#ffc300) + White, high-motion, AI/search identity
+   Theme: GREEN + WHITE (colour variables are in the last
+   :root block near the bottom of this file)
    ========================================================= */
 
 :root{
@@ -129,7 +130,7 @@ nav.links a::after{
 }
 nav.links a:hover::after{width:100%;}
 
-/* ---------- Nav dropdown (AIO Audit) ---------- */
+/* ---------- Nav dropdown (kept in case it is used again) ---------- */
 .nav-dropdown{position:relative;display:flex;align-items:center;gap:2px;}
 .nav-dropdown-label{position:relative;padding:4px 0;transition:color .2s;}
 .nav-dropdown-label:hover{color:var(--ink);}
@@ -592,7 +593,7 @@ footer{padding:60px 28px 34px;}
   z-index:0;pointer-events:none;opacity:1;
 }
 
-/* ---------- Team section (fixes: no inline grid overrides, explicit text colors) ---------- */
+/* ---------- Team section ---------- */
 .team-grid{
   display:grid;grid-template-columns:repeat(2,1fr);gap:20px;
   max-width:760px;margin:0 auto;position:relative;z-index:1;
@@ -615,8 +616,6 @@ footer{padding:60px 28px 34px;}
 
 /* =========================================================
    PHASE 2 : Glassmorphism, glow, typewriter, orbit rings
-   Extra system used on the Knowledge Base page and reused
-   across the site for higher-density motion.
    ========================================================= */
 
 :root{
@@ -705,7 +704,7 @@ footer{padding:60px 28px 34px;}
 @keyframes badge-float{0%,100%{transform:translateY(0) rotate(0deg);}50%{transform:translateY(-10px) rotate(1.5deg);}}
 
 /* =========================================================
-   KNOWLEDGE BASE PAGE
+   BLOG PAGE (knowledge base layout)
    ========================================================= */
 .kb-hero{
   position:relative;overflow:hidden;padding:100px 28px 60px;
@@ -795,7 +794,7 @@ footer{padding:60px 28px 34px;}
 }
 
 /* =========================================================
-   AIO AUDIT PAGES (hub + 2 tool pages)
+   TOOL PAGES (AI Visibility Report form, steps, FAQ)
    ========================================================= */
 
 .audit-hero{
@@ -810,7 +809,7 @@ footer{padding:60px 28px 34px;}
 .audit-hero h1{font-size:clamp(2.1rem,5vw,3.4rem);margin-top:18px;}
 .audit-hero p.sub{margin-top:18px;font-size:1.05rem;line-height:1.65;color:var(--ink-soft);max-width:60ch;margin-left:auto;margin-right:auto;}
 
-/* Tool selector cards on the AIO Audit hub */
+/* Tool selector cards (kept in case a hub page is used again) */
 .tool-grid{
   display:grid;grid-template-columns:repeat(2,1fr);gap:22px;
   max-width:900px;margin:44px auto 0;position:relative;z-index:2;
@@ -929,13 +928,12 @@ footer{padding:60px 28px 34px;}
   .score-gauge{width:calc(50% - 8px);}
 }
 
-/* ===== Merged updates (fixes, theme, legal, footer) ===== */
-/* Athelstan.Online: batch 1 fixes. Loads after styles.css */
+/* ===== Merged updates (fixes, legal, footer) ===== */
 
-/* #5 Remove back-to-top button */
+/* Remove back-to-top button */
 #toTop{display:none !important;}
 
-/* #14 Audit banner: tag, heading and text now line up on the left */
+/* Tool banner: tag, heading and text line up on the left */
 .feature-cta{
   text-align:left;
   display:grid;
@@ -957,7 +955,7 @@ footer{padding:60px 28px 34px;}
   .feature-cta .cta-btn{justify-content:center;width:100%;}
 }
 
-/* #15 Legend explaining Automated vs Managed */
+/* Legend (kept for pages that use it) */
 .svc-legend{
   display:grid;grid-template-columns:repeat(2,1fr);gap:16px;
   margin-bottom:26px;position:relative;z-index:1;
@@ -979,9 +977,7 @@ footer{padding:60px 28px 34px;}
 .svc-legend-item p strong{color:#fff;font-weight:600;}
 @media (max-width:720px){.svc-legend{grid-template-columns:1fr;}}
 
-/* #17 Knowledge Base badges now sit in the page, not floating */
-
-/* #1 Footer */
+/* Footer */
 footer{padding:64px 28px 30px;border-top:1px solid var(--line);}
 .footer-grid{grid-template-columns:1.6fr 1fr 1fr 1.2fr;gap:44px;}
 .footer-grid h5{color:var(--ink);margin-bottom:18px;}
@@ -1016,98 +1012,6 @@ footer{padding:64px 28px 30px;border-top:1px solid var(--line);}
 }
 .footer-legal a{color:var(--ink-soft);text-decoration:underline;}
 
-/* =========================================================
-   THEME: beige, white and black
-   Overrides the colour variables from styles.css
-   ========================================================= */
-:root{
-  --ink:#14130f;
-  --ink-soft:#3b382f;
-  --paper:#f5f1e8;
-  --paper-warm:#efe9db;
-  --yellow:#d8c8a4;
-  --yellow-deep:#7a6238;
-  --yellow-pale:#e9e1cd;
-  --yellow-line:#d6cbb0;
-  --charcoal:#141412;
-  --charcoal-2:#1d1c19;
-  --line:#e0d8c4;
-  --shadow-yellow:0 18px 40px -22px rgba(20,19,15,.35);
-  --glow-yellow:0 0 0 1px rgba(20,19,15,.08),0 20px 60px -28px rgba(20,19,15,.35);
-}
-::selection{background:#d8c8a4;color:#14130f;}
-
-/* Pulses were golden, now sand */
-@keyframes pulse-dot{
-  0%{box-shadow:0 0 0 0 rgba(216,200,164,.6);}
-  70%{box-shadow:0 0 0 9px rgba(216,200,164,0);}
-  100%{box-shadow:0 0 0 0 rgba(216,200,164,0);}
-}
-
-#scrollProgress{background:linear-gradient(90deg,#7a6238,#14130f);box-shadow:none;}
-#cursorGlow{background:radial-gradient(circle,rgba(122,98,56,.12),transparent 68%);}
-header{background:rgba(245,241,232,.78);}
-
-/* Page backgrounds */
-.hero,.kb-hero,.audit-hero{
-  background:
-    radial-gradient(ellipse 900px 500px at 15% -10%, #e9e1cd 0%, transparent 60%),
-    radial-gradient(ellipse 700px 500px at 100% 10%, #f0e9d8 0%, transparent 55%),
-    var(--paper);
-}
-.blob{opacity:.35;}
-.blob-1,.blob-2{background:radial-gradient(circle,#d8c8a4,transparent 70%);}
-.ambient-orb.o1,.ambient-orb.o2,.ambient-orb.o3{background:radial-gradient(circle,rgba(190,170,130,.3),transparent 70%);}
-#network-canvas,.section-network{filter:grayscale(1);opacity:.45;}
-
-/* Headline accent */
-.hero h1 em{
-  background:linear-gradient(100deg,#5c4a29,#a08a5b 45%,#5c4a29 70%,#a08a5b);
-  background-size:300% auto;
-  -webkit-background-clip:text;background-clip:text;color:transparent;
-}
-
-/* Buttons */
-.cta-btn:hover{background:var(--yellow);color:var(--ink);}
-.cta-btn.ghost:hover{background:var(--ink);color:#fff;}
-.audit-form button[type="submit"]:hover{background:var(--yellow);color:var(--ink);}
-.audit-form input:focus{box-shadow:0 0 0 3px rgba(122,98,56,.18);}
-
-/* Dark sections */
-.services-section::before{background:radial-gradient(circle,rgba(216,200,164,.12),transparent 70%);}
-.services-section::after{background:radial-gradient(circle,rgba(216,200,164,.07),transparent 70%);}
-.services-section .section-tag{background:rgba(216,200,164,.15);color:var(--yellow);}
-.svc-tags span{background:rgba(216,200,164,.1);color:var(--yellow);border-color:rgba(216,200,164,.28);}
-.svc-card:hover{box-shadow:0 30px 60px -30px rgba(216,200,164,.25);}
-.svc-card .svc-num{color:var(--yellow);}
-
-/* Pulse / sample panel: no gold border animation */
-.pulse-panel{animation:none;background:var(--charcoal);border:1px solid #2a2a26;background-image:none;}
-.pulse-panel::before{background:repeating-linear-gradient(115deg,rgba(216,200,164,.05) 0,rgba(216,200,164,.05) 1px,transparent 1px,transparent 46px);}
-.pulse-panel .live-tag{color:#9a958a;letter-spacing:.1em;}
-.pulse-foot{
-  margin-top:22px;position:relative;z-index:1;
-  display:flex;justify-content:space-between;align-items:center;gap:14px;flex-wrap:wrap;
-}
-.pulse-foot p{color:#9a958a;font-size:.82rem;}
-.pulse-foot a{color:var(--yellow);font-weight:700;font-size:.86rem;}
-.pulse-foot a:hover{text-decoration:underline;}
-
-/* CTA banners: black with beige text */
-.cta-section{background:var(--ink);animation:none;}
-.cta-section::after{opacity:.07;}
-.cta-section h2{color:var(--paper);}
-.cta-section p{color:#cfc6ae;}
-.cta-section .cta-btn{background:var(--paper);color:var(--ink);}
-.cta-section .cta-btn:hover{background:var(--yellow);color:var(--ink);}
-.cta-section .cta-btn.ghost{background:transparent;border-color:var(--paper);color:var(--paper);}
-.cta-section .cta-btn.ghost:hover{background:var(--paper);color:var(--ink);}
-.feature-cta .nav-badge{background:rgba(216,200,164,.16) !important;color:var(--yellow) !important;}
-
-@media (max-width:720px){
-  nav.links{background:var(--paper);}
-}
-
 /* ---------- Footer: 3 columns ---------- */
 .footer-grid{grid-template-columns:1.8fr 1fr 1fr;}
 @media (max-width:720px){.footer-grid{grid-template-columns:1fr 1fr;}}
@@ -1116,8 +1020,6 @@ header{background:rgba(245,241,232,.78);}
 /* ---------- About page ---------- */
 .team-link{display:flex;font-weight:700;font-size:.86rem;}
 
-
-/* ---------- About page: product + roadmap ---------- */
 .about-steps{counter-reset:step;list-style:none;padding:0;margin:14px 0 0;}
 .about-steps li{counter-increment:step;position:relative;padding-left:44px;margin-top:14px;}
 .about-steps li::before{
@@ -1138,8 +1040,7 @@ header{background:rgba(245,241,232,.78);}
 .roadmap-card li{font-size:.86rem;line-height:1.6;color:var(--ink-soft);margin-top:8px;}
 .roadmap-note{max-width:var(--maxw);margin:18px auto 0;font-size:.8rem;color:#9a9a9f;}
 
-
-/* ---------- Mobile fixes: AIO Audit + tool pages ---------- */
+/* ---------- Mobile fixes: tool pages ---------- */
 @media (max-width:720px){
   .audit-hero{padding:56px 20px 48px;}
   .audit-hero h1{font-size:clamp(1.7rem,7.5vw,2.3rem);overflow-wrap:break-word;}
@@ -1158,7 +1059,7 @@ header{background:rgba(245,241,232,.78);}
   .cta-section h2{font-size:clamp(1.5rem,6.5vw,2rem);}
 }
 
-/* ---------- Mobile menu fix: left-aligned, tidy rows, bigger dropdown arrow ---------- */
+/* ---------- Mobile menu: left-aligned rows ---------- */
 @media (max-width:720px){
   nav.links{
     align-items:stretch;gap:0;padding:8px 24px 18px;
@@ -1191,34 +1092,34 @@ header{background:rgba(245,241,232,.78);}
 }
 
 /* =========================================================
-   LIGHT MINIMAL SKIN (inspired by modern SaaS sites)
+   LIGHT MINIMAL SKIN: GREEN & WHITE
    White space, big centered headlines, flat cards,
-   one warm coral accent. Delete this whole block to go
-   back to the previous beige look.
+   one green accent. All site colours come from the
+   variables in the :root block right below.
    ========================================================= */
 :root{
-  --ink:#111111;
-  --ink-soft:#52525b;
+  --ink:#0f1a14;
+  --ink-soft:#4b5a51;
   --paper:#ffffff;
-  --paper-warm:#faf8f4;
-  --yellow:#f26b4f;
-  --yellow-deep:#c4452b;
-  --yellow-pale:#fdebe6;
-  --yellow-line:#f5cdc2;
-  --charcoal:#111111;
-  --charcoal-2:#1a1a1a;
-  --line:#ebe7df;
+  --paper-warm:#f3f9f5;
+  --yellow:#1e9e5a;        /* main green */
+  --yellow-deep:#137a43;   /* darker green: links, tags, hover */
+  --yellow-pale:#e3f4ea;   /* pale green tint */
+  --yellow-line:#bfe3cd;   /* soft green border */
+  --charcoal:#0f1a14;
+  --charcoal-2:#16251c;
+  --line:#dcebe1;
   --radius:16px;
-  --shadow-yellow:0 10px 30px -18px rgba(17,17,17,.25);
-  --glow-yellow:0 14px 38px -22px rgba(17,17,17,.30);
+  --shadow-yellow:0 10px 30px -18px rgba(15,26,20,.25);
+  --glow-yellow:0 14px 38px -22px rgba(15,26,20,.30);
 }
 body{background:#fff;}
 h1,h2,h3,h4{font-family:'Inter',system-ui,sans-serif;font-weight:600;letter-spacing:-0.03em;line-height:1.08;}
-::selection{background:#f9c7bb;color:#111;}
+::selection{background:#bfe3cd;color:#0f1a14;}
 @keyframes pulse-dot{
-  0%{box-shadow:0 0 0 0 rgba(242,107,79,.55);}
-  70%{box-shadow:0 0 0 9px rgba(242,107,79,0);}
-  100%{box-shadow:0 0 0 0 rgba(242,107,79,0);}
+  0%{box-shadow:0 0 0 0 rgba(30,158,90,.55);}
+  70%{box-shadow:0 0 0 9px rgba(30,158,90,0);}
+  100%{box-shadow:0 0 0 0 rgba(30,158,90,0);}
 }
 
 /* Remove decoration: moving lines, glowing blobs, cursor glow */
@@ -1238,13 +1139,13 @@ nav.links a:hover{color:var(--ink);}
 /* Buttons */
 .cta-btn{background:var(--ink);color:#fff;padding:12px 22px;font-weight:600;}
 .cta-btn::before{display:none;}
-.cta-btn:hover{background:var(--yellow);color:#111;transform:translateY(-1px);box-shadow:none;}
+.cta-btn:hover{background:var(--yellow-deep);color:#fff;transform:translateY(-1px);box-shadow:none;}
 .cta-btn.ghost{background:#fff;border:1.5px solid var(--line);color:var(--ink);}
 .cta-btn.ghost:hover{background:#fff;border-color:var(--ink);color:var(--ink);}
 
-/* Heroes: centered, airy */
+/* Heroes: centered, airy, soft green glow at the bottom */
 .hero,.kb-hero,.audit-hero{
-  background:radial-gradient(ellipse 900px 340px at 50% 112%, rgba(242,107,79,.14), transparent 70%), #fff;
+  background:radial-gradient(ellipse 900px 340px at 50% 112%, rgba(30,158,90,.13), transparent 70%), #fff;
   text-align:center;
 }
 .hero{padding:120px 28px 110px;}
@@ -1264,7 +1165,7 @@ nav.links a:hover{color:var(--ink);}
 .section-head h2{font-size:clamp(1.9rem,3.6vw,2.8rem);}
 .section-tag{background:var(--yellow-pale);color:var(--yellow-deep);}
 
-/* Offer section: light instead of dark */
+/* Light version of the dark "services" section */
 .services-section{
   background:var(--paper-warm);color:var(--ink);
   border-top:1px solid var(--line);border-bottom:1px solid var(--line);
@@ -1273,13 +1174,12 @@ nav.links a:hover{color:var(--ink);}
 .services-section .section-head p{color:var(--ink-soft);}
 .svc-card{background:#fff;border:1px solid var(--line);color:var(--ink);box-shadow:none;}
 .svc-card::before{display:none;}
-.svc-card:hover{background:#fff;border-color:#cfc8ba;box-shadow:var(--glow-yellow);}
+.svc-card:hover{background:#fff;border-color:#b9d3c3;box-shadow:var(--glow-yellow);}
 .svc-card .svc-num{color:var(--yellow-deep) !important;}
 .svc-card h3{color:var(--ink);}
 .svc-card p{color:var(--ink-soft);}
 .svc-tags span{background:var(--paper-warm);color:var(--ink-soft);border:1px solid var(--line);}
 .svc-card:hover .svc-tags span{transform:none;}
-a.svc-card[href="/aio-audit"]{border-color:var(--yellow-line) !important;}
 .svc-legend-item{background:#fff;border:1px solid var(--line);backdrop-filter:none;-webkit-backdrop-filter:none;}
 .svc-legend-item .legend-tag{color:var(--yellow-deep);background:var(--yellow-pale);border-color:var(--yellow-line);}
 .svc-legend-item p{color:var(--ink-soft);}
@@ -1292,7 +1192,7 @@ a.svc-card[href="/aio-audit"]{border-color:var(--yellow-line) !important;}
 .kb-card,.tool-card,.audit-step,.faq-item,.score-gauge,.audit-form-wrap{
   background:#fff;border:1px solid var(--line);box-shadow:none;
 }
-.kb-card:hover,.tool-card:hover,.audit-step:hover{box-shadow:var(--glow-yellow);border-color:#cfc8ba;}
+.kb-card:hover,.tool-card:hover,.audit-step:hover{box-shadow:var(--glow-yellow);border-color:#b9d3c3;}
 .kb-card::before{display:none;}
 .kb-card.featured{background:var(--paper-warm);color:var(--ink);border:1px solid var(--line);}
 .kb-card.featured .kb-tag,.kb-card.featured .kb-read{color:var(--yellow-deep);}
@@ -1304,32 +1204,34 @@ a.svc-card[href="/aio-audit"]{border-color:var(--yellow-line) !important;}
 .team-card h3{color:var(--ink);}
 .team-link{color:var(--yellow-deep) !important;}
 
-/* Banners */
-.cta-section{background:var(--yellow);animation:none;border-radius:24px;}
+/* Green banners: white text, white buttons */
+.cta-section{background:var(--yellow-deep);animation:none;border-radius:24px;}
 .cta-section::after{display:none;}
-.cta-section h2{color:#111;}
-.cta-section p{color:#3b1a12;}
-.cta-section .cta-btn{background:#111;color:#fff;}
-.cta-section .cta-btn:hover{background:#fff;color:#111;}
-.cta-section .cta-btn.ghost{background:transparent;border-color:#111;color:#111;}
-.cta-section .cta-btn.ghost:hover{background:#111;color:#fff;}
+.cta-section h2{color:#fff;}
+.cta-section p{color:#e3f4ea;}
+.cta-section .cta-btn{background:#fff;color:var(--ink);}
+.cta-section .cta-btn:hover{background:var(--yellow-pale);color:var(--ink);}
+.cta-section .cta-btn.ghost{background:transparent;border-color:#fff;color:#fff;}
+.cta-section .cta-btn.ghost:hover{background:#fff;color:var(--yellow-deep);}
+
+/* The tool banner on the home page stays light */
 .feature-cta{background:var(--paper-warm);border:1px solid var(--line);}
 .feature-cta h2{color:var(--ink);}
 .feature-cta p{color:var(--ink-soft);}
-.feature-cta .cta-btn{background:#111;color:#fff;}
-.feature-cta .cta-btn:hover{background:var(--yellow);color:#111;}
+.feature-cta .cta-btn{background:var(--ink);color:#fff;}
+.feature-cta .cta-btn:hover{background:var(--yellow-deep);color:#fff;}
 .feature-cta .nav-badge{background:var(--yellow-pale) !important;color:var(--yellow-deep) !important;}
 
 /* Forms and footer */
-.audit-form button[type="submit"]:hover{background:var(--yellow);color:#111;}
-.audit-form input:focus{box-shadow:0 0 0 3px rgba(242,107,79,.18);border-color:var(--yellow);}
+.audit-form button[type="submit"]:hover{background:var(--yellow-deep);color:#fff;}
+.audit-form input:focus{box-shadow:0 0 0 3px rgba(30,158,90,.18);border-color:var(--yellow);}
 .footer-grid h5{color:var(--ink);}
 @media (max-width:720px){
   .hero{padding:72px 20px 64px;}
   nav.links{background:#fff;}
 }
 
-/* ---------- Homepage: the two tools ---------- */
+/* ---------- Homepage: the tool section ---------- */
 .tools-section{
   padding:96px 28px;background:var(--paper-warm);
   border-top:1px solid var(--line);border-bottom:1px solid var(--line);
@@ -1343,7 +1245,7 @@ a.svc-card[href="/aio-audit"]{border-color:var(--yellow-line) !important;}
   display:flex;flex-direction:column;gap:14px;
   transition:box-shadow .3s ease,border-color .3s ease;
 }
-.tool-big:hover{box-shadow:var(--glow-yellow);border-color:#cfc8ba;}
+.tool-big:hover{box-shadow:var(--glow-yellow);border-color:#b9d3c3;}
 .tool-badge{
   align-self:flex-start;font-family:'JetBrains Mono',monospace;font-size:.7rem;font-weight:700;
   letter-spacing:.06em;color:var(--yellow-deep);background:var(--yellow-pale);
@@ -1363,11 +1265,11 @@ a.svc-card[href="/aio-audit"]{border-color:var(--yellow-line) !important;}
   font-size:.78rem;color:var(--ink-soft);margin-top:12px;
 }
 .mini-row b{color:var(--ink);font-family:'JetBrains Mono',monospace;text-align:right;}
-.mini-track{height:8px;background:#e7e2d6;border-radius:99px;overflow:hidden;}
-.mini-fill{height:100%;border-radius:99px;background:linear-gradient(90deg,#f6a08d,var(--yellow));}
+.mini-track{height:8px;background:#e2eee6;border-radius:99px;overflow:hidden;}
+.mini-fill{height:100%;border-radius:99px;background:linear-gradient(90deg,#7fd3a3,var(--yellow));}
 .dots-wrap{display:flex;align-items:center;gap:22px;margin-top:16px;flex-wrap:wrap;}
 .dots{display:grid;grid-template-columns:repeat(5,22px);gap:9px;}
-.dot{width:22px;height:22px;border-radius:50%;background:#e4dfd3;display:block;}
+.dot{width:22px;height:22px;border-radius:50%;background:#dcebe1;display:block;}
 .dot.on{background:var(--yellow);}
 .dots-key{display:flex;flex-direction:column;gap:2px;}
 .dots-key b{font-family:'Inter',sans-serif;font-size:1.9rem;letter-spacing:-0.03em;color:var(--ink);}
@@ -1395,18 +1297,18 @@ a.svc-card[href="/aio-audit"]{border-color:var(--yellow-line) !important;}
   .mini-row{grid-template-columns:104px 1fr 26px;}
 }
 
-/* ---------- Logo and wordmark: match the light minimal look ---------- */
+/* ---------- Logo and wordmark ---------- */
 .brand{gap:11px;font-family:'Inter',system-ui,sans-serif;font-weight:700;font-size:1.08rem;letter-spacing:-0.02em;}
 .brand-tld{color:var(--yellow-deep);font-weight:600;}
 .brand-mark{
   width:40px;height:40px;border-radius:12px;padding:6px;
-  background:var(--ink);border:1px solid #2a2a2a;box-shadow:none;
+  background:var(--ink);border:1px solid #1f2e25;box-shadow:none;
 }
 .brand-mark::after{display:none;}
 footer .brand-mark{width:36px;height:36px;border-radius:11px;}
 
 
-/* ---------- Forms (shared by Visibility Check and Citation Check) ---------- */
+/* ---------- Forms (shared) ---------- */
 .audit-form-wrap{padding:32px;}
 .audit-form h2{text-align:center;margin:0 0 8px;}
 .audit-form > p:not(.audit-form-note){
@@ -1440,7 +1342,7 @@ footer .brand-mark{width:36px;height:36px;border-radius:11px;}
 .kb-promo{margin-top:18px;font-size:.95rem;color:var(--ink-soft);}
 .kb-promo a{font-weight:600;color:var(--ink);border-bottom:2px solid var(--yellow);}
 
-/* ---------- Home: next-gen tools section ---------- */
+/* ---------- Home: next-gen tool section ---------- */
 .nextgen-section{padding:72px 28px 24px;}
 .nextgen-section .section-head{margin-bottom:28px;}
 .nextgen-actions{display:flex;justify-content:center;gap:14px;flex-wrap:wrap;}
@@ -1449,14 +1351,15 @@ footer .brand-mark{width:36px;height:36px;border-radius:11px;}
   .nextgen-actions .cta-btn{width:100%;justify-content:center;}
 }
 
-/* ---------- Logo color matches site accent ---------- */
-.brand-mark img{filter:hue-rotate(-30deg) saturate(1.1);}
+/* ---------- Logo colour: turns the yellow logo green.
+   If it looks too blue or too yellow, change 100deg (try 80 to 120). ---------- */
+.brand-mark img{filter:hue-rotate(100deg) saturate(1.1);}
 
 /* ---------- LinkedIn link in footer ---------- */
 .footer-grid a.footer-social{display:inline-flex;align-items:center;gap:8px;margin-top:2px;}
 .footer-grid a.footer-social:hover{transform:none;}
 
-/* ---------- Hero logo: reflective, moving (sharp version) ---------- */
+/* ---------- Hero logo: reflective, moving ---------- */
 .hero-logo{display:flex;justify-content:center;margin:0 0 clamp(84px,9vw,104px);}
 .hero-logo-float{perspective:1000px;animation:logo-float 6s ease-in-out infinite;}
 @keyframes logo-float{0%,100%{transform:translateY(0);}50%{transform:translateY(-8px);}}
@@ -1468,7 +1371,7 @@ footer .brand-mark{width:36px;height:36px;border-radius:11px;}
 .hero-logo-img{
   display:block;width:100%;height:100%;object-fit:contain;
   image-rendering:auto;
-  filter:hue-rotate(-30deg) drop-shadow(0 8px 10px rgba(17,17,17,.16));
+  filter:hue-rotate(100deg) drop-shadow(0 8px 10px rgba(15,26,20,.16));
 }
 .hero-logo-sheen{
   position:absolute;inset:0;pointer-events:none;mix-blend-mode:overlay;opacity:.7;
@@ -1491,7 +1394,7 @@ footer .brand-mark{width:36px;height:36px;border-radius:11px;}
   .hero-logo-stage{width:clamp(130px,42vw,170px);}
 }
 
-/* ---------- Form error message ---------- */
+/* ---------- Form messages ---------- */
 .audit-success .audit-success-note{margin-top:12px;font-size:.82rem;color:#9a9a9f;}
 .audit-success-note a{color:var(--ink);font-weight:600;border-bottom:1px solid var(--yellow);}
 .audit-form-error{display:none;text-align:center;color:#b3261e;font-size:.82rem;line-height:1.5;margin-top:12px;}
